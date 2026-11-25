@@ -148,12 +148,13 @@
   burger.addEventListener('click', function () {
     var open = menu.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
   });
   menu.addEventListener('click', function (e) {
-    if (e.target.closest('a')) { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+    if (e.target.closest('a')) { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open'); }
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && menu.classList.contains('open')) { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); burger.focus(); }
+    if (e.key === 'Escape' && menu.classList.contains('open')) { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open'); burger.focus(); }
   });
 
   /* заявка → WhatsApp (формат из NEW-SITE-BRIEF.md) */
@@ -183,5 +184,13 @@
     var w = null;
     try { w = window.open(url, '_blank'); } catch (x) {}
     if (w) w.opener = null; else go.focus();
+  });
+  /* лента работ: стрелки */
+  var rail = document.getElementById('rail');
+  document.querySelectorAll('.arrow').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var w = rail.querySelector('.slide').getBoundingClientRect().width + 14;
+      rail.scrollBy({ left: w * Number(b.dataset.dir), behavior: 'smooth' });
+    });
   });
 })();
