@@ -23,6 +23,7 @@
 | `concept.html`, `flow-prompts.md`, `HISTORY.md` | концепция, промпты картинок, история проекта |
 
 ## Опубликованные страницы
+- Веб-превью (Vercel, проект `areve-preview`, команда Mantarlyan Projects, автодеплой из `main`): вариант A https://areve-preview.vercel.app/new-site/ · вариант B https://areve-preview.vercel.app/new-site-b/
 - Концепция: https://claude.ai/artifact/FcQtwWmHasCzwHjrJd8FGC
 - Новый сайт, главная (черновик, 25.11.2026): https://claude.ai/artifact/7Y4GAfL857ttHN7ZEfmYkV
 - Новый сайт, главная, вариант B (`new-site-b/`, 25.11.2026): https://claude.ai/artifact/UmYPMEQELrYimnkL1XrMgU
