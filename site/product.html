@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE Product</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ARÉVE — pergolas, awnings, glazing, decking, umbrellas, misting, blinds and screens in Yerevan.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Layout: страница одного продукта из коллекции (адрес product.html#<id>).
+   Обложка с «Назад» → описание и особенности → модели → цифры → наши работы с этим продуктом
+   → где работает → как работаем → заявка → «Назад в коллекцию». */
+[hidden]{display:none!important}
+.p-hero{position:relative;min-height:min(78vh,760px);display:grid;align-items:end;color:var(--stone);overflow:hidden;background:var(--shade)}
+.p-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7}
+.p-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,24,20,.35),rgba(26,24,20,.88))}
+.p-hero .wrap{position:relative;z-index:1;padding-block:40px 56px;display:grid;gap:18px;width:100%;align-self:stretch;grid-template-rows:auto 1fr auto}
+.p-hero .top-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.back{display:inline-flex;align-items:center;gap:10px;font:500 .78rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--stone);border:1px solid var(--hair-dk);padding:12px 16px;background:rgba(26,24,20,.45)}
+.back:hover{border-color:var(--brass);color:var(--brass-lt)}
+:lang(hy) .back{letter-spacing:.06em}
+.p-hero .txt{display:grid;gap:16px;align-content:end}
+.p-hero h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.98}
+:lang(hy) .p-hero h1{font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.08}
+.p-hero p{margin:0;max-width:52ch;color:rgba(236,231,223,.84);font-weight:400;font-size:1.1rem}
+.p-hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+.sec-h h2{font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.06;margin-top:14px}
+.sec-h .lbl{color:var(--brass)}
+.split{padding-block:88px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:56px}
+
+.feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--hair)}
+.feat-grid div{padding:22px 22px 22px 0;border-bottom:1px solid var(--hair);display:grid;gap:8px}
+.feat-grid div:nth-child(2n){padding-left:22px;border-left:1px solid var(--hair)}
+.feat-grid b{font-family:var(--f-disp);font-weight:400;font-size:1.5rem}
+.feat-grid span{color:var(--dust);font-size:.96rem}
+.spec{width:100%;border-collapse:collapse;margin-top:28px}
+.spec th,.spec td{text-align:left;padding:14px 0;border-bottom:1px solid var(--hair);vertical-align:top;font-weight:400}
+.spec th{color:var(--dust);width:40%;font-size:.9rem}
+
+.reg{border-top:1px solid var(--hair)}
+.ser{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 20px}
+.ser-card{display:grid;gap:10px;align-content:start}
+.ser-card figure{margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--stone-2);position:relative}
+.ser-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.6,.2,1)}
+.ser-card:hover img{transform:scale(1.04)}
+.ser-card .n{position:absolute;left:10px;top:10px;font-family:var(--f-mono);font-size:.7rem;color:var(--stone);background:rgba(26,24,20,.55);padding:4px 8px}
+.ser-card h3{font-size:1.5rem;line-height:1.1}
+.ser-card .tag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass)}
+.ser-card p{margin:0;color:var(--dust);font-size:.95rem}
+.ser-note{color:var(--dust);margin-top:18px}
+.ser-card figure.soon{display:grid;place-items:center;background:var(--stone-2);border:1px dashed var(--hair);color:var(--dust)}
+.models.wide .split{grid-template-columns:minmax(0,1fr)}
+@media (max-width:900px){.ser{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.ser{grid-template-columns:minmax(0,1fr)}}
+.reg div{display:grid;grid-template-columns:3em minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--hair)}
+.reg .mono{color:var(--brass)}
+.reg b{font-family:var(--f-disp);font-weight:400;font-size:1.6rem}
+.reg small{color:var(--dust)}
+
+.facts{background:var(--stone-2)}
+.facts .wrap{padding-block:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px}
+.fact b{display:block;font-family:var(--f-disp);font-weight:400;font-size:clamp(2.6rem,5vw,3.8rem);line-height:1;font-variant-numeric:tabular-nums}
+.fact b small{font-family:var(--f-body);font-size:.36em;color:var(--dust);margin-left:6px;letter-spacing:.06em}
+.fact span{display:block;margin-top:10px;color:var(--dust);max-width:26ch;font-size:.92rem}
+
+.gal .wrap{padding-block:72px 24px}
+.gal h2{margin-bottom:28px}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.gal-grid a{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--stone-2)}
+.gal-grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+.gal-grid a:hover img{transform:scale(1.05)}
+.gvid{grid-row:span 2;background:var(--shade)}
+.gvid video{width:100%;height:100%;object-fit:cover;display:block}
+
+.works{background:var(--stone-2)}
+.works .wrap{padding-block:80px 88px}
+.works-head{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:end;justify-content:space-between;margin-bottom:36px}
+.cases{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px 14px}
+.case{display:grid;gap:10px;align-content:start}
+.case figure{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--stone)}
+.case img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.6,.2,1)}
+.case a:hover img{transform:scale(1.05)}
+.case h3{font-size:1.15rem;line-height:1.15}
+:lang(hy) .case h3{font-size:1rem}
+.case .lbl{font-size:.64rem}
+.case .lbl{color:var(--brass)}
+.case p{margin:0;color:var(--dust);font-size:.92rem}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--hair);padding:12px 16px}
+.where p{color:var(--dust);max-width:44ch}
+
+.how{background:var(--shade);color:var(--stone)}
+.how .wrap{padding-block:80px}
+.how .lbl{color:var(--brass-lt)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:36px;border-top:1px solid var(--hair-dk)}
+.step{padding:24px 22px 8px 0;display:grid;gap:10px;align-content:start}
+.step + .step{padding-left:22px;border-left:1px solid var(--hair-dk)}
+.step .mono{color:var(--brass-lt)}
+.step h3{font-size:1.35rem}
+.step p{margin:0;color:rgba(236,231,223,.66);font-size:.94rem}
+
+.req .wrap{padding-block:88px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px}
+.req p.lead{color:var(--dust);max-width:40ch;margin:20px 0 32px}
+.contact{display:grid;gap:18px}
+.contact .row{display:grid;gap:4px}
+.contact .row b{font-family:var(--f-disp);font-weight:400;font-size:1.35rem}
+.contact a{text-decoration:none}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;align-content:start}
+.fld{display:grid;gap:8px}
+.fld.wide{grid-column:1/-1}
+.fld label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--dust)}
+.fld input,.fld select,.fld textarea{font:300 1rem var(--f-body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(34,31,26,.35);padding:10px 0;border-radius:0;outline:none;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-bottom-color:var(--brass)}
+form .btn{justify-self:start}
+.err{grid-column:1/-1;color:#9A4A2A;margin:0}
+.done{grid-column:1/-1;color:var(--brass);margin:0}
+.back-row .wrap{padding-block:0 72px;display:flex;justify-content:center}
+.back-row .back{color:var(--ink);border-color:var(--hair);background:none}
+.back-row .back:hover{color:var(--brass)}
+
+@media (max-width:560px){.cases{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:900px){
+  .split,.req .wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .feat-grid{grid-template-columns:minmax(0,1fr)}
+  .feat-grid div:nth-child(2n){padding-left:0;border-left:0}
+  .cases{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .step,.step + .step{padding:20px 0;border-left:0;border-bottom:1px solid var(--hair-dk)}
+  .reg div{grid-template-columns:2.4em minmax(0,1fr)}
+  .reg small{grid-column:2}
+  form{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<main>
+<section class="p-hero dark">
+  <img id="hImg" src="img/awning-detail.jpg" alt="">
+  <div class="wrap">
+    <div class="top-row">
+      <span class="crumb mono"><a href="index.html">ARÉVE</a> / <a href="collection.html" data-t="navColl"></a> / <span id="crumbName"></span></span>
+      <a class="back" href="collection.html" data-back><span aria-hidden="true">←</span> <span data-t="back"></span></a>
+    </div>
+    <div></div>
+    <div class="txt">
+      <h1 id="pName"></h1>
+      <span class="mono" id="pEn" style="color:var(--brass-lt);letter-spacing:.12em;text-transform:uppercase"></span>
+      <p id="pLead"></p>
+      <div class="row"><a class="btn" href="#req" data-t="ctaReq"></a><a class="btn ghost" href="#works" id="toWorks" data-t="ctaWorks"></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="aboutSec"><div class="wrap split">
+  <div class="sec-h"><span class="lbl" data-t="aKick"></span><h2 data-t="aH"></h2></div>
+  <div><div class="feat-grid" id="feat"></div><table class="spec"><tbody id="spec"></tbody></table></div>
+</div></section>
+
+<section class="models" style="border-top:1px solid var(--hair)"><div class="wrap split">
+  <div class="sec-h"><span class="lbl" data-t="mKick"></span><h2 id="mH"></h2></div>
+  <div class="reg" id="reg"></div>
+</div></section>
+
+<div class="facts" id="factsWrap"><div class="wrap" id="facts"></div></div>
+
+
+<section class="works" id="works"><div class="wrap">
+  <div class="works-head sec-h"><div><h2 id="wkH"></h2></div><a class="btn ghost" id="wkAll" href="projects.html" data-t="wkAll"></a></div>
+  <div class="cases" id="cases"></div>
+</div></section>
+
+<section class="where"><div class="wrap split">
+  <div class="sec-h"><span class="lbl" data-t="wKick"></span><h2 data-t="wH"></h2></div>
+  <div><div class="chips" id="where"></div><p data-t="wP"></p></div>
+</div></section>
+
+<section class="how dark"><div class="wrap sec-h">
+  <span class="lbl" data-t="hKick"></span><h2 data-t="hH"></h2>
+  <div class="steps" id="steps"></div>
+</div></section>
+
+<section class="req" id="req"><div class="wrap">
+  <div class="sec-h">
+    <span class="lbl" data-t="rKick"></span><h2 id="rH"></h2>
+    <p class="lead" data-t="rP"></p>
+    <div class="contact">
+      <div class="row"><span class="lbl" data-t="cPhone"></span><b><a href="tel:+37410530370">+374 10 53 03 70</a></b><b><a href="tel:+37493700370">+374 93 70 03 70</a></b></div>
+      <div class="row"><span class="lbl">WhatsApp · Viber</span><b><a href="https://wa.me/37493700370" target="_blank" rel="noopener">+374 93 70 03 70</a></b></div>
+      <div class="row"><span class="lbl" data-t="cMail"></span><b><a href="mailto:info@areve.am">info@areve.am</a></b></div>
+    </div>
+  </div>
+  <form id="f" novalidate>
+    <div class="fld"><label for="r-name" data-t="fName"></label><input id="r-name" autocomplete="name"></div>
+    <div class="fld"><label for="r-phone" data-t="fPhone"></label><input id="r-phone" type="tel" autocomplete="tel" placeholder="+374"></div>
+    <div class="fld wide"><label for="r-prod" data-t="fProd"></label><select id="r-prod"></select></div>
+    <div class="fld"><label for="r-area" data-t="fArea"></label><input id="r-area" inputmode="numeric" placeholder="m²"></div>
+    <div class="fld"><label for="r-when" data-t="fWhen"></label><select id="r-when"></select></div>
+    <div class="fld wide"><label for="r-msg" data-t="fMsg"></label><textarea id="r-msg" rows="3"></textarea></div>
+    <p class="err" id="err" hidden data-t="fErr"></p>
+    <button class="btn" type="submit" data-t="fSend"></button>
+    <p class="done" id="done" hidden data-t="fDone"></p>
+  </form>
+</div></section>
+
+<div class="back-row"><div class="wrap"><a class="back" href="collection.html" data-back><span aria-hidden="true">←</span> <span data-t="backColl"></span></a></div></div>
+</main>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="work.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю. Факты — только с areve.am и из задания заказчика (work.js). */
+const T = {
+ hy:{back:'Հետ',soon:'Լուսանկարը պատրաստվում է',illus:'Լուսանկարները՝ նկարազարդումներ, մեր օբյեկտներն են ստորև։',backColl:'Վերադառնալ տեսականուն',zoom:'բացել լուսանկարը',ctaReq:'Թողնել հայտ',ctaWorks:'Մեր աշխատանքները',
+  aKick:'Ինչ է սա',aH:'Ինչպես է աշխատում',mKick:'Մոդելներ',varH:'Տարբերակներ',gKick:'Լուսանկարներ',gH:'Մանրամասն',
+  wkKick:'Իրականացված աշխատանքներ',wkH:'Մեր աշխատանքները',wkAll:'Բոլորը →',wKick:'Որտեղ',wH:'Որտեղ է աշխատում',wP:'Ճշգրիտ լուծումը կառաջարկենք չափագրումից հետո՝ 3D նախագծով։',
+  hKick:'Ինչպես ենք աշխատում',hH:'Չորս քայլ՝ հայտից մինչև տեղադրում',
+  rKick:'Հայտ',rH:'Հայտ՝',rP:'Կզանգենք, կհամաձայնեցնենք չափագրման օրը և կպատրաստենք 3D նախագիծ։',cPhone:'Հեռախոս',cMail:'Էլ. փոստ',
+  fName:'Անուն',fPhone:'Հեռախոս',fProd:'Ինչ է պետք',fArea:'Մոտավոր մակերես',fWhen:'Երբ',fMsg:'Մեկնաբանություն',fSend:'Ուղարկել հայտ',fErr:'Նշեք անունը և հեռախոսը։',fDone:'Բացում ենք WhatsApp-ը․ սեղմեք «Ուղարկել» չաթում, և մենք կզանգենք։'},
+ ru:{back:'Назад',soon:'Фото готовится',illus:'Изображения — иллюстрации; наши реальные объекты ниже.',backColl:'Вернуться в коллекцию',zoom:'открыть фото',ctaReq:'Оставить заявку',ctaWorks:'Наши работы',
+  aKick:'Что это',aH:'Как это работает',mKick:'Модели',varH:'Варианты',gKick:'Фото',gH:'Подробнее',
+  wkKick:'Готовые работы',wkH:'Наши работы',wkAll:'Все →',wKick:'Где',wH:'Где это работает',wP:'Точное решение предложим после замера — вместе с 3D-проектом.',
+  hKick:'Как мы работаем',hH:'Четыре шага от заявки до монтажа',
+  rKick:'Заявка',rH:'Заявка:',rP:'Перезвоним, согласуем день замера и подготовим 3D-проект.',cPhone:'Телефон',cMail:'Почта',
+  fName:'Имя',fPhone:'Телефон',fProd:'Что нужно',fArea:'Примерная площадь',fWhen:'Когда',fMsg:'Комментарий',fSend:'Отправить заявку',fErr:'Укажите имя и телефон.',fDone:'Открываем WhatsApp — нажмите «Отправить» в чате, и мы перезвоним.'},
+ en:{back:'Back',soon:'Photo coming soon',illus:'Images are illustrations; our real projects are below.',backColl:'Back to the collection',zoom:'open photo',ctaReq:'Send a request',ctaWorks:'Our work',
+  aKick:'What it is',aH:'How it works',mKick:'Models',varH:'Options',gKick:'Photos',gH:'In detail',
+  wkKick:'Completed work',wkH:'Our work',wkAll:'All →',wKick:'Where',wH:'Where it works',wP:'We propose the exact solution after measuring, together with a 3D design.',
+  hKick:'How we work',hH:'Four steps from request to installation',
+  rKick:'Request',rH:'Request:',rP:'We will call you back, agree a measuring visit and prepare a 3D design.',cPhone:'Phone',cMail:'Email',
+  fName:'Name',fPhone:'Phone',fProd:'What you need',fArea:'Approximate area',fWhen:'When',fMsg:'Comment',fSend:'Send request',fErr:'Please add your name and phone.',fDone:'Opening WhatsApp — press Send in the chat and we will call you back.'}
+};
+const SPN = {home:{hy:'Առանձնատուն',ru:'Частный дом',en:'Private home'},rest:{hy:'Ռեստորան',ru:'Ресторан',en:'Restaurant'},roof:{hy:'Տեռաս և տանիք',ru:'Терраса и крыша',en:'Terrace & roof'},pool:{hy:'Լողավազան',ru:'Бассейн',en:'Pool'},wg:{hy:'Ձմեռային այգի',ru:'Зимний сад',en:'Winter garden'}};
+/* этапы — с areve.am (раздел «Как мы работаем») */
+const STEPS = {
+ hy:[['Հանդիպում','Ծանոթանում ենք տարածքին, ընտրում ենք մոդելը և նախնական գինը։'],['Նախագիծ','2D գծագրեր և 3D պատկերներ՝ տեսնում եք արդյունքը նախապես։'],['Մոնտաժ','Տեղադրում ենք մեր թիմով։'],['Սպասարկում','Կարգավորում, սպասարկում և նորոգում։']],
+ ru:[['Встреча','Смотрим место, выбираем модель и согласуем предварительную цену.'],['Проект','2D-чертежи и 3D-изображения: результат видно заранее.'],['Монтаж','Устанавливаем своей бригадой.'],['Сервис','Настройка, обслуживание и ремонт.']],
+ en:[['Meeting','We look at the site, choose the model and agree a preliminary price.'],['Design','2D drawings and 3D images, so you see the result first.'],['Installation','Our own crew installs it.'],['Service','Adjustment, maintenance and repair.']]
+};
+const WHEN = {hy:['Այս ամիս','1–3 ամսում','Պլանավորում եմ'],ru:['В этом месяце','Через 1–3 месяца','Пока планирую'],en:['This month','In 1–3 months','Just planning']};
+const P = {
+ pergola:{img:'villa',ph:[1,21,2,148],sp:['home','rest','roof'],
+  hy:{n:'Պերգոլա',l:'Պերգոլա բացվող ծածկով։ Ալյումինե շերտերը պտտվում են շարժիչով՝ փակ են անձրևի ժամանակ, կիսաբաց՝ շոգին, բաց՝ երեկոյան։',mH:'Սերիա',
+      m:[['Four Seasons','բացվող ծածկ']],
+      x:[['Անձրև','Շերտերը փակ են, ջուրը հեռանում է հենասյուներով։'],['Շոգ','Կիսաբաց՝ ստվեր և օդի շարժ։'],['Երեկո','Բաց՝ երևում է երկինքը։'],['Ձմեռ','Փակ ծածկ և ապակեպատում՝ տեռասն աշխատում է ամբողջ տարի։']],
+      s:[['Ծածկ','Պտտվող ալյումինե շերտեր'],['Կառավարում','Շարժիչ, հեռակառավարում, iPhone և iPad'],['Սերիա','Four Seasons']],f:[]},
+  ru:{n:'Пергола',l:'Пергола с открывающейся крышей. Алюминиевые ламели поворачиваются мотором: закрыты в дождь, приоткрыты в жару, открыты вечером.',mH:'Серия',
+      m:[['Four Seasons','открывающаяся крыша']],
+      x:[['Дождь','Ламели закрыты, вода уходит через стойки.'],['Жара','Приоткрыты: тень и движение воздуха.'],['Вечер','Открыты: над столом видно небо.'],['Зима','Закрытая крыша и остекление: терраса работает круглый год.']],
+      s:[['Крыша','Поворотные алюминиевые ламели'],['Управление','Мотор, пульт, iPhone и iPad'],['Серия','Four Seasons']],f:[]},
+  en:{n:'Pergola',l:'A pergola with an opening roof. Motorised aluminium louvres: closed in the rain, half open in the heat, open in the evening.',mH:'Series',
+      m:[['Four Seasons','opening roof']],
+      x:[['Rain','Louvres closed; water drains through the posts.'],['Heat','Half open: shade with air moving through.'],['Evening','Open to the sky above the table.'],['Winter','Closed roof plus glazing keeps the terrace in use all year.']],
+      s:[['Roof','Rotating aluminium louvres'],['Control','Motor, remote, iPhone and iPad'],['Series','Four Seasons']],f:[]}},
+ awning:{img:'awning-detail',ph:[6,12],sp:['home','rest','roof'],
+  hy:{n:'Մարկիզաներ',l:'Կասետային, բաց և ազատ կանգնող մարկիզաներ՝ ակրիլային կտորով և ալյումինե շրջանակով։',mH:'Յոթ սերիա',
+      m:[['Segno',''],['r-Classic',''],['Pente',''],['Storexy',''],['Platinum',''],['Sky Slider',''],['T-series','']],
+      f:[['50','km/h','Քամու արագություն, որին դիմանում են'],['410','cm','Առավելագույն երկարություն'],['700','cm','Մեկ մոդուլի լայնություն']]},
+  ru:{n:'Маркизы',l:'Кассетные, открытые и отдельностоящие маркизы с акриловым полотном и алюминиевым каркасом.',mH:'Семь серий',
+      m:[['Segno',''],['r-Classic',''],['Pente',''],['Storexy',''],['Platinum',''],['Sky Slider',''],['T-series','']],
+      f:[['50','km/h','Скорость ветра, которую выдерживают'],['410','cm','Максимальный вылет'],['700','cm','Ширина одного модуля']]},
+  en:{n:'Awnings',l:'Cassette, open and free-standing awnings with acrylic fabric and aluminium frames.',mH:'Seven series',
+      m:[['Segno',''],['r-Classic',''],['Pente',''],['Storexy',''],['Platinum',''],['Sky Slider',''],['T-series','']],
+      f:[['50','km/h','Wind speed they withstand'],['410','cm','Maximum projection'],['700','cm','Width of one module']]}},
+ glazing:{img:'glazing',ph:[90,55,84],sp:['home','rest','wg'],
+  hy:{n:'Ապակեպատում',l:'Անփեղկ և սահող համակարգեր տեռասների, ռեստորանների և ձմեռային այգիների համար։',mH:'Վեց համակարգ',
+      m:[['Butterfly','անփեղկ'],['Կախովի','անփեղկ'],['Ծալվող','անփեղկ'],['Սահող','3 կամ 5 ռելս'],['Spider','կետային ամրացում'],['Skylight','ապակե տանիք']],
+      f:[['3 / 5','','Ռելսերի քանակը սահող համակարգում']]},
+  ru:{n:'Остекление',l:'Безрамные и раздвижные системы для террас, ресторанов и зимних садов.',mH:'Шесть систем',
+      m:[['Butterfly','безрамное'],['Подвесное','безрамное'],['Складное','безрамное'],['Раздвижное','3 или 5 рельсов'],['Spider','точечное крепление'],['Skylight','стеклянная крыша']],
+      f:[['3 / 5','','Рельса в раздвижной системе']]},
+  en:{n:'Glazing',l:'Frameless and sliding systems for terraces, restaurants and winter gardens.',mH:'Six systems',
+      m:[['Butterfly','frameless'],['Suspended','frameless'],['Folding','frameless'],['Sliding','3 or 5 rails'],['Spider','point-fixed'],['Skylight','glass roof']],
+      f:[['3 / 5','','Rails in the sliding system']]}},
+ deck:{img:'deck',ph:[1,118],sp:['home','roof','pool'],
+  hy:{n:'Դեկինգ',l:'Փայտ-պոլիմերային կոմպոզիտից (ՓՊԿ) տեռասի հատակ, որը չի վախենում ջրից և արևից։',mH:'Նյութեր',m:[['ՓՊԿ','փայտ-պոլիմերային կոմպոզիտ'],['Այգու մանրահատակ',''],['Բնական տախտակ','']],f:[]},
+  ru:{n:'Декинг',l:'Террасная доска из древесно-полимерного композита (ДПК), которой не страшны вода и солнце.',mH:'Материалы',m:[['ДПК','древесно-полимерный композит'],['Садовый паркет',''],['Натуральная доска','']],f:[]},
+  en:{n:'Decking',l:'Wood-polymer composite (WPC) decking that does not mind water or sun.',mH:'Materials',m:[['WPC','wood-polymer composite'],['Garden parquet',''],['Natural timber','']],f:[]}},
+ umbrella:{img:'umbrella',ph:[50,125,54,48],sp:['rest','pool','home'],
+  hy:{n:'Անձրևանոցներ',l:'Ծալվող և տեղափոխվող անձրևանոցներ սրճարանների, տեռասների և լողավազանների համար։',mH:'Տեսակներ',m:[['Ծալվող',''],['Տեղափոխվող','']],f:[]},
+  ru:{n:'Зонты',l:'Складные и переносные зонты для кафе, террас и бассейнов.',mH:'Типы',m:[['Складные',''],['Переносные','']],f:[]},
+  en:{n:'Umbrellas',l:'Folding and movable umbrellas for cafés, terraces and pools.',mH:'Types',m:[['Folding',''],['Movable','']],f:[]}},
+ mist:{img:'sail',sp:['rest','roof','pool'],
+  hy:{n:'Մառախլային զովացում',l:'Մառախլագոյացման համակարգեր, որոնք զովացնում են տեռասը շոգ օրերին։',mH:'Համակարգ',m:[['Մառախլագոյացում','տեռասներ, ռեստորաններ']],f:[]},
+  ru:{n:'Туманное охлаждение',l:'Системы туманообразования, которые охлаждают террасу в жаркие дни.',mH:'Система',m:[['Туманообразование','террасы, рестораны']],f:[]},
+  en:{n:'Misting',l:'Mist systems that cool the terrace on hot days.',mH:'System',m:[['Mist cooling','terraces, restaurants']],f:[]}}
+};
+/* серии с фото: картинки img/series — иллюстрации (Figma AI, 19.10.2026); src из img/work — реальные объекты, тексты маркиз — с areve.am («ԱՐԵՎԵ ընկերության մարկիզաների ընտրանի») */
+const SER = {
+ awning:[
+  {img:'a-segno',t:{hy:'Կասետային',ru:'Кассетная',en:'Cassette'},d:{hy:'Էլեգանտ մոդել՝ մեխանիզմը պաշտպանված է տուփի մեջ։',ru:'Элегантная модель: механизм защищён в коробе.',en:'An elegant model; the mechanism is protected inside a box.'}},
+  {img:'a-classic',t:{hy:'Բաց',ru:'Открытая',en:'Open'},d:{hy:'Բաց տեսակի բյուջետային տարբերակ։',ru:'Открытый тип, бюджетный вариант.',en:'Open type, the budget option.'}},
+  {img:'a-pente',t:{hy:'Պատուհանի',ru:'Оконная',en:'Window'},d:{hy:'Նախատեսված է պատուհանների համար։',ru:'Предназначена для окон.',en:'Designed for windows.'}},
+  {img:'a-storexy',t:{hy:'Ուղղահայաց',ru:'Вертикальная',en:'Vertical'},d:{hy:'Ուղղահայաց տեղադրման համար, մեխանիզմը պաշտպանված է տուփի մեջ։',ru:'Для вертикальной установки, механизм защищён в коробе.',en:'For vertical installation; the mechanism is protected inside a box.'}},
+  {img:'a-platinum',t:{hy:'Պրեմիում կասետային',ru:'Премиум, кассетная',en:'Premium cassette'},d:{hy:'Պրեմիում կարգի կասետային տարբերակ՝ հեռակառավարման վահանակով։',ru:'Кассетная модель премиум-класса с пультом управления.',en:'A premium cassette model with remote control.'}},
+  {img:'a-skyslider',t:{hy:'Ձմեռային այգու',ru:'Для зимнего сада',en:'Winter garden'},d:{hy:'Կասետային տարբերակ՝ ձմեռային այգիները արևից պաշտպանելու համար։',ru:'Кассетная модель для защиты зимних садов от солнца.',en:'A cassette model that shades winter gardens from the sun.'}},
+  {img:'a-tseries',t:{hy:'Ազատ կանգնող',ru:'Отдельностоящая',en:'Free-standing'},d:{hy:'Ազատ կանգնող կոնստրուկցիա, որը ստվեր է ստեղծում մեծ տարածքներում։',ru:'Отдельностоящая конструкция: тень на больших площадях.',en:'A free-standing structure that shades large areas.'}}
+ ],
+ pergola:[{img:'p-fourseasons'}],
+ mist:[{img:'m-mist'}],
+ roller:[{img:'r-screen'},{img:'r-light'},{img:'r-dimout'},{img:'r-blackout'},{img:'r-motor'}],
+ zebra:[{img:'z-daynight'},{img:'z-colours'},{img:'z-motor'}],
+ plisse:[{img:'pl-light'},{img:'pl-blackout'},{img:'pl-topdown'},{img:'pl-tdbu'}],
+ honeycomb:[{img:'h-light'},{img:'h-blackout'},{img:'h-motor'}],
+ wgshade:[{img:'w-under'},{img:'w-above'},{img:'w-motor'}],
+ skylight:[{img:'s-screen'},{img:'s-dimout'},{img:'s-blackout'},{img:'s-guided'}],
+ wave:[{img:'wv-fixed'},{img:'wv-retract'},{img:'wv-fabrics'}],
+ screen:[{img:'sc-sun'},{img:'sc-insect'},{img:'sc-clear'},{img:'sc-motor'}],
+ umbrella:[
+  {img:'u-folding',t:{hy:'Կենտրոնական հենասյունով',ru:'С центральной стойкой',en:'Centre pole'},d:{hy:'Ծալվող անձրևանոցներ սրճարանների, տեռասների և լողավազանների համար։',ru:'Складные зонты для кафе, террас и бассейнов.',en:'Folding umbrellas for cafés, terraces and pools.'}},
+  {img:'u-cantilever',t:{hy:'Կոնսոլային, հենակով',ru:'Консольные, на опоре',en:'Cantilever, on a base'},d:{hy:'Մետաղյա հենակների նվազագույն ծավալը թույլ է տալիս տեղափոխել անձրևանոցները՝ առանց անցուդարձը փակելու։',ru:'Компактная металлическая опора: зонты можно переставлять, не перекрывая проход.',en:'A compact metal base lets you move the umbrellas without blocking the walkway.'}}
+ ],
+ deck:[
+  {img:'d-wpc',d:{hy:'Փայտ-պոլիմերային խառնուրդ․ չի դեֆորմացվում և չի վնասվում խոնավությունից ու ջրից։',ru:'Смесь древесины и полимера: не деформируется и не портится от влаги и воды.',en:'A wood-polymer blend that does not warp or suffer from moisture and water.'}},
+  {img:'d-parquet'},
+  {img:'d-timber'}
+ ],
+ glazing:[
+  {img:'g-butterfly'},{img:'g-suspended'},{img:'g-folding'},{img:'g-sliding'},{img:'g-spider'},
+  {img:'g-skylight'}
+ ]
+};
+const ORDER = ['pergola','awning','glazing','deck','umbrella','mist'];
+/* линейка «Шторы и экраны» — из work.js */
+SHADES.forEach(s => {
+  P[s.id] = { img: 'work/w' + String(s.ph[0]).padStart(3, '0'), sp: SHADE_SP[s.id], ph: s.ph, enName: s.name, vid: s.vid };
+  ['hy', 'ru', 'en'].forEach(l => { P[s.id][l] = { n: s[l][0], l: s[l][1], m: s[l][2].map(v => [v, '']), f: [], v: true }; });
+  ORDER.push(s.id);
+});
+let lang = 'hy', TT = {};
+const cur = () => (P[location.hash.slice(1)] ? location.hash.slice(1) : 'pergola');
+const pad = n => String(n).padStart(3, '0');
+
+function draw(){
+  const id = cur(), p = P[id], d = p[lang];
+  document.title = 'ARÉVE ' + d.n;
+  const img = document.getElementById('hImg'); img.src = FLOW.includes(id) ? 'img/flow/' + id + '.jpg' : 'img/' + p.img + '.jpg'; img.alt = d.n;
+  document.getElementById('pName').textContent = d.n;
+  document.getElementById('pEn').textContent = p.enName && lang !== 'en' ? p.enName : '';
+  document.getElementById('crumbName').textContent = d.n;
+  document.getElementById('pLead').textContent = d.l;
+  /* особенности и характеристики — только то, что подтверждено */
+  const x = d.x || [], s = d.s || [];
+  document.getElementById('aboutSec').hidden = !x.length && !s.length;
+  document.getElementById('feat').innerHTML = x.map(f => `<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('');
+  document.getElementById('spec').innerHTML = s.map(r => `<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');
+  document.getElementById('mH').textContent = d.v ? TT.varH : d.mH;
+  const ser = SER[id], reg = document.getElementById('reg');
+  document.querySelector('.models').classList.toggle('wide', !!ser);
+  if (ser) {
+    reg.className = '';
+    reg.innerHTML = `<div class="ser">` + d.m.map((m, i) => { const x = ser[i] || {}, src = x.src || 'img/series/' + x.img + '.jpg';
+      const fig = x.soon ? `<figure class="soon"><span class="mono">${TT.soon}</span><span class="n">${String(i + 1).padStart(2, '0')}</span></figure>` : `<figure><img src="${src}" alt="${m[0]}" loading="lazy"><span class="n">${String(i + 1).padStart(2, '0')}</span></figure>`;
+      return `<div class="ser-card">${fig}
+        <span class="tag">${x.t ? x.t[lang] : m[1]}</span><h3>${m[0]}</h3>${x.d ? `<p>${x.d[lang]}</p>` : ''}</div>`; }).join('') + `</div>` + (ser.some(x => x.img) ? `<p class="ser-note mono">${TT.illus}</p>` : '');
+  } else {
+    reg.className = 'reg';
+    reg.innerHTML = d.m.map((m, i) => `<div><span class="mono">${String(i + 1).padStart(2, '0')}</span><b>${m[0]}</b><small>${m[1]}</small></div>`).join('');
+  }
+  document.getElementById('factsWrap').hidden = !d.f.length;
+  document.getElementById('facts').innerHTML = d.f.map(f => `<div class="fact"><b>${f[0]}${f[1] ? `<small>${f[1]}</small>` : ''}</b><span>${f[2]}</span></div>`).join('');
+  /* наши работы с этим продуктом (work.js → CASES[].sys) */
+  const mine = CASES.filter(c => c.sys.includes(id));
+  document.getElementById('works').hidden = !mine.length;
+  document.getElementById('toWorks').hidden = !mine.length;
+  document.getElementById('wkH').textContent = TT.wkH + ' / ' + d.n;
+  document.getElementById('wkAll').href = 'projects.html?sys=' + id;
+  const ttl = c => c.name || c[lang][0];
+  document.getElementById('cases').innerHTML = mine.slice(0, 6).map(c => {
+    const rest = c.ph.slice(1).map(n => `<a href="${WORK}w${pad(n)}.jpg" data-lb="${ttl(c)}" data-lb-group="c-${c.id}" hidden></a>`).join('');
+    return `<div class="case"><a href="${WORK}w${pad(c.cover)}.jpg" data-lb="${ttl(c)}" data-lb-group="c-${c.id}"><figure><img src="${WORK}g/w${pad(c.cover)}.jpg" alt="${ttl(c)}" loading="lazy"></figure></a>${rest}
+      <span class="lbl">${SPN[c.sp] ? SPN[c.sp][lang] : ''}</span><h3>${ttl(c)}</h3></div>`;
+  }).join('');
+  document.getElementById('where').innerHTML = (p.sp || []).map(s => `<span>${SPN[s][lang]}</span>`).join('');
+  document.getElementById('steps').innerHTML = STEPS[lang].map((s, i) => `<div class="step"><span class="mono">0${i + 1}</span><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+  /* заявка: продукт выбран заранее */
+  document.getElementById('rH').textContent = TT.rH + ' ' + d.n.toLowerCase();
+  document.getElementById('r-prod').innerHTML = ORDER.map(k => `<option value="${k}"${k === id ? ' selected' : ''}>${P[k][lang].n}</option>`).join('');
+  document.getElementById('r-when').innerHTML = WHEN[lang].map(w => `<option>${w}</option>`).join('');
+}
+areveInit('collection.html', T, (l, t) => { lang = l; TT = t; draw(); });
+addEventListener('hashchange', () => { draw(); scrollTo({ top: 0 }); });
+/* «Назад»: если пришли из коллекции — возвращаемся туда же (с прокруткой), иначе открываем коллекцию */
+document.querySelectorAll('[data-back]').forEach(a => a.addEventListener('click', e => {
+  try { if (document.referrer && new URL(document.referrer).pathname.replace(/\.html$/, '').endsWith('/areve/collection') && history.length > 1) { e.preventDefault(); history.back(); } } catch (er) {}
+}));
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const ok = document.getElementById('r-name').value.trim() && document.getElementById('r-phone').value.trim();
+  document.getElementById('err').hidden = !!ok;
+  document.getElementById('done').hidden = !ok;
+  if (ok) areveFormWA(e.target, P[cur()][lang].n);
+});
+</script>
+</body>
+</html>

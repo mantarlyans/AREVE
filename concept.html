@@ -1,0 +1,148 @@
+<title>ARÉVE Brand Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: документ-концепция в мире бренда — узкая колонка чтения, таблица рынка, без карточек. Один вид, как у сайта. */
+:root{
+  --shade:#1A1814; --stone:#ECE7DF; --stone-2:#E1DAD0; --ink:#221F1A; --dust:#6A6357; --brass:#9C7646; --brass-lt:#D8BC8E;
+  --hair:rgba(34,31,26,.16);
+  --f-disp:'Forum',Georgia,serif; --f-body:'Jost',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 17px/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header{background:var(--shade);color:var(--stone)}
+header .wrap{padding-block:72px 56px;display:grid;gap:18px}
+.lbl{font-weight:500;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+header .lbl{color:var(--brass-lt)}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.04}
+header p{margin:0;color:rgba(236,231,223,.75);max-width:58ch}
+header a{color:var(--brass-lt)}
+main .wrap{padding-block:24px 80px}
+section{padding-block:44px;border-bottom:1px solid var(--hair);display:grid;gap:18px}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem);line-height:1.1}
+p{margin:0;max-width:65ch}
+.thesis{font-family:var(--f-disp);font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;max-width:30ch}
+.thesis em{font-style:normal;color:var(--brass)}
+.tbl{overflow-x:auto;border-top:1px solid var(--hair)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--hair)}
+th{font-weight:500;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dust)}
+td:first-child{font-weight:500;white-space:nowrap}
+td a{color:var(--ink)}
+ul.plain{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--hair)}
+ul.plain li{padding:14px 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:3em minmax(0,1fr);gap:12px}
+ul.plain li .n{font-family:var(--f-mono);font-size:.76rem;color:var(--brass);padding-top:3px}
+ul.plain li b{font-weight:500}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.sw div{display:grid;gap:6px;font-size:.84rem}
+.sw i{display:block;height:64px;border:1px solid var(--hair)}
+.sw span{font-family:var(--f-mono);font-size:.74rem;color:var(--dust)}
+.type{display:grid;gap:10px}
+.type .d{font-family:var(--f-disp);font-size:2.2rem;line-height:1}
+.type .m{font-family:var(--f-mono);font-size:.8rem;color:var(--dust)}
+.warn{border-left:2px solid var(--brass);padding:4px 0 4px 18px;color:var(--ink)}
+.cta{display:inline-block;margin-top:6px;font:500 .78rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:16px 22px;background:var(--brass);color:var(--stone)}
+</style>
+
+<header><div class="wrap">
+  <span class="lbl">Концепция · ARÉVE LLC · октябрь 2026</span>
+  <h1>Архитектура тени</h1>
+  <p>Новая концепция бренда ARÉVE: сайт, затем Facebook и Instagram. Начинаем с сайта, его задача — чтобы владелец увидел новый уровень и захотел перейти. Прототип главной страницы: <a href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS">открыть</a>.</p>
+</div></header>
+
+<main><div class="wrap">
+
+<section>
+  <span class="lbl">Что сейчас</span>
+  <h2>Сайт 2016 года, который продаёт хуже, чем компания работает</h2>
+  <ul class="plain">
+    <li><span class="n">01</span><span>Joomla, последняя новость на главной — 2016 год. Тексты местами про Москву («маркизы и перголы в Москве», «в Москве и других городах России»): сайт почти целиком повторяет areve.ru. В подвале ссылки на facebook.com/areve.ru, Twitter и закрытый Google+.</span></li>
+    <li><span class="n">02</span><span>Языки перемешаны: армянское меню, русские заголовки блоков («Маркизы» под каждой армянской плиткой), русская кнопка «Заказать звонок».</span></li>
+    <li><span class="n">03</span><span>Фото маленькие (450×363 у работ) и разнородные: каталожные снимки производителя рядом с 3D-рендерами разных лет.</span></li>
+    <li><span class="n">04</span><span>Адрес на сайте (Екмаляна 6) и на construction.am (Давид Анхахт 12) расходятся — нужно уточнить.</span></li>
+    <li><span class="n">05</span><span>При этом содержание сильное: 3D-визуализация, своя бригада, сервис и ремонт, раздел для архитекторов, реальные модели и цифры (ветер 50 км/ч, вылет до 410 см, модуль до 700 см).</span></li>
+  </ul>
+</section>
+
+<section>
+  <span class="lbl">Рынок</span>
+  <h2>Конкуренты в Ереване</h2>
+  <p>Ни у кого нет современного сайта именно про жизнь на открытом воздухе. Перголы продают между окнами, дверями и жалюзи. Портфолио — фото без подписей, производителей не называют, цен нет.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Компания</th><th>Что продаёт</th><th>Сайт</th><th>Слабое место</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://profalgroup.com/hy/other-products/pergola">Profal</a></td><td>Окна, двери, фасады, перголы с мотором и LED</td><td>hy/en/ru, раздел проектов, шоурумы</td><td>Перголы — один продукт из многих, нет историй проектов</td></tr>
+      <tr><td><a href="https://alp.am/en/marquises/">ALP</a></td><td>Маркизы, перголы, окна, жалюзи, мебель</td><td>hy/ru/en, онлайн-оплата, соцсети</td><td>Массовая подача, «доступные цены»</td></tr>
+      <tr><td><a href="https://www.leveles.am/en/products/perloga">LEVEL</a></td><td>Маркизы, жалюзи, пергола Perloga</td><td>hy/en, 8 фото</td><td>Текст-заглушка в «О нас», нет соцсетей</td></tr>
+      <tr><td><a href="https://glassline.am/en">Glassline</a></td><td>Стеклянные козырьки, фасады, перегородки</td><td>en/hy/ru</td><td>Только стекло, пергол нет</td></tr>
+      <tr><td><a href="https://www.asedl.am/en/pages/index/Products/">ASEDL</a></td><td>Фурнитура, профили, биоклиматические перголы</td><td>en/hy/ru, соцсети</td><td>По сути поставщик материалов</td></tr>
+    </tbody>
+  </table></div>
+  <p style="color:var(--dust);font-size:.9rem">Число подписчиков проверить не удалось: Instagram не отдал данные. Добавим, когда будет доступ.</p>
+</section>
+
+<section>
+  <span class="lbl">Позиционирование</span>
+  <p class="thesis">ARÉVE — не продавец навесов, а <em>архитектор тени</em>: единственная в Ереване компания, которая занимается только жизнью под открытым небом, от 3D-проекта до сервиса.</p>
+  <p>Название само подсказывает идею: «արև» — солнце. Солнце в Ереване — главный материал и главная проблема террасы: летом в полдень оно стоит почти отвесно, около 73°. ARÉVE продаёт управление этим светом: тень днём, тепло вечером, терраса, которой пользуются круглый год. Старый слоган «Արտաքին միջավայրի ստեղծման արվեստ» (искусство создания внешней среды) сохраняем — он теперь живёт в подвале и в соцсетях.</p>
+  <ul class="plain">
+    <li><span class="n">01</span><span><b>Специалист, а не магазин.</b> Только outdoor living: перголы, маркизы, остекление, декинг, зонты, туман. Навигация по пространствам (вилла, ресторан, зимний сад, крыша), как у KE Outdoor Design и Renson.</span></li>
+    <li><span class="n">02</span><span><b>Проект прежде продажи.</b> 3D-визуализация — главный аргумент, его нет у конкурентов на первом плане. Призыв на всём сайте один: «Заказать 3D-проект».</span></li>
+    <li><span class="n">03</span><span><b>Отдельный вход для архитекторов и HoReCa.</b> Чертежи AutoCAD/ArchiCAD, выезд на объект, совместное проектирование. Раздел уже есть, его надо поднять в главное меню.</span></li>
+    <li><span class="n">04</span><span><b>Честно названный производитель.</b> По моделям ARÉVE почти наверняка работает с турецким Palmiye (Pente, Platinum, Liberty и ряд пергол совпадают с их линейкой). Никто в Армении производителя не называет — это сразу доверие. Только после письменного подтверждения статуса.</span></li>
+    <li><span class="n">05</span><span><b>Проекты как истории.</b> Вместо галереи — карточка объекта: место, задача, решение, 3D до и фото после. Это самое сильное, что может показать ARÉVE, и этого нет ни у кого на рынке.</span></li>
+  </ul>
+</section>
+
+<section>
+  <span class="lbl">Визуальный язык</span>
+  <h2>Тень и травертин</h2>
+  <p>Роскошь здесь — это сдержанность: много воздуха, крупная антиква, мало слов, одна бронзовая нота. Первый экран тёмный, как тень под перголой; разделы светлые, как камень террасы. Все фото проходят одну цветокоррекцию — тёплую, чуть приглушённую, — так разнородные снимки начинают выглядеть одной серией.</p>
+  <div class="sw">
+    <div><i style="background:#1A1814"></i>Тень<span>#1A1814</span></div>
+    <div><i style="background:#ECE7DF"></i>Травертин<span>#ECE7DF</span></div>
+    <div><i style="background:#E1DAD0"></i>Камень<span>#E1DAD0</span></div>
+    <div><i style="background:#B08A57"></i>Бронза<span>#B08A57</span></div>
+    <div><i style="background:#6A6357"></i>Пыль<span>#6A6357</span></div>
+  </div>
+  <div class="type">
+    <span class="d">Forum — заголовки</span>
+    <span class="m">Jost — текст · Noto Serif/Sans Armenian — армянский · IBM Plex Mono — цифры и характеристики</span>
+  </div>
+  <p><b>Знак.</b> Солнце, наполовину скрытое тремя ламелями перголы: буква «тень» в одном символе. Слово ARÉVE — разрядкой, капителью.</p>
+  <p><b>Главный момент сайта.</b> На первом экране — солнце над Ереваном: ползунок времени суток и сезона, солнце идёт по настоящей дуге для 40°11′ с. ш., ламели перголы поворачиваются за ним. Посетитель за пять секунд понимает, что ARÉVE продаёт не ткань и алюминий, а управляемую тень.</p>
+</section>
+
+<section>
+  <span class="lbl">Структура сайта</span>
+  <h2>Семь разделов вместо девяти</h2>
+  <ul class="plain">
+    <li><span class="n">01</span><span><b>Главная</b> — солнце, коллекция, цифры, пространства, процесс, заявка (в прототипе).</span></li>
+    <li><span class="n">02</span><span><b>Коллекция</b> — шесть семейств, у каждой модели: характеристики, ткани и цвета, PDF-каталог.</span></li>
+    <li><span class="n">03</span><span><b>Пространства</b> — вилла, ресторан и кафе, зимний сад, терраса и крыша: какие решения подходят.</span></li>
+    <li><span class="n">04</span><span><b>Проекты</b> — истории реальных объектов с фильтром «дом / HoReCa».</span></li>
+    <li><span class="n">05</span><span><b>Как мы работаем</b> — пять шагов, 3D-визуализация, сервис и ремонт.</span></li>
+    <li><span class="n">06</span><span><b>Архитекторам</b> — условия, форматы файлов, технические листы, выезд.</span></li>
+    <li><span class="n">07</span><span><b>Контакты</b> — заявка на 3D-проект, телефоны, офис и карта.</span></li>
+  </ul>
+  <p>«Новости» убираем: последняя запись 2016 года вредит сильнее, чем её отсутствие. Живую ленту дадут Instagram и Facebook. Три языка — hy основной, ru и en полноценные, без смешения.</p>
+</section>
+
+<section>
+  <span class="lbl">Что нужно для запуска</span>
+  <h2>Без этого роскошь не получится</h2>
+  <ul class="plain">
+    <li><span class="n">01</span><span><b>Фотосессия 6–8 реальных объектов.</b> Сейчас почти все фото — каталожные снимки производителя или старые рендеры. Для luxury-подачи нужны свои работы в высоком разрешении, лучше в золотой час. В прототипе стоят фото с текущего сайта — это иллюстрации, а не объекты ARÉVE.</span></li>
+    <li><span class="n">02</span><span><b>Подтверждение партнёров</b> — Palmiye и, возможно, Gibus (Segno, Scrigno — их названия). Письменно, с правом использовать имя.</span></li>
+    <li><span class="n">03</span><span><b>Факты о компании</b>: год основания, число объектов, гарантия, точный адрес офиса или шоурума. Не выдумываем — ждём от владельца.</span></li>
+    <li><span class="n">04</span><span><b>Вычитка армянского</b> носителем: тексты прототипа на hy написаны Claude.</span></li>
+  </ul>
+  <p class="warn">Прототип — главная страница в трёх языках, рабочие переключатели, солнечный циферблат, форма-заглушка (никуда не отправляет). Следующий шаг после «да» владельца — остальные страницы, затем концепция Instagram и Facebook в том же языке.</p>
+  <a class="cta" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS">Открыть прототип</a>
+</section>
+
+</div></main>

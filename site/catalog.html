@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE Shading Catalogue</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ARÉVE shading catalogue: roller, zebra, pleated, honeycomb, winter garden, skylight, wave ceiling and outdoor screens.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* Layout: 8 рекламных страниц 4:5 (как пост в Instagram/Facebook) по заданию заказчика.
+   Каждая карточка — контейнер (container queries): шрифты в cqw, поэтому макет одинаков на любой ширине.
+   Верх — большое фото объекта, низ — травертиновая плашка: номер, название hy + en, описание, варианты, два малых фото. */
+.cat .wrap{padding-block:56px 96px}
+.cat-head{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;justify-content:space-between;margin-bottom:28px}
+.cat-head p{margin:0;color:var(--dust);max-width:60ch}
+.ads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}
+.ad{container-type:inline-size;aspect-ratio:4/5;max-width:100%;position:relative;background:var(--stone);color:var(--ink);overflow:hidden;box-shadow:0 24px 60px rgba(26,24,20,.18)}
+.ad-ph{position:absolute;inset:0 0 46% 0;overflow:hidden;background:var(--shade)}
+.ad-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ad-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,24,20,.62),rgba(26,24,20,0) 34%)}
+.ad-logo,.ad-n{text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.ad-logo{position:absolute;z-index:1;top:4.2cqw;left:5cqw;display:flex;align-items:center;gap:2cqw;color:var(--stone)}
+.ad-logo svg{width:5.4cqw;height:5.4cqw}
+.ad-logo b{font-family:var(--f-disp);font-weight:400;font-size:3.6cqw;letter-spacing:.32em}
+.ad-n{position:absolute;z-index:1;top:4.6cqw;right:5cqw;font-family:var(--f-mono);font-size:2.6cqw;color:var(--stone)}
+.ad-body{position:absolute;inset:54% 0 8cqw 0;display:grid;grid-template-columns:minmax(0,1fr) 22cqw;gap:4cqw;padding:4.4cqw 5cqw 1.5cqw;overflow:hidden}
+.ad-body>div:first-child{min-width:0;overflow:hidden}
+.ad-body h2{font-family:var(--f-disp);font-weight:400;font-size:6cqw;line-height:1.04;margin:0}
+.ad:lang(hy) .ad-body h2{font-size:4.7cqw;line-height:1.12}
+:lang(hy) .ad-body h2,.ad-body h2:lang(hy){font-weight:300}
+.ad-en{font-family:var(--f-mono);font-size:2.1cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:1.4cqw 0 2.2cqw;display:block}
+.ad-body p{margin:0;font-size:2.45cqw;line-height:1.42;color:var(--dust);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.ad:lang(hy) .ad-body p{-webkit-line-clamp:3}
+.ad-v{display:flex;flex-wrap:wrap;gap:1.2cqw;margin-top:2.4cqw}
+.ad-v span{border:1px solid var(--hair);padding:.7cqw 1.4cqw;font-size:1.95cqw;white-space:nowrap}
+.ad-thumbs{display:grid;grid-template-rows:1fr 1fr;gap:2cqw;margin-top:-12cqw;height:calc(100% + 12cqw);position:relative;z-index:2}
+.ad-thumbs a{display:block;overflow:hidden;border:1cqw solid var(--stone);background:var(--stone-2)}
+.ad-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.ad-foot{position:absolute;left:5cqw;right:5cqw;bottom:2.6cqw;display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:2cqw;color:var(--dust);border-top:1px solid var(--hair);padding-top:1.6cqw}
+.cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;color:var(--dust);font-size:.86rem}
+.cap span{min-width:0;overflow-wrap:anywhere}.cap a{flex:none}
+@media (max-width:860px){.ads{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<div class="intro dark">
+  <div class="wrap">
+    <span class="crumb mono"><a href="index.html">ARÉVE</a> / <a href="collection.html" data-t="navColl"></a> / <span data-t="crumb"></span></span>
+    <h1 data-t="h1"></h1>
+    <p data-t="introP"></p>
+  </div>
+</div>
+<section class="cat">
+  <div class="wrap">
+    <div class="cat-head"><span class="lbl" style="color:var(--brass)" data-t="kick"></span><p data-t="note"></p></div>
+    <div class="ads" id="ads"></div>
+  </div>
+</section>
+</main>
+
+<script src="work.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="site.js"></script>
+<script>
+/* Тексты товаров — из задания заказчика (work.js). Подписи страницы на армянском написал Claude — вычитать носителю. */
+const T = {
+ hy:{crumb:'Կատալոգ',h1:'Վարագույրներ և արևապաշտպան համակարգեր',introP:'Ութ գովազդային էջ՝ սոցիալական ցանցերի և ընդհանուր կատալոգի համար։',kick:'8 ապրանքատեսակ · 4:5',note:'Լուսանկարները՝ ARÉVE-ի օբյեկտներից, Երևան։',page:'Էջ',open:'Մանրամասն'},
+ ru:{crumb:'Каталог',h1:'Шторы и солнцезащитные системы',introP:'Восемь рекламных страниц для соцсетей и общего каталога.',kick:'8 товаров · 4:5',note:'Фото — объекты ARÉVE в Ереване. Карточки собраны в формате поста 4:5; для сторис 9:16 сделаем отдельную версию.',page:'Страница',open:'Подробнее'},
+ en:{crumb:'Catalogue',h1:'Blinds and shading systems',introP:'Eight advertising pages for social media and the combined catalogue.',kick:'8 products · 4:5',note:'Photos: ARÉVE projects in Yerevan. Cards use the 4:5 post format; a 9:16 story version can follow.',page:'Page',open:'Details'}
+};
+const pad = n => String(n).padStart(3, '0');
+const LOGO = '<svg viewBox="0 0 26 26" fill="none" stroke="#D8BC8E" stroke-width="1.1" aria-hidden="true"><circle cx="13" cy="15" r="5"/><path d="M2 10.5h22M4 7.5h18M7 4.5h12"/></svg>';
+areveInit('collection.html', T, (L, t) => {
+  document.getElementById('ads').innerHTML = SHADES.map((s, i) => {
+    const d = s[L], th = s.ph.slice(1, 3).concat(s.ph.slice(0, 1)).slice(0, 2);
+    return `<div>
+      <article class="ad" lang="${L}" aria-label="${d[0]}">
+        <div class="ad-ph"><img src="${WORK}w${pad(s.ph[0])}.jpg" alt="${d[0]}" loading="${i < 2 ? 'eager' : 'lazy'}"></div>
+        <div class="ad-logo">${LOGO}<b>ARÉVE</b></div>
+        <span class="ad-n">0${i + 1} / 08</span>
+        <div class="ad-body">
+          <div><h2>${d[0]}</h2><span class="ad-en">${s.name}</span><p>${d[1]}</p><div class="ad-v">${d[2].map(v => `<span>${v}</span>`).join('')}</div></div>
+          <div class="ad-thumbs">${th.map(n => `<a href="${WORK}w${pad(n)}.jpg" data-lb="${d[0]}" data-lb-group="ad-${s.id}"><img src="${WORK}t/w${pad(n)}.jpg" alt="${d[0]}" loading="lazy"></a>`).join('')}</div>
+        </div>
+        <div class="ad-foot"><span>areve.am</span><span>+374 93 70 03 70</span></div>
+      </article>
+      <div class="cap mono"><span>${t.page} 0${i + 1} · ${s.name}</span><a href="product.html#${s.id}">${t.open} →</a></div>
+    </div>`;
+  }).join('');
+});
+</script>
+</body>
+</html>

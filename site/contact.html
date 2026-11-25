@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE Contact</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ARÉVE, Yerevan: +374 10 53 03 70, +374 93 70 03 70, info@areve.am.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Layout: тёмная страница-визитка. Слева крупные каналы связи (копируются в один клик), справа форма.
+   Внизу — «солнечные часы»: сколько светлого времени сегодня в Ереване, рассчитано по широте. */
+body{background:var(--shade);color:var(--stone)}
+.ct .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding-block:72px 88px}
+.ct h1{font-size:clamp(2.8rem,6vw,5rem);line-height:1;margin:18px 0 36px}
+.ch{display:grid;border-top:1px solid var(--hair-dk)}
+.ch div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:20px 0;border-bottom:1px solid var(--hair-dk)}
+.ch .lbl{grid-column:1/-1;color:var(--brass-lt)}
+.ch b{font-family:var(--f-disp);font-weight:400;font-size:clamp(1.5rem,2.6vw,2rem);user-select:all;overflow-wrap:anywhere}
+.ch span.v{color:rgba(236,231,223,.75)}
+.copy{font:500 .7rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:rgba(236,231,223,.7);background:none;border:1px solid var(--hair-dk);padding:10px 12px;cursor:pointer}
+.copy:hover{border-color:var(--brass);color:var(--brass-lt)}
+.ch a.out{font:500 .7rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(236,231,223,.7);border:1px solid var(--hair-dk);padding:10px 12px}
+.ch a.out:hover{border-color:var(--brass);color:var(--brass-lt)}
+.addr-note{color:rgba(236,231,223,.64);font-size:.84rem;grid-column:1/-1}
+
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start;background:var(--shade-2);border:1px solid var(--hair-dk);padding:32px}
+form h2{grid-column:1/-1;font-size:2rem;margin-bottom:6px}
+.fld{display:grid;gap:8px}
+.fld.wide{grid-column:1/-1}
+.fld label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:rgba(236,231,223,.64)}
+.fld input,.fld select,.fld textarea{font:300 1rem var(--f-body);color:var(--stone);background:transparent;border:0;border-bottom:1px solid rgba(236,231,223,.3);padding:10px 0;border-radius:0;outline:none;resize:vertical}
+.fld select option{color:var(--ink)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-bottom-color:var(--brass)}
+.err{grid-column:1/-1;color:#E3A27A;margin:0;font-size:.9rem}
+.done{grid-column:1/-1;color:var(--brass-lt);margin:0}
+form .btn{justify-self:start}
+
+.daylight{border-top:1px solid var(--hair-dk)}
+.daylight .wrap{padding-block:56px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;align-items:center}
+.daylight h2{font-size:1.9rem;line-height:1.15;margin-top:10px}
+.daylight .lbl{color:var(--brass-lt)}
+.bar{position:relative;height:56px;border:1px solid var(--hair-dk);background:var(--shade-2)}
+.bar i{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,rgba(216,188,142,.25),rgba(216,188,142,.55),rgba(216,188,142,.25))}
+.bar b{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--brass-lt)}
+.ticks{display:flex;justify-content:space-between;color:rgba(236,231,223,.64);margin-top:8px}
+.dl-read{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:16px;color:rgba(236,231,223,.6)}
+.dl-read b{color:var(--stone);font-weight:400}
+
+@media (max-width:900px){
+  .ct .wrap,.daylight .wrap{grid-template-columns:minmax(0,1fr)}
+  form{grid-template-columns:minmax(0,1fr);padding:24px}
+}
+</style>
+</head>
+<body>
+<main class="dark">
+<section class="ct">
+  <div class="wrap">
+    <div>
+      <span class="crumb mono"><a href="index.html">ARÉVE</a> / <span data-t="navContact"></span></span>
+      <h1 data-t="h1"></h1>
+      <div class="ch">
+        <div><span class="lbl" data-t="phone"></span><b>+374 10 53 03 70</b><button type="button" class="copy" data-copy="+374 10 53 03 70" data-t="copy"></button></div>
+        <div><span class="lbl">Mobile · WhatsApp · Viber</span><b>+374 93 70 03 70</b><a class="out" href="https://wa.me/37493700370" target="_blank" rel="noopener">WhatsApp</a></div>
+        <div><span class="lbl" data-t="mail"></span><b>info@areve.am</b><button type="button" class="copy" data-copy="info@areve.am" data-t="copy"></button></div>
+        <div><span class="lbl" data-t="office"></span><span class="v" data-t="addr"></span><a class="out" href="https://www.google.com/maps/search/?api=1&query=Yekmalyan+6+Yerevan" target="_blank" rel="noopener" data-t="map"></a><span class="addr-note" data-t="addrNote"></span></div>
+      </div>
+    </div>
+    <form id="f" novalidate>
+      <h2 data-t="fH"></h2>
+      <div class="fld"><label for="c-name" data-t="fName"></label><input id="c-name" autocomplete="name" required></div>
+      <div class="fld"><label for="c-phone" data-t="fPhone"></label><input id="c-phone" type="tel" autocomplete="tel" placeholder="+374" required></div>
+      <div class="fld wide"><label for="c-space" data-t="fSpace"></label><select id="c-space"></select></div>
+      <div class="fld wide"><label for="c-msg" data-t="fMsg"></label><textarea id="c-msg" rows="3"></textarea></div>
+      <p class="err" id="err" hidden data-t="fErr"></p>
+      <button class="btn" type="submit" data-t="fSend"></button>
+      <p class="done" id="done" hidden data-t="fDone"></p>
+    </form>
+  </div>
+</section>
+
+<section class="daylight">
+  <div class="wrap">
+    <div><span class="lbl" data-t="dKick"></span><h2 data-t="dH"></h2></div>
+    <div>
+      <div class="bar" id="bar"><i id="dayI"></i><b id="nowB"></b></div>
+      <div class="ticks mono"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+      <div class="dl-read mono" id="dl"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю. Адрес — с areve.am; на construction.am указан другой, уточнить. */
+const T = {
+ hy:{h1:'Կապ',phone:'Հեռախոս',mail:'Էլ. փոստ',office:'Գրասենյակ',addr:'Երևան, Եկմալյան 6, «Բիզնես Պալե», 2-րդ հարկ, սենյակ 21',map:'Քարտեզ',addrNote:'Հասցեն ճշտվում է',copy:'Պատճենել',copied:'Պատճենված է',
+  fH:'Պատմեք ձեր տարածքի մասին',fName:'Անուն',fPhone:'Հեռախոս',fSpace:'Տարածք',fMsg:'Մեկնաբանություն',fSend:'Ուղարկել',fErr:'Նշեք անունը և հեռախոսը։',fDone:'Բացում ենք WhatsApp-ը․ սեղմեք «Ուղարկել» չաթում, և մենք կզանգենք։',
+  dKick:'Այսօր Երևանում',dH:'Որքան արև կա այսօր ձեր տեռասի վրա',rise:'Ծագում',set:'Մայրամուտ',len:'Լույս',now:'Հիմա',h:'ժ'},
+ ru:{h1:'Контакты',phone:'Телефон',mail:'Почта',office:'Офис',addr:'Ереван, ул. Екмаляна 6, БЦ «Бизнес Пале», 2 этаж, офис 21',map:'Карта',addrNote:'Адрес уточняется',copy:'Копировать',copied:'Скопировано',
+  fH:'Расскажите о своём пространстве',fName:'Имя',fPhone:'Телефон',fSpace:'Пространство',fMsg:'Комментарий',fSend:'Отправить',fErr:'Укажите имя и телефон.',fDone:'Открываем WhatsApp — нажмите «Отправить» в чате, и мы перезвоним.',
+  dKick:'Сегодня в Ереване',dH:'Сколько солнца сегодня на вашей террасе',rise:'Восход',set:'Закат',len:'Светлое время',now:'Сейчас',h:'ч'},
+ en:{h1:'Contact',phone:'Phone',mail:'Email',office:'Office',addr:'Yerevan, 6 Yekmalyan St, Business Palais, 2nd floor, office 21',map:'Map',addrNote:'Address being confirmed',copy:'Copy',copied:'Copied',
+  fH:'Tell us about your space',fName:'Name',fPhone:'Phone',fSpace:'Space',fMsg:'Comment',fSend:'Send',fErr:'Please add your name and phone.',fDone:'Opening WhatsApp — press Send in the chat and we will call you back.',
+  dKick:'Today in Yerevan',dH:'How much sun your terrace gets today',rise:'Sunrise',set:'Sunset',len:'Daylight',now:'Now',h:'h'}
+};
+const SP = {hy:['Առանձնատուն','Ռեստորան','Տեռաս կամ տանիք','Լողավազան','Ձմեռային այգի','Այլ'],ru:['Частный дом','Ресторан','Терраса или крыша','Бассейн','Зимний сад','Другое'],en:['Private home','Restaurant','Terrace or roof','Pool','Winter garden','Other']};
+let TT;
+areveInit('contact.html', T, (lang, t) => {
+  TT = t;
+  let pre = -1; try { const q = JSON.parse(sessionStorage.getItem('areve_quiz') || '[]'); if (q.length) pre = q[0]; } catch (e) {}
+  document.getElementById('c-space').innerHTML = SP[lang].map((s, i) => `<option value="${i}"${i === pre ? ' selected' : ''}>${s}</option>`).join('');
+  daylight();
+});
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  const done = () => { b.textContent = TT.copied; setTimeout(() => b.textContent = TT.copy, 1600); };
+  try { await navigator.clipboard.writeText(b.dataset.copy); done(); }
+  catch (er) { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+});
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const ok = document.getElementById('c-name').value.trim() && document.getElementById('c-phone').value.trim();
+  document.getElementById('err').hidden = !!ok;
+  document.getElementById('done').hidden = !ok;
+  if (ok) areveFormWA(e.target);
+});
+/* восход/закат по широте Еревана: высота солнца = −0.83° */
+function daylight(){
+  const now = areveNow(), LAT = 40.18 * Math.PI / 180;
+  const decl = 23.44 * Math.PI / 180 * Math.sin(2 * Math.PI * (284 + now.doy) / 365);
+  const cosH = (Math.sin(-0.83 * Math.PI / 180) - Math.sin(LAT) * Math.sin(decl)) / (Math.cos(LAT) * Math.cos(decl));
+  const H = Math.acos(Math.max(-1, Math.min(1, cosH))) * 180 / Math.PI / 15;
+  const rise = 13 - H, set = 13 + H; // солнечный полдень ≈13:00 по UTC+4 (приближённо)
+  const f = h => String(Math.floor(h)).padStart(2, '0') + ':' + String(Math.round((h % 1) * 60) % 60).padStart(2, '0');
+  const i = document.getElementById('dayI'); i.style.left = rise / 24 * 100 + '%'; i.style.width = (set - rise) / 24 * 100 + '%';
+  document.getElementById('nowB').style.left = now.hour / 24 * 100 + '%';
+  document.getElementById('dl').innerHTML = `<span>${TT.rise} <b>≈ ${f(rise)}</b></span><span>${TT.set} <b>≈ ${f(set)}</b></span><span>${TT.len} <b>${(set - rise).toFixed(1)} ${TT.h}</b></span><span>${TT.now} <b>${f(now.hour)}</b></span>`;
+}
+</script>
+</body>
+</html>

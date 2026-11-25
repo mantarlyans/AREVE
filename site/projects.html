@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE Projects</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ARÉVE projects in Yerevan: pergolas, awnings, glazing, umbrellas, shade sails and blinds.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* Layout: реальные объекты ARÉVE. Первый объект — крупно (обложка + 3 кадра), дальше сетка карточек
+   с фильтром по пространствам; карточка открывает галерею объекта во весь экран. */
+.feat .wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;padding-block:72px 40px;align-items:end}
+.feat-ph{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:16/10;max-width:100%}
+.feat-ph a{display:block;overflow:hidden;background:var(--stone-2)}
+.feat-ph a:first-child{grid-row:1/3}
+.feat-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.6,.2,1)}
+.feat-ph a:hover img{transform:scale(1.04)}
+.feat h2{font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.02;margin:14px 0 18px}
+.feat p{color:var(--dust);margin:0 0 22px;max-width:40ch}
+.feat .lbl{color:var(--brass)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{border:1px solid var(--hair);padding:6px 10px;font-size:.84rem}
+.tbd-row{margin-top:20px;display:grid;gap:8px;font-size:.9rem}
+
+.list .wrap{padding-block:24px 88px}
+.list .pills{border-top-color:var(--hair);margin-bottom:28px}
+.list .pills button{color:var(--ink);border-color:var(--hair)}
+.list .pills button[aria-pressed="true"]{border-color:var(--brass);color:var(--brass)}
+.list .pills .mono{color:var(--dust);margin-left:4px}
+.flt{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:12px;align-items:start;margin-bottom:6px}
+.flt .lbl{color:var(--dust);padding-top:28px}
+.list .flt:last-of-type .pills{margin-bottom:28px}
+.none{color:var(--dust);margin:0 0 28px}
+@media (max-width:640px){.flt{grid-template-columns:minmax(0,1fr);gap:0}.flt .lbl{padding-top:16px}}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px}
+.case{display:grid;gap:12px;text-decoration:none;color:inherit}
+.case figure{margin:0;position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--stone-2)}
+.case img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.6,.2,1)}
+.case:hover img{transform:scale(1.05)}
+.case figcaption{position:absolute;right:10px;bottom:10px;background:rgba(26,24,20,.72);color:var(--stone);padding:5px 9px}
+.case h3{font-size:1.55rem;line-height:1.1}
+.case p{margin:0;color:var(--dust);font-size:.94rem}
+.case p b,.feat p b{font-weight:500;color:var(--ink)}
+.case[hidden]{display:none!important}
+
+.note-sec{background:var(--stone-2)}
+.note-sec .wrap{padding-block:56px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px}
+.note-sec h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.08;margin-top:14px}
+.note-sec .lbl{color:var(--brass)}
+.note-sec ol{margin:0;padding:0;list-style:none;border-top:1px solid var(--hair);counter-reset:s}
+.note-sec li{counter-increment:s;display:grid;grid-template-columns:3em minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.note-sec li::before{content:"0" counter(s);font-family:var(--f-mono);font-size:.78rem;color:var(--brass);padding-top:4px}
+.note-sec li b{font-weight:500;display:block}
+.note-sec li span{color:var(--dust);font-size:.94rem}
+
+@media (max-width:900px){
+  .feat .wrap,.note-sec .wrap{grid-template-columns:minmax(0,1fr)}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}.feat-ph{aspect-ratio:4/5;grid-template-columns:1fr 1fr;grid-template-rows:2fr 1fr 1fr}.feat-ph a:first-child{grid-row:auto;grid-column:1/3}}
+</style>
+</head>
+<body>
+<main>
+<div class="intro dark">
+  <div class="wrap">
+    <span class="crumb mono"><a href="index.html">ARÉVE</a> / <span data-t="navProj"></span></span>
+    <h1 data-t="h1"></h1>
+    <p data-t="introP"></p>
+  </div>
+</div>
+
+<section class="feat"><div class="wrap" id="feat"></div></section>
+
+<section class="list">
+  <div class="wrap">
+    <div class="flt"><span class="lbl" data-t="spL"></span><div class="pills" id="filter" role="group"></div></div>
+    <div class="flt"><span class="lbl" data-t="sysL"></span><div class="pills" id="sysf" role="group"></div></div>
+    <p class="none" id="none" hidden data-t="none"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="note-sec">
+  <div class="wrap">
+    <div><span class="lbl" data-t="nKick"></span><h2 data-t="nH"></h2></div>
+    <ol id="shots"></ol>
+  </div>
+</section>
+</main>
+
+<script src="work.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю. Фото — объекты ARÉVE, Ереван. */
+const T = {
+ hy:{h1:'Աշխատանքներ',introP:'Մեր կատարած աշխատանքները Երևանում՝ ռեստորաններ, առանձնատներ, տանիքներ և ինտերիերներ։',spL:'Տարածք',sysL:'Համակարգ',none:'Այս ընտրությամբ աշխատանքներ դեռ չկան։',
+  all:'Բոլորը',privateL:'Մասնավոր օբյեկտ՝ անունը չենք հրապարակում',ph:'լուս.',open:'Դիտել լուսանկարները',name:'Անվանում',year:'Տարի և թաղամաս',tbd:'կլրացվի',
+  nKick:'Հաջորդ քայլ',nH:'Ինչ կավելացնենք յուրաքանչյուր օբյեկտի համար'},
+ ru:{h1:'Наши работы',spL:'Пространство',sysL:'Система',none:'С таким выбором работ пока нет.',introP:'Наши работы в Ереване: рестораны, частные дома, крыши и интерьеры.',
+  all:'Все',privateL:'Частный объект: имя владельца не публикуем',ph:'фото',open:'Смотреть фото',name:'Название объекта',year:'Год и район',tbd:'уточняется',
+  nKick:'Следующий шаг',nH:'Что добавим к каждому объекту'},
+ en:{h1:'Our work',spL:'Space',sysL:'System',none:'No work matches this selection yet.',introP:'Our work in Yerevan: restaurants, private homes, rooftops and interiors.',
+  all:'All',privateL:'Private client: name not published',ph:'photos',open:'View photos',name:'Site name',year:'Year and district',tbd:'to be confirmed',
+  nKick:'Next step',nH:'What we will add to each project'}
+};
+const SPN = {home:{hy:'Առանձնատուն',ru:'Частный дом',en:'Private home'},rest:{hy:'Ռեստորան',ru:'Ресторан',en:'Restaurant'},roof:{hy:'Տեռաս և տանիք',ru:'Терраса и крыша',en:'Terrace & roof'},wg:{hy:'Ձմեռային այգի',ru:'Зимний сад',en:'Winter garden'}};
+const SYS = {
+ pergola:{hy:'Պերգոլա',ru:'Пергола',en:'Pergola'}, screen:{hy:'Արտաքին էկրան',ru:'Уличный экран',en:'Outdoor screen'},
+ glazing:{hy:'Ապակեպատում',ru:'Остекление',en:'Glazing'}, deck:{hy:'Դեկինգ',ru:'Декинг',en:'Decking'},
+ wave:{hy:'Ալիքաձև առաստաղ',ru:'Волнообразный потолок',en:'Wave ceiling'}, wgshade:{hy:'Ձմեռային այգու վարագույր',ru:'Шторы зимнего сада',en:'Winter garden shading'},
+ umbrella:{hy:'Անձրևանոցներ',ru:'Зонты',en:'Umbrellas'}, sail:{hy:'Առագաստներ',ru:'Тенты-паруса',en:'Shade sails'},
+ awning:{hy:'Մարկիզաներ',ru:'Маркизы',en:'Awnings'},
+ zebra:{hy:'Զեբրա',ru:'Зебра',en:'Zebra'}, roller:{hy:'Ռուլոնային',ru:'Рулонные',en:'Roller'}, plisse:{hy:'Պլիսե',ru:'Плиссе',en:'Pleated'}
+};
+const NEXT = {
+ hy:[['Անվանում և թույլտվություն','Օբյեկտի անունը՝ միայն պատվիրատուի համաձայնությամբ'],['Տարի և թաղամաս','Երբ և որտեղ է տեղադրվել'],['Խնդիր և լուծում','Ինչ էր պետք և ինչու ընտրեցինք այս համակարգը'],['Մեկ նախադասություն պատվիրատուից','Ինչպես է տեռասն օգտագործվում հիմա']],
+ ru:[['Название и разрешение','Имя объекта — только с согласия заказчика'],['Год и район','Когда и где установлено'],['Задача и решение','Что было нужно и почему выбрали эту систему'],['Фраза от заказчика','Как терраса используется теперь']],
+ en:[['Name and permission','The site name only with the client’s consent'],['Year and district','When and where it was installed'],['Brief and solution','What was needed and why we chose this system'],['A line from the client','How the terrace is used now']]
+};
+let space = 'all', sys = 'all', L = 'hy', TT = {};
+try { const q = new URLSearchParams(location.search).get('sys'); if (q && CASES.some(c => c.sys.includes(q))) sys = q; } catch (e) {}
+const match = c => (space === 'all' || c.sp === space) && (sys === 'all' || c.sys.includes(sys));
+const pad = n => String(n).padStart(3, '0');
+const ttl = c => c.name || c[L][0];
+const links = (c, cls) => c.ph.map((n, i) => `<a href="${WORK}w${pad(n)}.jpg" data-lb="${ttl(c)}" aria-label="${ttl(c)}, ${i + 1}/${c.ph.length}" data-lb-group="c-${c.id}"${i && cls ? ' class="' + cls + '"' : ''}><img src="${WORK}t/w${pad(n)}.jpg" alt="${c[L][0]}" loading="${i < 4 ? 'eager' : 'lazy'}"></a>`);
+
+function draw(){
+  const f = CASES[0], filtered = space !== 'all' || sys !== 'all';
+  document.querySelector('.feat').hidden = filtered;
+  document.getElementById('feat').innerHTML = `
+    <div class="feat-ph">${links(f).slice(0, 3).join('')}</div>
+    <div>
+      <span class="lbl">01 · ${SPN[f.sp][L]}</span>
+      <h2>${ttl(f)}</h2><p>${f.name ? '<b>' + f[L][0] + '.</b> ' : ''}${f[L][1]}</p>
+      <div class="chips">${f.sys.map(s => `<span>${SYS[s][L]}</span>`).join('')}</div>
+      <div class="tbd-row">${f.name ? '' : `<span>${TT.privateL}</span>`}<span>${TT.year}: <span class="tbd">${TT.tbd}</span></span></div>
+    </div>`;
+  const sps = [...new Set(CASES.map(c => c.sp))];
+  document.getElementById('filter').innerHTML = `<button type="button" data-sp="all" aria-pressed="${space === 'all'}">${TT.all} <span class="mono">${CASES.length}</span></button>` +
+    sps.map(s => `<button type="button" data-sp="${s}" aria-pressed="${space === s}">${SPN[s][L]} <span class="mono">${CASES.filter(c => c.sp === s).length}</span></button>`).join('');
+  const sys_ = Object.keys(SYS).filter(k => CASES.some(c => c.sys.includes(k)));
+  document.getElementById('sysf').innerHTML = `<button type="button" data-sys="all" aria-pressed="${sys === 'all'}">${TT.all}</button>` +
+    sys_.map(k => `<button type="button" data-sys="${k}" aria-pressed="${sys === k}">${SYS[k][L]} <span class="mono">${CASES.filter(c => c.sys.includes(k)).length}</span></button>`).join('');
+  const list = filtered ? CASES.filter(match) : CASES.slice(1);
+  document.getElementById('none').hidden = list.length > 0;
+  document.getElementById('grid').innerHTML = list.map((c, i) => {
+    const rest = c.ph.slice(1).map(n => `<a href="${WORK}w${pad(n)}.jpg" data-lb="${ttl(c)}" data-lb-group="c-${c.id}" hidden></a>`).join('');
+    return `<div class="case" data-sp="${c.sp}">
+      <a href="${WORK}w${pad(c.cover)}.jpg" data-lb="${ttl(c)}" data-lb-group="c-${c.id}" aria-label="${TT.open}: ${ttl(c)}"><figure><img src="${WORK}t/w${pad(c.cover)}.jpg" alt="${ttl(c)}" loading="lazy"><figcaption class="mono">${c.ph.length} ${TT.ph}</figcaption></figure></a>${rest}
+      <span class="lbl" style="color:var(--brass)">${pad(CASES.indexOf(c) + 1).slice(1)} · ${SPN[c.sp] ? SPN[c.sp][L] : ''}</span>
+      <h3>${ttl(c)}</h3><p>${c.name ? '<b>' + c[L][0] + '.</b> ' : ''}${c[L][1]}</p>
+      <div class="chips">${c.sys.map(s => `<span>${SYS[s][L]}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('shots').innerHTML = NEXT[L].map(s => `<li><span><b>${s[0]}</b><span>${s[1]}</span></span></li>`).join('');
+}
+areveInit('projects.html', T, (l, t) => { L = l; TT = t; draw(); });
+document.getElementById('filter').addEventListener('click', e => { const b = e.target.closest('[data-sp]'); if (!b) return; space = b.dataset.sp; draw(); });
+document.getElementById('sysf').addEventListener('click', e => {
+  const b = e.target.closest('[data-sys]'); if (!b) return; sys = b.dataset.sys; draw();
+  try { const u = new URL(location.href); if (sys === 'all') u.searchParams.delete('sys'); else u.searchParams.set('sys', sys); history.replaceState(null, '', u); } catch (er) {}
+});
+</script>
+</body>
+</html>

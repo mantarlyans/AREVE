@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE Spaces</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* Layout: пять пространств как длинные развороты (фото + сценарий + что ставим + что учесть),
+   чередуются слева/справа; затем инструмент «куда смотрит терраса» на тёмном фоне. */
+.space{padding-block:88px;border-bottom:1px solid var(--hair)}
+.space .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:start}
+.space:nth-of-type(even) figure{order:2}
+.space figure{margin:0;position:sticky;top:100px}
+.space figure div{aspect-ratio:4/5;max-width:100%;overflow:hidden;background:var(--stone-2)}
+.space img{width:100%;height:100%;object-fit:cover;display:block}
+.space figcaption{padding-top:12px}
+.space .n{color:var(--brass)}
+.space h2{font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.02;margin:14px 0 20px}
+.space .scen{font-size:1.12rem;font-weight:400;max-width:42ch;margin:0 0 36px}
+.blk{border-top:1px solid var(--hair);padding:22px 0 8px;display:grid;gap:14px}
+.blk h3{font-family:var(--f-body);font-weight:500;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dust)}
+:lang(hy) .blk h3{letter-spacing:.14em}
+.fams{display:flex;flex-wrap:wrap;gap:8px}
+.fams a{text-decoration:none;border:1px solid var(--hair);padding:9px 14px;font-size:.92rem}
+.fams a:hover{border-color:var(--brass);color:var(--brass)}
+.blk ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.blk li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:12px;color:var(--ink)}
+.blk li::before{content:"";border-top:1px solid var(--brass);margin-top:.8em}
+.space .btn{margin-top:28px}
+
+.orient{background:var(--shade);color:var(--stone)}
+.orient .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;padding-block:96px;align-items:center}
+.orient h2{font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.06;margin:16px 0 18px}
+.orient p{color:rgba(236,231,223,.68);max-width:44ch;margin:0}
+.orient .lbl{color:var(--brass-lt)}
+.compass{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:36px;align-items:center}
+.rose{position:relative;aspect-ratio:1;max-width:100%}
+.rose svg{width:100%;height:100%;display:block}
+.rose button{position:absolute;transform:translate(-50%,-50%);font:500 .8rem/1 var(--f-mono);color:rgba(236,231,223,.7);background:var(--shade);border:1px solid var(--hair-dk);width:44px;height:44px;border-radius:50%;cursor:pointer}
+.rose button[aria-pressed="true"]{border-color:var(--brass);color:var(--shade);background:var(--brass-lt)}
+.answer{display:grid;gap:14px;border-top:1px solid var(--hair-dk);padding-top:20px}
+.answer b{font-family:var(--f-disp);font-weight:400;font-size:1.7rem;line-height:1.15;color:var(--brass-lt)}
+.answer span{color:rgba(236,231,223,.7)}
+.answer .mono{color:rgba(236,231,223,.64)}
+
+.orient .fams a{border-color:var(--hair-dk)}
+.orient .fams a:hover{color:var(--brass-lt)}
+.end{padding-block:80px}
+.end .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between}
+.end h2{font-size:clamp(1.8rem,3vw,2.6rem);max-width:22ch}
+
+@media (max-width:900px){
+  .space .wrap,.orient .wrap{grid-template-columns:minmax(0,1fr)}
+  .space:nth-of-type(even) figure{order:0}
+  .space figure{position:static}
+  .space figure div{aspect-ratio:4/3}
+  .space{padding-block:56px}
+  .compass{grid-template-columns:minmax(0,1fr)}
+  .rose{max-width:260px}
+}
+</style>
+</head>
+<body>
+<main>
+<div class="intro dark">
+  <div class="wrap">
+    <span class="crumb mono"><a href="index.html">ARÉVE</a> / <span data-t="navSpaces"></span></span>
+    <h1 data-t="h1"></h1>
+    <p data-t="introP"></p>
+    <nav class="pills" id="pills" aria-label="Spaces"></nav>
+  </div>
+</div>
+
+<div id="spaces"></div>
+
+<section class="orient dark" id="orient">
+  <div class="wrap">
+    <div>
+      <span class="lbl" data-t="oKick"></span>
+      <h2 data-t="oH"></h2>
+      <p data-t="oP"></p>
+    </div>
+    <div class="compass">
+      <div class="rose" id="rose">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="78" fill="none" stroke="rgba(236,231,223,.14)"/>
+          <circle cx="100" cy="100" r="46" fill="none" stroke="rgba(236,231,223,.08)"/>
+          <rect x="78" y="78" width="44" height="44" fill="rgba(236,231,223,.10)" stroke="rgba(236,231,223,.25)"/>
+          <path id="beam" d="M100 100 L60 22 A86 86 0 0 1 140 22 Z" fill="rgba(216,188,142,.16)" style="transform-origin:100px 100px;transition:transform .6s"/>
+        </svg>
+      </div>
+      <div class="answer" aria-live="polite">
+        <span class="mono" id="aSide"></span>
+        <b id="aHead"></b>
+        <span id="aText"></span>
+        <span class="fams" id="aFams"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2 data-t="endH"></h2>
+    <a class="btn" href="index.html#request" data-t="cta3d"></a>
+  </div>
+</section>
+</main>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю. Продукты и цифры — только с areve.am. */
+const T = {
+ hy:{h1:'Տարածքներ',introP:'Մենք սկսում ենք ոչ թե ապրանքից, այլ տեղից։ Ընտրեք ձեր տարածքը, և կտեսնեք, թե ինչ ենք այնտեղ դնում և ինչին ենք ուշադրություն դարձնում։',
+  put:'Ինչ ենք տեղադրում',mind:'Ինչ հաշվի առնել',photo:'ARÉVE-ի օբյեկտ, Երևան',
+  oKick:'Կողմնորոշում',oH:'Ո՞ւր է նայում ձեր տեռասը',oP:'Երևանում ամառը շոգ է, և արևի ուղղությունը որոշում է, թե ինչ ստվեր է պետք։ Ընտրեք կողմը։',
+  endH:'Չգիտեք՝ որն ընտրել։ Մենք կգանք, կչափենք և ցույց կտանք 3D-ում։'},
+ ru:{h1:'Пространства',introP:'Мы начинаем не с товара, а с места. Выберите своё пространство и посмотрите, что мы туда ставим и на что обращаем внимание.',
+  put:'Что ставим',mind:'Что учесть',photo:'Объект ARÉVE, Ереван',
+  oKick:'Ориентация',oH:'Куда смотрит ваша терраса?',oP:'Лето в Ереване жаркое, и от стороны света зависит, какая тень нужна. Выберите сторону.',
+  endH:'Не знаете, что выбрать? Приедем, замерим и покажем в 3D.'},
+ en:{h1:'Spaces',introP:'We start from the place, not the product. Pick your space to see what we install there and what we look out for.',
+  put:'What we install',mind:'What to consider',photo:'ARÉVE project, Yerevan',
+  oKick:'Orientation',oH:'Which way does your terrace face?',oP:'Yerevan summers are hot, and the direction of the sun decides what kind of shade you need. Pick a side.',
+  endH:'Not sure what to choose? We will measure the site and show you in 3D.'}
+};
+const FAMN = {pergola:{hy:'Պերգոլաներ',ru:'Перголы',en:'Pergolas'},awning:{hy:'Մարկիզաներ',ru:'Маркизы',en:'Awnings'},glazing:{hy:'Ապակեպատում',ru:'Остекление',en:'Glazing'},deck:{hy:'Դեկինգ',ru:'Декинг',en:'Decking'},umbrella:{hy:'Անձրևանոցներ',ru:'Зонты',en:'Umbrellas'},mist:{hy:'Մառախուղ',ru:'Туманное охлаждение',en:'Misting'}};
+const famLinks = (ids, lang) => ids.map(id => `<a href="${id === 'pergola' ? 'product.html#pergola' : 'collection.html'}">${FAMN[id][lang]}</a>`).join('');
+
+const SP = [
+ {id:'home',img:'villa',fams:['pergola','glazing','deck'],
+  hy:['Առանձնատուն','Տեռասը՝ որպես երկրորդ հյուրասենյակ։ Նախաճաշ ստվերում, ընթրիք բաց երկնքի տակ։',['Հարավային և արևմտյան կողմերին պետք է շերտավոր ծածկ','Անձրևաջրի հեռացումը նախագծվում է սկզբից','Կառավարում հեռակառավարմամբ կամ iPhone-ից']],
+  ru:['Частный дом','Терраса как вторая гостиная. Завтрак в тени, ужин под открытым небом.',['Южной и западной стороне нужна ламельная крыша','Водоотвод закладываем в проект с самого начала','Управление с пульта или с iPhone']],
+  en:['Private home','The terrace as a second living room: breakfast in the shade, dinner under the open sky.',['South and west sides need a louvred roof','Rainwater drainage is designed in from the start','Control by remote or from an iPhone']]},
+ {id:'rest',img:'work/w002',fams:['pergola','awning','glazing','mist','umbrella'],
+  hy:['Ռեստորան և սրճարան','Ամառային տեռասը աշխատում է գարնանից աշուն, իսկ ապակեպատմամբ՝ ամբողջ տարի։',['Մոնտաժը պլանավորում ենք աշխատանքային ժամերից դուրս','Ստվեր նստատեղերի վրա օրվա ամենաշոգ ժամերին','Մառախուղը զովացնում է առանց թաց սեղանների']],
+  ru:['Ресторан и кафе','Летняя веранда работает с весны до осени, а с остеклением — круглый год.',['Монтаж планируем вне часов работы заведения','Тень над посадкой в самые жаркие часы','Туман охлаждает без мокрых столов']],
+  en:['Restaurant and café','A summer terrace that runs from spring to autumn, and all year with glazing.',['Installation is scheduled outside opening hours','Shade over the seating in the hottest hours','Misting cools without wetting the tables']]},
+ {id:'roof',img:'work/w034',fams:['awning','pergola','deck','mist'],
+  hy:['Տեռաս և տանիք','Քաղաքի տեսարանով տեռասը դառնում է բնակարանի լավագույն սենյակը։',['Վերևում քամին ուժեղ է. մարկիզաները դիմանում են 50 կմ/ժ քամու','Ծածկի բեռնվածքը ստուգում է ինժեները','Ամրացում առանց ջրամեկուսացումը վնասելու']],
+  ru:['Терраса и крыша','Терраса с видом на город становится лучшей комнатой в квартире.',['Наверху ветер сильнее: маркизы выдерживают 50 км/ч','Нагрузку на перекрытие проверяет инженер','Крепление без повреждения гидроизоляции']],
+  en:['Terrace and rooftop','A terrace with a city view becomes the best room in the flat.',['Wind is stronger up high: our awnings withstand 50 km/h','An engineer checks the load on the slab','Fixings that keep the waterproofing intact']]},
+ {id:'pool',img:'work/w015',fams:['umbrella','deck','mist'],
+  hy:['Լողավազան','Ստվեր շեզլոնգների վրա կեսօրին և հատակ, որը չի վախենում ջրից։',['ՓՊԿ դեկինգը չի փտում և չի ճաքում ջրից','Անձրևանոցները տեղափոխվում են արևի հետևից','Մառախուղ՝ հանգստի գոտու համար']],
+  ru:['Бассейн','Тень над шезлонгами в полдень и пол, которому не страшна вода.',['Декинг из ДПК не гниёт и не трескается от воды','Зонты переставляются вслед за солнцем','Туман для зоны отдыха']],
+  en:['Pool','Shade over the loungers at noon and a floor that does not mind water.',['WPC decking does not rot or split when wet','Umbrellas move with the sun','Misting for the lounge area']]},
+ {id:'wg',img:'work/w090',fams:['glazing','pergola'],
+  hy:['Ձմեռային այգի','Տեռասը փակվում է ապակով և դառնում սենյակ, որտեղ ձմռանը արև կա։',['Անփեղկ Butterfly, ծալվող կամ սահող համակարգ՝ 3 կամ 5 ռելսով','Ամռանը՝ օդափոխություն, որպեսզի չտաքանա','Skylight և Spider՝ ապակե տանիքի համար']],
+  ru:['Зимний сад','Терраса закрывается стеклом и становится комнатой, где зимой есть солнце.',['Безрамное Butterfly, складное или раздвижное на 3 или 5 рельсах','Летом — проветривание, чтобы не было перегрева','Skylight и Spider для стеклянной крыши']],
+  en:['Winter garden','Glass closes the terrace into a room that gets winter sun.',['Frameless Butterfly, folding or sliding on 3 or 5 rails','Ventilation in summer so it does not overheat','Skylight and Spider systems for a glass roof']]}
+];
+
+/* ориентация: общая логика солнца в северном полушарии, без цифр */
+const SIDES = [
+ {k:'N',x:50,y:6,rot:0,fams:['glazing','awning'],
+  hy:['Հյուսիս','Գրեթե միշտ ստվեր','Արևից պաշտպանություն քիչ է պետք։ Կարևոր է անձրևը և քամին՝ ապակեպատում կամ ծածկ։'],
+  ru:['Север','Почти всегда в тени','Защита от солнца почти не нужна. Важнее дождь и ветер: остекление или крыша.'],
+  en:['North','Mostly in shade','Little sun protection is needed. Rain and wind matter more: glazing or a roof.']},
+ {k:'E',x:94,y:50,rot:90,fams:['awning','pergola'],
+  hy:['Արևելք','Առավոտյան արև','Մեղմ առավոտյան լույս։ Բավական է մարկիզա, որը կեսօրից հետո կարելի է հավաքել։'],
+  ru:['Восток','Утреннее солнце','Мягкий утренний свет. Достаточно маркизы, которую после обеда можно убрать.'],
+  en:['East','Morning sun','Soft morning light. An awning you retract after lunch is usually enough.']},
+ {k:'S',x:50,y:94,rot:180,fams:['pergola','awning'],
+  hy:['Հարավ','Կեսօրվա բարձր արև','Արևը վերևից է։ Լավագույնը պերգոլան է շերտերով, որոնք շրջվում են արևի հետևից։'],
+  ru:['Юг','Высокое полуденное солнце','Солнце сверху. Лучше всего пергола с ламелями, которые поворачиваются за солнцем.'],
+  en:['South','High midday sun','The sun is overhead. A pergola with louvres that follow the sun works best.']},
+ {k:'W',x:6,y:50,rot:270,fams:['awning','glazing','pergola'],
+  hy:['Արևմուտք','Ցածր երեկոյան արև','Ամենաշոգ կողմը։ Արևը մտնում է կողքից, ուստի ծածկին պետք է ավելացնել կողային պաշտպանություն։'],
+  ru:['Запад','Низкое вечернее солнце','Самая жаркая сторона. Солнце заходит сбоку, поэтому к крыше нужна боковая защита.'],
+  en:['West','Low evening sun','The hottest side. The sun comes in from the side, so the roof needs side protection too.']}
+];
+const DIRL = {hy:'Կողմ',ru:'Сторона',en:'Facing'};
+let side = 2;
+
+areveInit('spaces.html', T, (lang, t) => {
+  document.getElementById('pills').innerHTML = SP.map(s => `<a class="btn ghost" style="padding:10px 14px;letter-spacing:.04em;text-transform:none;font-weight:400" href="#${s.id}">${s[lang][0]}</a>`).join('');
+  document.getElementById('spaces').innerHTML = SP.map((s, i) => `
+    <section class="space" id="${s.id}"><div class="wrap">
+      <figure><div><img src="img/${s.img}.jpg" alt="${s[lang][0]}" loading="${i ? 'lazy' : 'eager'}"></div><figcaption class="mono note">${t.photo}</figcaption></figure>
+      <div>
+        <span class="lbl n">0${i + 1} / 05</span>
+        <h2>${s[lang][0]}</h2>
+        <p class="scen">${s[lang][1]}</p>
+        <div class="blk"><h3>${t.put}</h3><div class="fams">${famLinks(s.fams, lang)}</div></div>
+        <div class="blk"><h3>${t.mind}</h3><ul>${s[lang][2].map(x => `<li><span>${x}</span></li>`).join('')}</ul></div>
+        <a class="btn" href="index.html#request">${t.cta3d}</a>
+      </div>
+    </div></section>`).join('');
+  drawRose(lang);
+});
+
+function drawRose(lang){
+  const rose = document.getElementById('rose');
+  rose.querySelectorAll('button').forEach(b => b.remove());
+  SIDES.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = s[lang][0][0]; b.title = s[lang][0];
+    b.setAttribute('aria-label', s[lang][0]);
+    b.style.left = s.x + '%'; b.style.top = s.y + '%';
+    b.setAttribute('aria-pressed', String(i === side));
+    b.addEventListener('click', () => { side = i; drawRose(lang); });
+    rose.appendChild(b);
+  });
+  const s = SIDES[side];
+  document.getElementById('beam').style.transform = `rotate(${s.rot}deg)`;
+  document.getElementById('aSide').textContent = DIRL[lang] + ' · ' + s[lang][0];
+  document.getElementById('aHead').textContent = s[lang][1];
+  document.getElementById('aText').textContent = s[lang][2];
+  document.getElementById('aFams').innerHTML = famLinks(s.fams, lang);
+}
+</script>
+</body>
+</html>

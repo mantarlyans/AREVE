@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE 3D Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* Layout: студия на тёмном фоне — большая живая 3D-сцена слева, пульт справа (как пульт перголы).
+   Солнце — реальное для Еревана: время суток и сезон двигают тень по полу. */
+body{background:var(--shade);color:var(--stone)}
+.studio .wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:40px;padding-block:40px 72px;align-items:start}
+.stage{position:sticky;top:96px}
+.scene3d{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--shade-2);border:1px solid var(--hair-dk);overflow:hidden;cursor:grab}
+.scene3d:active{cursor:grabbing}
+.scene3d canvas{display:block}
+.scene3d.no3d{background:url(img/villa.jpg) center/cover}
+.hint{position:absolute;left:12px;bottom:12px;color:rgba(236,231,223,.8);background:rgba(26,24,20,.6);padding:5px 9px;pointer-events:none}
+.readout{display:flex;flex-wrap:wrap;gap:8px 24px;padding-top:14px;color:rgba(236,231,223,.6)}
+.readout b{color:var(--stone);font-weight:400}
+
+.panel{display:grid;gap:30px}
+.panel h1{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.02}
+.panel > p{margin:-12px 0 0;color:rgba(236,231,223,.66);font-weight:400}
+.grp{display:grid;gap:12px;border-top:1px solid var(--hair-dk);padding-top:18px}
+.grp > span{color:var(--brass-lt)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.row output{font-family:var(--f-mono);font-size:.9rem;color:var(--stone)}
+input[type=range]{width:100%;accent-color:var(--brass);margin:0}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:400 .86rem/1 var(--f-body);color:rgba(236,231,223,.7);background:none;border:1px solid var(--hair-dk);padding:10px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:var(--brass);color:var(--brass-lt)}
+.small{color:rgba(236,231,223,.64);font-size:.82rem}
+.sum{background:var(--shade-2);border:1px solid var(--hair-dk);padding:18px;display:grid;gap:14px}
+.sum p{margin:0;font-family:var(--f-mono);font-size:.82rem;color:rgba(236,231,223,.8)}
+
+@media (max-width:980px){
+  .studio .wrap{grid-template-columns:minmax(0,1fr)}
+  .stage{position:static}
+}
+</style>
+</head>
+<body>
+<main class="studio dark">
+  <div class="wrap">
+    <div class="stage">
+      <div class="scene3d" id="scene" role="img" aria-label="3D pergola"><span class="hint mono" data-t="hint"></span></div>
+      <div class="readout mono" id="readout" aria-live="polite"></div>
+    </div>
+
+    <div class="panel">
+      <span class="crumb mono"><a href="index.html">ARÉVE</a> / <span data-t="crumb"></span></span>
+      <h1 data-t="h1"></h1>
+      <p data-t="lead"></p>
+
+      <div class="grp">
+        <span class="lbl" data-t="gTime"></span>
+        <div class="row"><span data-t="hour"></span><output id="oHour" for="hour"></output></div>
+        <input type="range" id="hour" min="5" max="21" step="0.25" value="14" aria-label="Time">
+        <div class="seg" id="seasons" role="group"></div>
+      </div>
+
+      <div class="grp">
+        <span class="lbl" data-t="gRoof"></span>
+        <div class="seg" id="modes" role="group"></div>
+        <span class="small" data-t="modeNote"></span>
+      </div>
+
+      <div class="grp">
+        <span class="lbl" data-t="gSize"></span>
+        <div class="row"><span data-t="width"></span><output id="oW" for="w"></output></div>
+        <input type="range" id="w" min="3" max="7" step="0.5" value="5" aria-label="Width">
+        <div class="row"><span data-t="depth"></span><output id="oD" for="d"></output></div>
+        <input type="range" id="d" min="3" max="6" step="0.5" value="4" aria-label="Depth">
+        <span class="small" data-t="sizeNote"></span>
+      </div>
+
+      <div class="grp">
+        <span class="lbl" data-t="gAdd"></span>
+        <div class="seg"><button type="button" id="glass" aria-pressed="false" data-t="glass"></button></div>
+      </div>
+
+      <div class="sum">
+        <span class="lbl" style="color:var(--brass-lt)" data-t="sumL"></span>
+        <p id="sum"></p>
+        <a class="btn" href="index.html#request" data-t="cta3d"></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="pergola3d.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю. Размеры в студии — для примера, не пределы продукта. */
+const T = {
+ hy:{crumb:'3D ստուդիա',h1:'Կառուցեք ձեր պերգոլան',lead:'Իրական արևը Երևանի վրա. փոխեք ժամը և սեզոնը, և տեսեք, թե ինչպես է ստվերը շարժվում տեռասով։',
+  hint:'Քաշեք՝ պտտելու համար',gTime:'Արև',hour:'Ժամ',gRoof:'Ծածկ',modeNote:'«Ավտո» ռեժիմում շերտերը շրջվում են արևի հետևից՝ ուղիղ ճառագայթը չի անցնում։',
+  gSize:'Չափեր',width:'Լայնություն',depth:'Խորություն',sizeNote:'Չափերը օրինակի համար են։ Իրական սահմանները՝ մատակարարի տվյալներով։',
+  gAdd:'Ավելացնել',glass:'Ապակեպատում',sumL:'Ձեր պարամետրերը',
+  sJun:'Հունիս',sSep:'Սեպտեմբեր',sDec:'Դեկտեմբեր',mAuto:'Ավտո',mClosed:'Փակ',mOpen:'Բաց',
+  sun:'Արև',az:'Ազիմուտ',louv:'Շերտեր',night:'Գիշեր',m:'մ',withGlass:'ապակեպատմամբ'},
+ ru:{crumb:'3D-студия',h1:'Соберите свою перголу',lead:'Настоящее солнце над Ереваном: меняйте время и сезон и смотрите, как тень движется по террасе.',
+  hint:'Потяните, чтобы повернуть',gTime:'Солнце',hour:'Время',gRoof:'Крыша',modeNote:'В режиме «Авто» ламели поворачиваются за солнцем и не пропускают прямой луч.',
+  gSize:'Размеры',width:'Ширина',depth:'Глубина',sizeNote:'Размеры для примера. Реальные пределы — по данным поставщика.',
+  gAdd:'Добавить',glass:'Остекление',sumL:'Ваши параметры',
+  sJun:'Июнь',sSep:'Сентябрь',sDec:'Декабрь',mAuto:'Авто',mClosed:'Закрыто',mOpen:'Открыто',
+  sun:'Солнце',az:'Азимут',louv:'Ламели',night:'ночь',m:'м',withGlass:'с остеклением'},
+ en:{crumb:'3D studio',h1:'Build your pergola',lead:'The real sun over Yerevan: change the time and season and watch the shade move across the terrace.',
+  hint:'Drag to rotate',gTime:'Sun',hour:'Time',gRoof:'Roof',modeNote:'In Auto mode the louvres follow the sun and block direct rays.',
+  gSize:'Size',width:'Width',depth:'Depth',sizeNote:'Sizes are examples. Real limits come from the supplier’s data.',
+  gAdd:'Add',glass:'Glazing',sumL:'Your settings',
+  sJun:'June',sSep:'September',sDec:'December',mAuto:'Auto',mClosed:'Closed',mOpen:'Open',
+  sun:'Sun',az:'Azimuth',louv:'Louvres',night:'night',m:'m',withGlass:'with glazing'}
+};
+const DAYS = [['sJun',172],['sSep',265],['sDec',355]];
+const MODES = [['mAuto','auto'],['mClosed','closed'],['mOpen','open']];
+const P = window.ArevePergola ? ArevePergola(document.getElementById('scene'), {hour:14, day:172, w:5, d:4}) : null;
+const S = {hour:14, day:172, mode:'auto', glass:false, w:5, d:4};
+let L = 'hy', TT = T.hy;
+const $ = id => document.getElementById(id);
+const hhmm = h => String(Math.floor(h)).padStart(2,'0') + ':' + String(Math.round((h % 1) * 60)).padStart(2,'0');
+
+function apply(){
+  const info = P ? P.set(S) : (() => { const s = AreveSun(S.hour, S.day); return {el: s.el * 180 / Math.PI, az: (s.az * 180 / Math.PI + 540) % 360, up: s.el > 0, louvre: 0}; })();
+  $('oHour').textContent = hhmm(S.hour);
+  $('oW').textContent = S.w.toFixed(1) + ' ' + TT.m; $('oD').textContent = S.d.toFixed(1) + ' ' + TT.m;
+  $('readout').innerHTML = `<span><b>${hhmm(S.hour)}</b></span><span>${TT.sun} <b>${info.up ? info.el.toFixed(0) + '°' : TT.night}</b></span><span>${TT.az} <b>${info.up ? info.az.toFixed(0) + '°' : '—'}</b></span><span>${TT.louv} <b>${Math.round(info.louvre)}°</b></span>`;
+  document.querySelectorAll('#seasons button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.day === S.day)));
+  document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.m === S.mode)));
+  $('glass').setAttribute('aria-pressed', String(S.glass));
+  const season = TT[DAYS.find(d => d[1] === S.day)[0]];
+  $('sum').textContent = `${S.w.toFixed(1)} × ${S.d.toFixed(1)} ${TT.m} · ${TT[MODES.find(m => m[1] === S.mode)[0]]}${S.glass ? ' · ' + TT.withGlass : ''} · ${season}, ${hhmm(S.hour)}`;
+}
+areveInit('studio.html', T, (lang, t) => {
+  L = lang; TT = t;
+  $('seasons').innerHTML = DAYS.map(([k, d]) => `<button type="button" data-day="${d}">${t[k]}</button>`).join('');
+  $('modes').innerHTML = MODES.map(([k, m]) => `<button type="button" data-m="${m}">${t[k]}</button>`).join('');
+  apply();
+});
+$('hour').addEventListener('input', e => { S.hour = +e.target.value; apply(); });
+$('w').addEventListener('input', e => { S.w = +e.target.value; apply(); });
+$('d').addEventListener('input', e => { S.d = +e.target.value; apply(); });
+$('seasons').addEventListener('click', e => { const b = e.target.closest('[data-day]'); if (b) { S.day = +b.dataset.day; apply(); } });
+$('modes').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (b) { S.mode = b.dataset.m; apply(); } });
+$('glass').addEventListener('click', () => { S.glass = !S.glass; apply(); });
+</script>
+</body>
+</html>

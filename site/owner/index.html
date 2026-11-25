@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<base href="/areve/owner/">
+<title>ARÉVE — новая концепция</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: презентация для владельца — тёмная обложка, затем разделы-развороты на травертине:
+   «было / стало», рынок, концепция, страницы нового сайта (скриншоты), план, что нужно от владельца.
+   Единый вид бренда ARÉVE, не зависит от темы зрителя. */
+:root{
+  --shade:#1A1814; --shade-2:#26231D; --stone:#ECE7DF; --stone-2:#E1DAD0;
+  --ink:#221F1A; --dust:#6A6357; --brass:#B08A57; --brass-lt:#D8BC8E;
+  --hair:rgba(34,31,26,.16); --hair-dk:rgba(236,231,223,.14);
+  --f-disp:'Forum',Georgia,serif; --f-body:'Jost',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:1.5px solid var(--brass);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;margin:0;text-wrap:balance}
+.lbl{font-weight:500;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
+.mono{font-family:var(--f-mono);font-size:.78rem}
+.btn{display:inline-flex;align-items:center;gap:12px;font:500 .8rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:17px 26px;border:1px solid var(--brass);background:var(--brass);color:var(--shade);transition:background .25s,color .25s}
+.btn:hover{background:transparent;color:var(--brass-lt)}
+.btn.ghost{background:transparent;color:var(--stone);border-color:var(--hair-dk)}
+.btn.ghost:hover{border-color:var(--brass)}
+.light .btn.ghost{color:var(--ink);border-color:var(--hair)}
+.light .btn:hover{color:var(--brass)}
+section{padding-block:96px}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;align-items:end;margin-bottom:48px}
+.head h2{font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.06;margin-top:16px}
+.head p{margin:0;color:var(--dust);max-width:52ch}
+
+/* обложка */
+.cover{background:var(--shade);color:var(--stone);padding-block:0}
+.cover .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px;align-items:center;padding-block:88px 72px}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:40px}
+.brand svg{width:34px;height:34px}
+.brand b{font-family:var(--f-disp);font-weight:400;font-size:1.6rem;letter-spacing:.32em}
+.cover h1{font-size:clamp(2.8rem,6vw,5.4rem);line-height:1}
+.cover h1 em{font-style:normal;color:var(--brass-lt)}
+.cover p{color:rgba(236,231,223,.74);max-width:40ch;margin:24px 0 34px;font-weight:400;font-size:1.08rem}
+.cover .cta{display:flex;flex-wrap:wrap;gap:12px}
+.cover figure{margin:0}
+.shot{display:block;width:100%;height:auto;border:1px solid var(--hair-dk);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.cover figcaption{color:rgba(236,231,223,.5);padding-top:12px}
+
+/* было / стало */
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.ba figure{margin:0;display:grid;gap:14px}
+.ba .shot{border-color:var(--hair);box-shadow:0 18px 50px rgba(34,31,26,.18)}
+.ba figcaption{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.ba figcaption b{font-family:var(--f-disp);font-weight:400;font-size:1.5rem}
+.cmp{margin-top:56px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.96rem;min-width:620px}
+th,td{text-align:left;padding:14px 16px 14px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{font-weight:500;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dust)}
+tbody th{font-weight:400;width:22%}
+td.old{color:var(--dust)}
+td.new{color:var(--ink)}
+td.new::before{content:"→ ";color:var(--brass)}
+
+/* рынок */
+.market{background:var(--stone-2)}
+.insight{font-family:var(--f-disp);font-size:clamp(1.6rem,2.8vw,2.3rem);line-height:1.2;max-width:28ch;margin:0 0 40px}
+.insight em{font-style:normal;color:var(--brass)}
+
+/* концепция */
+.concept{background:var(--shade);color:var(--stone)}
+.concept .head p{color:rgba(236,231,223,.66)}
+.cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.cbox{border:1px solid var(--hair-dk);padding:24px;display:grid;gap:16px;align-content:start}
+.cbox h3{font-size:1.5rem}
+.cbox p{margin:0;color:rgba(236,231,223,.66);font-size:.95rem}
+.sw{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.sw div{aspect-ratio:1;border:1px solid var(--hair-dk)}
+.sw span{display:block;font-family:var(--f-mono);font-size:.62rem;color:rgba(236,231,223,.55);margin-top:4px}
+.type b{font-family:var(--f-disp);font-weight:400;font-size:2.4rem;line-height:1;display:block}
+.type i{font-style:normal;font-family:var(--f-body);font-size:1.05rem;color:rgba(236,231,223,.8)}
+.mark{display:flex;align-items:center;gap:18px}
+.mark svg{width:64px;height:64px}
+
+/* страницы */
+.pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}
+.page{display:grid;gap:14px;text-decoration:none}
+.page .shot{border-color:var(--hair);box-shadow:0 14px 40px rgba(34,31,26,.14);transition:transform .5s cubic-bezier(.2,.6,.2,1)}
+.page:hover .shot{transform:translateY(-4px)}
+.page div{display:grid;grid-template-columns:2.6em minmax(0,1fr);gap:4px 12px}
+.page .mono{color:var(--brass);padding-top:6px}
+.page h3{font-size:1.6rem}
+.page p{grid-column:2;margin:0;color:var(--dust);font-size:.95rem}
+.page.mob{grid-template-columns:minmax(0,200px) minmax(0,1fr);align-items:center}
+.page.mob .shot{max-width:200px}
+.tech{margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tech div{border:1px solid var(--hair);padding:18px;display:grid;gap:6px}
+.tech b{font-weight:500}
+.tech span{color:var(--dust);font-size:.88rem}
+
+/* план */
+.plan{background:var(--stone-2)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--hair)}
+.step{padding:26px 24px 8px 0;display:grid;gap:12px;align-content:start}
+.step + .step{padding-left:24px;border-left:1px solid var(--hair)}
+.step .mono{color:var(--brass)}
+.step h3{font-size:1.5rem}
+.step ul{margin:0;padding-left:1.1em;color:var(--dust);font-size:.95rem;display:grid;gap:6px}
+
+/* от владельца */
+.ask .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px}
+.ask h2{font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.06;margin-top:16px}
+.ask p{color:var(--dust);max-width:40ch}
+.todo{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.todo li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.todo label{cursor:pointer}
+.todo input{accent-color:var(--brass);width:18px;height:18px;margin-top:4px}
+.todo small{display:block;color:var(--dust);font-size:.86rem}
+
+.end{background:var(--shade);color:var(--stone)}
+.end .wrap{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between}
+.end h2{font-size:clamp(2rem,3.6vw,3rem);max-width:20ch}
+.end .cta{display:flex;flex-wrap:wrap;gap:12px}
+.end small{flex-basis:100%;color:rgba(236,231,223,.45)}
+
+@media (max-width:900px){
+  .cover .wrap,.head,.ba,.ask .wrap{grid-template-columns:minmax(0,1fr)}
+  .cgrid,.pages,.steps{grid-template-columns:minmax(0,1fr)}
+  .tech{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step,.step + .step{padding:22px 0;border-left:0;border-bottom:1px solid var(--hair)}
+  section{padding-block:64px}
+  .cover .wrap{padding-block:56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<main>
+<section class="cover">
+  <div class="wrap">
+    <div>
+      <div class="brand"><svg viewBox="0 0 26 26" fill="none" stroke="#D8BC8E" stroke-width="1"><circle cx="13" cy="15" r="5"/><path d="M2 10.5h22M4 7.5h18M7 4.5h12"/></svg><b>ARÉVE</b></div>
+      <span class="lbl" style="color:var(--brass-lt)">Предложение · октябрь 2026</span>
+      <h1 style="margin-top:20px">Архитектура <em>тени</em></h1>
+      <p>Новая концепция бренда и сайта ARÉVE. Специалист по жизни на открытом воздухе — от 3D-проекта до сервиса.</p>
+      <div class="cta">
+        <a class="btn" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener">Открыть новый сайт</a>
+        <a class="btn ghost" href="#plan">План перехода</a>
+      </div>
+    </div>
+    <figure>
+      <img class="shot" src="img/home.jpg" alt="Главная страница нового сайта ARÉVE с 3D-перголой" width="1440" height="900">
+      <figcaption class="mono">Главная: 3D-пергола в реальном солнце Еревана, прямо сейчас</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="light" id="now">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl">01 · Сейчас</span><h2>Сайт продаёт каталог, а не компанию</h2></div>
+      <p>areve.am не обновлялся с 2016 года. Главные кнопки ведут в никуда, формы заявки нет, в подвале — соцсети другой компании и закрытый Google+.</p>
+    </div>
+    <div class="ba">
+      <figure><img class="shot" src="img/old.jpg" alt="Текущий сайт areve.am" loading="lazy" width="1440" height="900"><figcaption><b>Сейчас</b><span class="mono">areve.am</span></figcaption></figure>
+      <figure><img class="shot" src="img/home.jpg" alt="Новый сайт ARÉVE" loading="lazy" width="1440" height="900"><figcaption><b>Новая версия</b><span class="mono">прототип</span></figcaption></figure>
+    </div>
+    <div class="cmp">
+      <table>
+        <thead><tr><th></th><th>Сейчас</th><th>Новая версия</th></tr></thead>
+        <tbody>
+          <tr><th>Первое впечатление</th><td class="old">Слайдер с каталожными фото</td><td class="new">3D-пергола, ламели поворачиваются за солнцем Еревана</td></tr>
+          <tr><th>Заявка</th><td class="old">Формы нет, кнопки ведут в «#»</td><td class="new">Одна главная кнопка «Заказать 3D-проект» на каждой странице</td></tr>
+          <tr><th>Навигация</th><td class="old">По товарам</td><td class="new">По пространствам: дом, ресторан, крыша, бассейн, зимний сад</td></tr>
+          <tr><th>Работы</th><td class="old">Фото без подписей</td><td class="new">Кейсы: 3D-проект → готовый объект, район, система, задача</td></tr>
+          <tr><th>Архитекторы</th><td class="old">Список из пяти пунктов</td><td class="new">Отдельная страница, загрузка чертежей DWG / PLN</td></tr>
+          <tr><th>Языки</th><td class="old">Армянский с вкраплениями русского</td><td class="new">Армянский, русский, английский — полноценно</td></tr>
+          <tr><th>Связь с areve.ru</th><td class="old">Facebook areve.ru, почта .ru, Яндекс-карта</td><td class="new">Только свои каналы ARÉVE в Ереване</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="market">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl">02 · Рынок Еревана</span><h2>Ниша свободна</h2></div>
+      <p>Мы посмотрели сайты Profal, ALP, LEVEL, Glassline и ASEDL.</p>
+    </div>
+    <p class="insight">Четверо из пяти продают в первую очередь окна и фасады. <em>Никто</em> не говорит с клиентом о террасе как о месте для жизни.</p>
+    <div class="cmp" style="margin-top:0">
+      <table>
+        <thead><tr><th>Компания</th><th>Профиль</th><th>Сильная сторона</th><th>Слабое место</th></tr></thead>
+        <tbody>
+          <tr><th>Profal</th><td>Окна, двери, фасады</td><td>Называет ALUMIL, три языка</td><td>Перголы теряются среди окон</td></tr>
+          <tr><th>ALP</th><td>Окна, мебель, потолки</td><td>Калькулятор окон</td><td>Перегружен, три разных бренда</td></tr>
+          <tr><th>LEVEL</th><td>Только затенение</td><td>Ближе всех по профилю</td><td>Сайт недоделан, текст-заглушка</td></tr>
+          <tr><th>Glassline</th><td>Стекло</td><td>Форма «Быстрый заказ»</td><td>Пергол нет</td></tr>
+          <tr><th>ASEDL</th><td>Фасады, B2B</td><td>Логотипы производителей, вход для архитекторов</td><td>Не для частного клиента</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="concept">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl" style="color:var(--brass-lt)">03 · Концепция</span><h2>ARÉVE — от слова «Արև», солнце</h2></div>
+      <p>Компания, которая управляет солнцем: тенью, светом и воздухом на террасе. Отсюда имя, знак, цвета и главный образ сайта.</p>
+    </div>
+    <div class="cgrid">
+      <div class="cbox">
+        <span class="lbl" style="color:var(--brass-lt)">Знак</span>
+        <div class="mark"><svg viewBox="0 0 26 26" fill="none" stroke="#D8BC8E" stroke-width=".9"><circle cx="13" cy="15" r="5"/><path d="M2 10.5h22M4 7.5h18M7 4.5h12"/></svg><h3>Солнце за тремя ламелями</h3></div>
+        <p>Солнце, наполовину скрытое ламелями перголы. Читается и как восход, и как продукт.</p>
+      </div>
+      <div class="cbox">
+        <span class="lbl" style="color:var(--brass-lt)">Цвета</span>
+        <div class="sw">
+          <div style="background:#1A1814"></div><div style="background:#ECE7DF"></div><div style="background:#E1DAD0"></div><div style="background:#B08A57"></div><div style="background:#6A6357"></div>
+        </div>
+        <div class="sw"><span>Тень</span><span>Травертин</span><span>Камень</span><span>Бронза</span><span>Пыль</span></div>
+        <p>Материалы террасы: графитовая тень, камень, анодированная бронза.</p>
+      </div>
+      <div class="cbox type">
+        <span class="lbl" style="color:var(--brass-lt)">Шрифты</span>
+        <b>Forum</b><i>Jost — для текста. Noto Armenian — для армянского.</i>
+        <p>Заголовки с характером античной надписи, текст — чистый и современный.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl">04 · Новый сайт</span><h2>Восемь страниц, три языка</h2></div>
+      <p>Всё уже работает в прототипе. Нажмите на любой экран, чтобы открыть сайт.</p>
+    </div>
+    <div class="pages">
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/home.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">01</span><h3>Главная</h3><p>3D-пергола в солнце Еревана. Открывается с реальным временем и датой.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/day.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">02</span><h3>Один день на террасе</h3><p>Прокрутка ведёт солнце от рассвета до ночи, ламели поворачиваются за ним.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/studio.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">03</span><h3>3D-студия</h3><p>Клиент сам собирает перголу: размеры, режим крыши, остекление.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/quiz.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">04</span><h3>Подбор системы</h3><p>Три вопроса — и три подходящих решения. Доступен с любой страницы.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/collection.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">05</span><h3>Коллекция</h3><p>Шесть семейств с фильтром по пространствам.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/pergola.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">06</span><h3>Карточка перголы</h3><p>Режимы крыши, характеристики, «соберите террасу».</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/product.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">07</span><h3>Страницы продуктов</h3><p>Маркизы, остекление, декинг, зонты, туман.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/spaces.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">08</span><h3>Пространства</h3><p>Дом, ресторан, крыша, бассейн, зимний сад; «куда смотрит терраса».</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/architects.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">09</span><h3>Архитекторам</h3><p>Условия, форматы файлов, форма с загрузкой чертежей.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/projects.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">10</span><h3>Проекты</h3><p>Формат кейса и план фотосессии. Заполнится реальными объектами.</p></div></a>
+      <a class="page" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener"><img class="shot" src="img/contact.jpg" alt="" loading="lazy" width="1440" height="900"><div><span class="mono">11</span><h3>Контакты</h3><p>Копирование в один клик, WhatsApp, «сколько солнца сегодня».</p></div></a>
+      <div class="page mob"><img class="shot" src="img/mobile.jpg" alt="Главная на телефоне" loading="lazy" width="780" height="1688"><div><span class="mono">12</span><h3>На телефоне</h3><p>Меню на весь экран, кнопки «Подобрать систему» и WhatsApp всегда под рукой.</p></div></div>
+    </div>
+    <div class="tech">
+      <div><b>3D в браузере</b><span>WebGL, реальные тени, без установки</span></div>
+      <div><b>Точное солнце</b><span>Расчёт для широты Еревана 40°11′ и текущего времени</span></div>
+      <div><b>Сцена на прокрутке</b><span>Один день на террасе за несколько секунд</span></div>
+      <div><b>Подбор системы</b><span>Три вопроса вместо каталога</span></div>
+      <div><b>Плавность</b><span>Переходы между страницами, плавная прокрутка, анимации</span></div>
+      <div><b>Связь</b><span>WhatsApp и подбор на каждой странице</span></div>
+      <div><b>Три языка</b><span>Армянский, русский, английский</span></div>
+      <div><b>Google</b><span>Разметка компании, карта сайта, превью для соцсетей</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="plan" id="plan">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl">05 · План</span><h2>Три шага</h2></div>
+      <p>Сначала убираем то, что мешает уже сегодня, затем запускаем сайт, потом — соцсети в том же стиле.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="mono">01 · Сразу</span><h3>Навести порядок</h3><ul><li>Убрать ссылки на areve.ru, Twitter и Google+</li><li>Почта info@areve.am, карта Google</li><li>Починить кнопки, скрыть новости 2016 года</li><li>Один адрес везде</li></ul></div>
+      <div class="step"><span class="mono">02 · Сайт</span><h3>Запустить новую версию</h3><ul><li>Тексты на трёх языках, вычитка армянского</li><li>Реальные данные поставщика в карточках</li><li>Заявки в WhatsApp, Viber и на почту</li><li>Переезд без потери позиций в Google</li></ul></div>
+      <div class="step"><span class="mono">03 · После съёмки</span><h3>Показать свои работы</h3><ul><li>Фотосессия 6–8 объектов</li><li>Кейсы на сайте</li><li>Instagram и Facebook в том же стиле</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="ask light">
+  <div class="wrap">
+    <div>
+      <span class="lbl">06 · От вас</span>
+      <h2>Что нужно, чтобы запустить</h2>
+      <p>Цифры и партнёров на сайте мы не придумываем — только ваши данные. Отметки сохраняются только в вашем браузере.</p>
+    </div>
+    <ul class="todo" id="todo"></ul>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>Посмотрите сайт сами — с телефона тоже</h2>
+    <div class="cta">
+      <a class="btn" href="https://claude.ai/artifact/5PBQNL66m9PuW36dvbUpvS" target="_blank" rel="noopener">Открыть новый сайт</a>
+      <a class="btn ghost" href="https://claude.ai/artifact/QeQU7FGvpHVBJhhrqgKxeT" target="_blank" rel="noopener">Полный аудит</a>
+    </div>
+    <small class="mono">Фото на сайте — объекты ARÉVE в Ереване (кроме туманного охлаждения). Армянский текст требует вычитки носителем.</small>
+  </div>
+</section>
+</main>
+
+<script>
+const TODO = [
+ ['Фотосессия 6–8 объектов','Какие объекты и согласны ли заказчики'],
+ ['Подтверждение партнёров','Письменно: какие производители и можно ли использовать их фото'],
+ ['Год основания, число объектов, гарантия','Только реальные цифры'],
+ ['Адрес офиса и шоурума','Екмаляна 6 или Давид Анхахт 12'],
+ ['Связь с areve.ru','Одна компания или только общее имя'],
+ ['Срок и стоимость 3D-проекта','Платный или входит в заказ'],
+ ['Вычитка армянского текста','Кто из команды проверит'],
+ ['Действующие Instagram и Facebook','Если есть — ссылки']
+];
+let done = {};
+try { done = JSON.parse(localStorage.getItem('areve_owner_todo') || '{}'); } catch (e) {}
+document.getElementById('todo').innerHTML = TODO.map((t, i) => `<li><input type="checkbox" id="td${i}" ${done[i] ? 'checked' : ''}><label for="td${i}">${t[0]}<small>${t[1]}</small></label></li>`).join('');
+document.getElementById('todo').addEventListener('change', e => {
+  const i = e.target.id.slice(2); done[i] = e.target.checked;
+  try { localStorage.setItem('areve_owner_todo', JSON.stringify(done)); } catch (er) {}
+});
+</script>
+
+</html>

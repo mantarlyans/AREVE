@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<base href="/areve/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARÉVE for Architects</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+/* Layout: чертёжный язык — тёмный лист с сеткой и разрезом перголы (SVG как в проекте),
+   затем условия, файлы, путь совместного проекта и форма для бюро на травертине. */
+.sheet{background:var(--shade);color:var(--stone);position:relative;overflow:hidden}
+.sheet::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(236,231,223,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(236,231,223,.05) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.sheet .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;padding-block:72px 80px;align-items:center}
+.sheet h1{font-size:clamp(2.6rem,5.6vw,4.8rem);line-height:1;margin:18px 0 22px}
+:lang(hy) .sheet h1{font-size:clamp(1.9rem,3.6vw,3.3rem);line-height:1.1}
+.sheet p{margin:0 0 30px;color:rgba(236,231,223,.72);max-width:46ch;font-weight:400}
+.sheet .lbl{color:var(--brass-lt)}
+.dwg{border:1px solid var(--hair-dk);background:rgba(38,35,29,.6)}
+.dwg svg{display:block;width:100%;height:auto}
+.dwg .draw{stroke-dasharray:1400;stroke-dashoffset:0;animation:draw 2.6s cubic-bezier(.6,.1,.2,1) both}
+@keyframes draw{from{stroke-dashoffset:1400}}
+.dwg figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-top:1px solid var(--hair-dk);color:rgba(236,231,223,.64)}
+
+.terms .wrap{padding-block:88px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:56px}
+.terms h2,.flow h2,.req h2{font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.06;margin-top:16px}
+.terms .lbl,.req .lbl{color:var(--brass)}
+.list{display:grid;border-top:1px solid var(--hair)}
+.list div{display:grid;grid-template-columns:3em minmax(0,1fr);gap:16px;padding:18px 0;border-bottom:1px solid var(--hair);font-size:1.06rem}
+.list .mono{color:var(--brass);padding-top:5px}
+.files{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:40px;grid-column:1/-1}
+.file{border:1px solid var(--hair);padding:18px;display:grid;gap:6px}
+.file b{font-family:var(--f-mono);font-weight:400;font-size:1.1rem;color:var(--brass)}
+.file span{color:var(--dust);font-size:.9rem}
+
+.flow{background:var(--stone-2)}
+.flow .wrap{padding-block:88px}
+.flow .lbl{color:var(--brass)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px;border-top:1px solid var(--hair)}
+.step{padding:24px 22px 8px 0;display:grid;gap:10px;align-content:start}
+.step + .step{padding-left:22px;border-left:1px solid var(--hair)}
+.step .mono{color:var(--brass)}
+.step h3{font-size:1.4rem}
+.step p{margin:0;color:var(--dust);font-size:.94rem}
+
+.req .wrap{padding-block:88px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px}
+.req p{color:var(--dust);max-width:40ch}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.fld{display:grid;gap:8px}
+.fld.wide{grid-column:1/-1}
+.fld label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--dust)}
+.fld input,.fld textarea{font:300 1rem var(--f-body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(34,31,26,.35);padding:10px 0;border-radius:0;outline:none;resize:vertical}
+.fld input:focus,.fld textarea:focus{border-bottom-color:var(--brass)}
+.fld input[type=file]{border:1px dashed var(--hair);padding:14px;font-size:.9rem}
+form .btn{justify-self:start}
+.done{grid-column:1/-1;color:var(--brass);margin:0}
+
+@media (max-width:900px){
+  .sheet .wrap,.terms .wrap,.req .wrap{grid-template-columns:minmax(0,1fr)}
+  .files{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .step,.step + .step{padding:20px 0;border-left:0;border-bottom:1px solid var(--hair)}
+  form{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<main>
+<section class="sheet dark">
+  <div class="wrap">
+    <div>
+      <span class="crumb mono"><a href="index.html">ARÉVE</a> / <span data-t="navArch"></span></span>
+      <h1 data-t="h1"></h1>
+      <p data-t="lead"></p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a class="btn" href="#req" data-t="ctaReq"></a>
+        <a class="btn ghost" href="studio.html" data-t="ctaStudio"></a>
+      </div>
+    </div>
+    <figure class="dwg" style="margin:0">
+      <svg viewBox="0 0 560 340" fill="none" aria-hidden="true">
+        <g stroke="rgba(216,188,142,.85)" stroke-width="1.4">
+          <path class="draw" d="M70 290V110H490V290"/>
+          <path class="draw" d="M60 110H500M60 96H500"/>
+        </g>
+        <g stroke="rgba(236,231,223,.75)" stroke-width="1.2" id="lv"></g>
+        <g stroke="rgba(236,231,223,.35)" stroke-width="1">
+          <path d="M30 290H530"/>
+          <path d="M70 310H490M70 304V316M490 304V316"/>
+          <path d="M520 290V103M514 290H526M514 103H526"/>
+        </g>
+        <g fill="rgba(236,231,223,.55)" font-family="IBM Plex Mono, monospace" font-size="11">
+          <text x="280" y="328" text-anchor="middle">W</text>
+          <text x="534" y="200">H</text>
+          <text x="70" y="86">A–A</text>
+        </g>
+      </svg>
+      <figcaption class="mono"><span data-t="dwgCap"></span><span>1:50</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="terms">
+  <div class="wrap">
+    <div><span class="lbl" data-t="tKick"></span><h2 data-t="tH"></h2></div>
+    <div class="list" id="terms"></div>
+    <div class="files" id="files"></div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <span class="lbl" data-t="fKick"></span>
+    <h2 data-t="fH"></h2>
+    <div class="steps" id="steps"></div>
+  </div>
+</section>
+
+<section class="req" id="req">
+  <div class="wrap">
+    <div>
+      <span class="lbl" data-t="rKick"></span>
+      <h2 data-t="rH"></h2>
+      <p data-t="rP"></p>
+    </div>
+    <form id="form" novalidate>
+      <div class="fld"><label for="a-name" data-t="fName"></label><input id="a-name" autocomplete="name"></div>
+      <div class="fld"><label for="a-firm" data-t="fFirm"></label><input id="a-firm" autocomplete="organization"></div>
+      <div class="fld"><label for="a-contact" data-t="fContact"></label><input id="a-contact" autocomplete="tel"></div>
+      <div class="fld"><label for="a-site" data-t="fSite"></label><input id="a-site"></div>
+      <div class="fld wide"><label for="a-note" data-t="fNote"></label><textarea id="a-note" rows="3"></textarea></div>
+      <div class="fld wide"><label for="a-file" data-t="fFile"></label><input id="a-file" type="file" accept=".dwg,.pln,.pdf,.jpg,.png,.skp" multiple></div>
+      <button class="btn" type="submit" data-t="fSend"></button>
+      <p class="done" id="done" hidden data-t="fDone"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю.
+   Условия — дословно по смыслу с areve.am («Партнёры / архитекторы»). Форматы файлов: AutoCAD и ArchiCAD — с areve.am. */
+const T = {
+ hy:{h1:'Ճարտարապետներին և դիզայներներին',lead:'Աշխատում ենք ձեր գծագրերով, գալիս ենք օբյեկտ և նախագծում ենք համակարգը ձեզ հետ միասին՝ մինչև մոնտաժ։',
+  ctaReq:'Ուղարկել նախագիծ',ctaStudio:'3D ստուդիա',dwgCap:'Կտրվածք A–A · պերգոլա, սխեմա',
+  tKick:'Պայմաններ',tH:'Ինչ ենք առաջարկում',
+  fKick:'Համատեղ նախագիծ',fH:'Չորս քայլ՝ գծագրից մինչև ստվեր',
+  rKick:'Հայտ բյուրոյի համար',rH:'Կցեք գծագրերը',rP:'Կպատասխանենք համակարգի առաջարկով և 3D պատկերով ձեր օբյեկտի վրա։',
+  fName:'Անուն',fFirm:'Բյուրո',fContact:'Հեռախոս կամ էլ. փոստ',fSite:'Օբյեկտ',fNote:'Ինչ է պետք',fFile:'Ֆայլեր (DWG, PLN, PDF)',fSend:'Ուղարկել',fDone:'Բացում ենք WhatsApp-ը․ սեղմեք «Ուղարկել», իսկ գծագրերը կցեք հենց չաթում։'},
+ ru:{h1:'Архитекторам и дизайнерам',lead:'Работаем по вашим чертежам, выезжаем на объект и проектируем систему вместе с вами — до монтажа.',
+  ctaReq:'Прислать проект',ctaStudio:'3D-студия',dwgCap:'Разрез A–A · пергола, схема',
+  tKick:'Условия',tH:'Что мы предлагаем',
+  fKick:'Совместный проект',fH:'Четыре шага от чертежа до тени',
+  rKick:'Заявка для бюро',rH:'Приложите чертежи',rP:'Ответим предложением по системе и 3D-изображением на вашем объекте.',
+  fName:'Имя',fFirm:'Бюро',fContact:'Телефон или почта',fSite:'Объект',fNote:'Что нужно',fFile:'Файлы (DWG, PLN, PDF)',fSend:'Отправить',fDone:'Открываем WhatsApp — нажмите «Отправить», а чертежи приложите прямо в чате.'},
+ en:{h1:'For architects and designers',lead:'We work from your drawings, visit the site and design the system with you, all the way to installation.',
+  ctaReq:'Send a project',ctaStudio:'3D studio',dwgCap:'Section A–A · pergola, diagram',
+  tKick:'Terms',tH:'What we offer',
+  fKick:'Joint project',fH:'Four steps from drawing to shade',
+  rKick:'Request for studios',rH:'Attach your drawings',rP:'We reply with a system proposal and a 3D image on your site.',
+  fName:'Name',fFirm:'Studio',fContact:'Phone or email',fSite:'Site',fNote:'What you need',fFile:'Files (DWG, PLN, PDF)',fSend:'Send',fDone:'Opening WhatsApp — press Send and attach the drawings right in the chat.'}
+};
+const TERMS = {
+ hy:['Պերգոլաների մոդելների լայն ընտրանի','Համագործակցության ձեռնտու պայմաններ','Օգնություն նախագծման մեջ','Ուղևորում դեպի օբյեկտ','Համատեղ նախագծում արտադրողի ինժեներների հետ'],
+ ru:['Широкий выбор моделей пергол','Выгодные условия сотрудничества','Помощь в проектировании','Выезд на объект','Совместное проектирование с инженерами производителя'],
+ en:['A wide range of pergola models','Favourable partnership terms','Help with the design','Site visits','Joint engineering with the manufacturer']
+};
+const FILES = {
+ hy:[['DWG','AutoCAD'],['PLN','ArchiCAD'],['3D','Պատկերավորում'],['PDF','Բնութագրեր']],
+ ru:[['DWG','AutoCAD'],['PLN','ArchiCAD'],['3D','Визуализация'],['PDF','Спецификации']],
+ en:[['DWG','AutoCAD'],['PLN','ArchiCAD'],['3D','Visualisation'],['PDF','Specifications']]
+};
+const STEPS = {
+ hy:[['Գծագիր','Ուղարկում եք նախագիծը կամ հատակագիծը։'],['Համակարգ','Ընտրում ենք մոդելը և հաշվարկում ենք կառուցվածքը։'],['3D','Ցույց ենք տալիս համակարգը ձեր օբյեկտի վրա։'],['Մոնտաժ','Տեղադրում ենք մեր թիմով և սպասարկում ենք հետո։']],
+ ru:[['Чертёж','Вы присылаете проект или план.'],['Система','Подбираем модель и считаем конструкцию.'],['3D','Показываем систему на вашем объекте.'],['Монтаж','Устанавливаем своей бригадой и обслуживаем после.']],
+ en:[['Drawing','You send the project or plan.'],['System','We choose the model and engineer the structure.'],['3D','We show the system on your site.'],['Installation','Our crew installs it and services it afterwards.']]
+};
+/* ламели в разрезе */
+(function(){ const g = document.getElementById('lv'); let s = ''; for (let i = 0; i < 18; i++) { const x = 84 + i * 22.8; s += `<path class="draw" style="animation-delay:${.6 + i * .05}s" d="M${x - 7} 108L${x + 7} 98"/>`; } g.innerHTML = s; })();
+
+areveInit('architects.html', T, (lang, t) => {
+  document.getElementById('terms').innerHTML = TERMS[lang].map((x, i) => `<div><span class="mono">0${i + 1}</span><span>${x}</span></div>`).join('');
+  document.getElementById('files').innerHTML = FILES[lang].map(f => `<div class="file"><b>${f[0]}</b><span>${f[1]}</span></div>`).join('');
+  document.getElementById('steps').innerHTML = STEPS[lang].map((s, i) => `<div class="step"><span class="mono">0${i + 1}</span><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+});
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const ok = document.getElementById('a-name').value.trim() && document.getElementById('a-contact').value.trim();
+  if (!ok) { document.getElementById(document.getElementById('a-name').value.trim() ? 'a-contact' : 'a-name').focus(); return; }
+  document.getElementById('done').hidden = false;
+  areveFormWA(e.target);
+});
+</script>
+</body>
+</html>

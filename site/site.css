@@ -1,0 +1,176 @@
+/* ARÉVE — общие стили страниц: тёмная «тень» + травертин. Единый вид бренда, не зависит от темы зрителя. */
+:root{
+  --shade:#1A1814; --shade-2:#26231D;
+  --stone:#ECE7DF; --stone-2:#E1DAD0;
+  --ink:#221F1A; --dust:#6A6357;
+  --brass:#B08A57; --brass-lt:#D8BC8E;
+  --hair:rgba(34,31,26,.16); --hair-dk:rgba(236,231,223,.14);
+  --f-disp:'Forum','Noto Serif Armenian',Georgia,serif;
+  --f-body:'Jost','Noto Sans Armenian',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+[hidden]{display:none!important}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:1.5px solid var(--brass);outline-offset:3px}
+.lbl{font-weight:500;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+:lang(hy) .lbl{letter-spacing:.14em}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;margin:0;text-wrap:balance}
+:lang(hy) h1,:lang(hy) h2,:lang(hy) h3{font-weight:300}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--shade)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(26,24,20,.92);backdrop-filter:blur(10px);color:var(--stone);border-bottom:1px solid var(--hair-dk)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:26px;height:26px}
+.logo b{font-family:var(--f-disp);font-weight:400;font-size:1.3rem;letter-spacing:.32em}
+nav.main{display:flex;gap:24px;margin-left:auto}
+nav.main a{text-decoration:none;font-size:.86rem;color:rgba(236,231,223,.72)}
+nav.main a:hover,nav.main a[aria-current="page"]{color:var(--brass-lt)}
+.langs{display:flex;gap:2px;border:1px solid var(--hair-dk);border-radius:99px;padding:2px}
+.langs button{font:500 .7rem/1 var(--f-body);letter-spacing:.12em;color:rgba(236,231,223,.6);background:none;border:0;padding:7px 10px;border-radius:99px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--stone);color:var(--shade)}
+@media (max-width:980px){nav.main{display:none}.langs{margin-left:auto}}
+
+.btn{display:inline-flex;align-items:center;gap:12px;font:500 .8rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:17px 26px;border:1px solid var(--brass);background:var(--brass);color:var(--shade);cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:transparent;color:var(--brass)}
+.dark .btn:hover{color:var(--brass-lt)}
+.btn.ghost{background:transparent;color:inherit;border-color:var(--hair)}
+.dark .btn.ghost{border-color:var(--hair-dk)}
+.btn.ghost:hover{border-color:var(--brass)}
+:lang(hy) .btn{letter-spacing:.08em}
+
+.intro{background:var(--shade);color:var(--stone)}
+.intro .wrap{padding-block:64px 40px;display:grid;gap:28px}
+.crumb{color:rgba(236,231,223,.64)}
+.crumb a{text-decoration:none}
+.crumb a:hover{color:var(--brass-lt)}
+.intro h1{font-size:clamp(2.6rem,6vw,5rem);line-height:1}
+.intro p{margin:0;max-width:54ch;color:rgba(236,231,223,.72);font-weight:400}
+.pills{display:flex;flex-wrap:wrap;gap:8px;padding-top:14px;border-top:1px solid var(--hair-dk)}
+.pills button{font:400 .86rem/1 var(--f-body);color:rgba(236,231,223,.72);background:none;border:1px solid var(--hair-dk);padding:10px 14px;cursor:pointer}
+.pills button[aria-pressed="true"]{border-color:var(--brass);color:var(--brass-lt)}
+
+.note{color:var(--dust)}
+.tbd{display:inline-flex;gap:10px;align-items:baseline;color:var(--dust)}
+.tbd::before{content:"";width:18px;border-top:1px dashed var(--brass);transform:translateY(-3px)}
+
+footer{background:var(--shade);color:rgba(236,231,223,.64);font-size:.84rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;padding-block:40px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ── современное поведение: плавный переход между страницами (View Transitions) и появление при прокрутке (scroll-driven).
+   Где браузер этого не умеет, страница просто статична и полностью видна. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.45s;animation-timing-function:cubic-bezier(.4,.1,.2,1)}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+
+/* ── мобильное меню ── */
+.burger{display:none;width:44px;height:44px;margin-left:4px;background:none;border:1px solid var(--hair-dk);border-radius:50%;cursor:pointer;position:relative;flex:none}
+.burger span{position:absolute;left:13px;right:13px;height:1px;background:var(--stone);transition:transform .35s,top .35s}
+.burger span:first-child{top:18px}.burger span:last-child{top:25px}
+.burger[aria-expanded="true"] span:first-child{top:21.5px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{top:21.5px;transform:rotate(-45deg)}
+@media (max-width:980px){.burger{display:block}}
+.menu-ov{position:fixed;inset:0;z-index:19;background:var(--shade);color:var(--stone);display:grid;align-content:space-between;
+  padding:calc(env(safe-area-inset-top,0px) + 96px) max(24px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 32px) max(24px,env(safe-area-inset-left,0px));overflow:auto}
+.menu-ov nav{display:grid}
+.menu-ov nav a{display:grid;grid-template-columns:3em minmax(0,1fr);align-items:baseline;text-decoration:none;font-family:var(--f-disp);font-size:clamp(2rem,8vw,3rem);line-height:1.2;padding:10px 0;border-bottom:1px solid var(--hair-dk);animation:areve-in .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 45ms)}
+.menu-ov nav a .mono{color:var(--brass-lt)}
+.menu-foot{display:grid;gap:16px;padding-top:28px;color:rgba(236,231,223,.64)}
+.menu-foot .btn{justify-self:start}
+html.menu-open{overflow:hidden}
+@keyframes areve-in{from{opacity:0;transform:translateY(18px)}}
+
+/* ── плавающая связь ── */
+.dock{position:fixed;z-index:18;right:max(18px,calc(env(safe-area-inset-right,0px) + 12px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);display:flex;gap:10px;align-items:center}
+.dock-pick{display:flex;align-items:center;gap:10px;font:500 .78rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--shade);background:var(--brass-lt);border:0;padding:0 18px 0 14px;height:50px;border-radius:99px;cursor:pointer;box-shadow:0 10px 30px rgba(26,24,20,.35);transition:transform .25s}
+.dock-pick svg{width:22px;height:22px}
+.dock-pick:hover{transform:translateY(-2px)}
+.dock-wa{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--shade);color:var(--brass-lt);border:1px solid rgba(216,188,142,.4);box-shadow:0 10px 30px rgba(26,24,20,.35)}
+.dock-wa svg{width:24px;height:24px}
+:lang(hy) .dock-pick{letter-spacing:.06em}
+@media (max-width:520px){.dock-pick span{display:none}.dock-pick{width:50px;padding:0;justify-content:center}}
+html.menu-open .dock{display:none}
+
+/* ── подбор системы ── */
+dialog.quiz{width:min(720px,calc(100vw - 32px));max-height:calc(100dvh - 48px);border:1px solid var(--hair-dk);background:var(--shade);color:var(--stone);padding:36px clamp(20px,4vw,44px) 32px;overflow:auto}
+dialog.quiz::backdrop{background:rgba(26,24,20,.7);backdrop-filter:blur(6px)}
+dialog.quiz[open]{animation:areve-in .4s cubic-bezier(.2,.7,.2,1)}
+.q-close{position:absolute;top:14px;right:14px}
+.q-close button{width:40px;height:40px;border-radius:50%;border:1px solid var(--hair-dk);background:none;color:var(--stone);cursor:pointer}
+.q-step{color:var(--brass-lt)}
+.q-bar{height:1px;background:var(--hair-dk);margin:14px 0 26px}
+.q-bar i{display:block;height:100%;background:var(--brass);transition:width .4s}
+dialog.quiz h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin-bottom:24px}
+.q-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.q-opts button{font:400 1rem var(--f-body);text-align:left;color:var(--stone);background:var(--shade-2);border:1px solid var(--hair-dk);padding:18px;cursor:pointer;transition:border-color .2s,color .2s}
+.q-opts button:hover,.q-opts button[aria-pressed="true"]{border-color:var(--brass);color:var(--brass-lt)}
+.q-back{margin-top:18px;background:none;border:0;color:rgba(236,231,223,.6);font:400 .9rem var(--f-body);cursor:pointer;padding:6px 0}
+.q-p{color:rgba(236,231,223,.66);margin:-10px 0 22px}
+.q-res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.q-res a{text-decoration:none;display:grid;gap:6px}
+.q-res img{aspect-ratio:4/3;width:100%;object-fit:cover;display:block;border:1px solid var(--hair-dk)}
+.q-res .mono{color:var(--brass-lt)}
+.q-res b{font-family:var(--f-disp);font-weight:400;font-size:1.3rem}
+.q-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.q-cta .btn.ghost{color:var(--stone);border-color:var(--hair-dk)}
+@media (max-width:560px){.q-opts,.q-res{grid-template-columns:minmax(0,1fr)}.q-res a{grid-template-columns:96px minmax(0,1fr);align-items:center}.q-res img{grid-row:span 2}}
+
+/* ── курсор ── */
+.cursor{position:fixed;left:-17px;top:-17px;width:34px;height:34px;border:1px solid var(--brass);border-radius:50%;pointer-events:none;z-index:40;opacity:0;transition:opacity .3s,width .25s,height .25s,left .25s,top .25s,background .25s;mix-blend-mode:difference}
+.cursor.on{opacity:1}
+.cursor.big{width:58px;height:58px;left:-29px;top:-29px;background:rgba(216,188,142,.18)}
+
+/* ── живой свет и кинетические заголовки ── */
+.hero,.intro,.sheet,.studio,.ct,.p-hero{background-image:radial-gradient(ellipse 60% 70% at var(--sun-x,70%) -10%,rgba(216,188,142,calc(var(--sun-a,.5) * .2)),transparent 70%)}
+.btn{transition:background .25s,color .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
+.hero h1,.intro h1,.p-hero h1,.sheet h1,.panel h1,.ct h1{animation:areve-h 1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes areve-h{from{opacity:.3;transform:translateY(.25em);letter-spacing:.04em}}
+p,li{text-wrap:pretty}
+/* появление диалогов и меню через @starting-style, где поддерживается */
+@supports (transition-behavior:allow-discrete){
+  dialog.quiz{transition:opacity .35s,transform .35s,display .35s allow-discrete,overlay .35s allow-discrete}
+  @starting-style{dialog.quiz[open]{opacity:0;transform:translateY(16px)}}
+}
+@media (max-width:520px){header.top .wrap{gap:10px} header.top .langs button{padding:7px 7px} header.top .logo b{font-size:1.1rem;letter-spacing:.24em}}
+.menu-ov nav a{grid-template-columns:2.6rem minmax(0,1fr)}
+
+/* страховка: длинные армянские слова не вылезают из колонки */
+h1,h2,h3{overflow-wrap:break-word}
+
+/* ── доступность (аудит UI UX Pro Max): контраст текста ≥ 4.5:1, зоны нажатия ≥ 44 px ── */
+:root{--brass:#745529;--dust:#5E574C}
+.dark,.hero,.proc,.card,.intro,.top,footer,.menu-ov,dialog.quiz,.dock,.day,.sheet,.orient,.grid-sec,.next,.studio,.ct,.p-hero,.p-tabs,.lost,.concept,.end,.cover{--brass:#B08A57}
+.logo{padding-block:8px}
+.crumb a{display:inline-block;padding-block:12px;margin-block:-12px}
+@media (pointer:coarse){.langs button{min-width:40px;min-height:40px}.pills a,.pills button,.filter button,.seg button,.chips a,.fams a{min-height:44px}}
+.studio-link{padding-block:12px}
+.copy,.ch a.out{min-height:44px}
+/* кнопки: надпись контрастна заливке в обоих мирах */
+:root{--on-brass:#F4EFE6;--btn-hover:#745529}
+.dark,.hero,.proc,.card,.intro,.top,footer,.menu-ov,dialog.quiz,.dock,.day,.sheet,.orient,.grid-sec,.next,.studio,.ct,.p-hero,.p-tabs,.lost,.concept,.end,.cover{--on-brass:#1A1814;--btn-hover:#D8BC8E}
+a.btn,button.btn{color:var(--on-brass)}
+a.btn:hover,button.btn:hover{color:var(--btn-hover)}
+a.btn.ghost,button.btn.ghost{color:inherit}
+@media (max-width:980px){header.top .langs button{min-width:44px;min-height:44px;padding:0 6px}}
+@media (max-width:980px){.dial .seasons button{min-height:44px}}
+
+/* ── просмотр фото ── */
+dialog.lbx{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(18,16,13,.96);color:var(--stone)}
+dialog.lbx::backdrop{background:rgba(18,16,13,.9)}
+dialog.lbx img{position:absolute;inset:56px max(56px,env(safe-area-inset-right,0px)) 56px max(56px,env(safe-area-inset-left,0px));width:calc(100% - 112px);height:calc(100% - 112px);object-fit:contain}
+dialog.lbx button{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid var(--hair-dk);background:rgba(26,24,20,.6);color:var(--stone);font:300 1.6rem/1 var(--f-body);cursor:pointer}
+dialog.lbx button:hover{border-color:var(--brass);color:var(--brass-lt)}
+.lb-x{top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;font-size:1rem!important}
+.lb-p,.lb-n{top:50%;transform:translateY(-50%)}
+.lb-p{left:8px}.lb-n{right:8px}
+.lb-c{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);text-align:center;color:rgba(236,231,223,.7)}
+@media (max-width:600px){dialog.lbx img{inset:56px 8px 56px 8px;width:calc(100% - 16px)}}

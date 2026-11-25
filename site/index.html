@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="hy">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<base href="/areve/">
+<title>ARÉVE Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ARÉVE, Yerevan — pergolas, awnings, glazing and outdoor living, from 3D design to installation and service.">
+<meta property="og:title" content="ARÉVE — The architecture of shade">
+<meta property="og:description" content="Pergolas, awnings and glazing in Yerevan, from 3D design to installation.">
+<meta property="og:image" content="img/villa.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1A1814">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="alternate" hreflang="hy" href="https://areve.am/"><link rel="alternate" hreflang="ru" href="https://areve.am/ru/"><link rel="alternate" hreflang="en" href="https://areve.am/en/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"ARÉVE","legalName":"ARÉVE LLC","url":"https://areve.am","email":"info@areve.am","telephone":["+37410530370","+37493700370"],"address":{"@type":"PostalAddress","streetAddress":"Yekmalyan 6, Business Palais, 2nd floor, office 21","addressLocality":"Yerevan","addressCountry":"AM"},"areaServed":"Armenia","slogan":"The art of outdoor space"}</script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Jost:wght@300;400;500&family=Noto+Serif+Armenian:wght@300;400&family=Noto+Sans+Armenian:wght@300;400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: сайт начинается с 3D «День на террасе» (прокрутка ведёт солнце), дальше три раздела: процесс, архитекторам, заявка.
+   Единый мир бренда (тень и свет) — намеренно один вид, не зависит от темы зрителя. */
+:root{
+  --shade:#1A1814;      /* тень под перголой — тёплый графит */
+  --shade-2:#26231D;
+  --stone:#ECE7DF;      /* травертин */
+  --stone-2:#E1DAD0;
+  --ink:#221F1A;
+  --dust:#5E574C;       /* второстепенный текст */
+  --brass:#745529;      /* бронза для текста на светлом; на тёмном — #B08A57 (site.css) */
+  --brass-lt:#D8BC8E;
+  --hair:rgba(34,31,26,.16);
+  --hair-dk:rgba(236,231,223,.14);
+  --f-disp:'Forum','Noto Serif Armenian',Georgia,serif;
+  --f-body:'Jost','Noto Sans Armenian',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:1.5px solid var(--brass);outline-offset:3px}
+.lbl{font-family:var(--f-body);font-weight:500;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+:lang(hy) .lbl{letter-spacing:.14em}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;margin:0;text-wrap:balance;letter-spacing:.005em}
+:lang(hy) h1,:lang(hy) h2,:lang(hy) h3{font-weight:300}
+
+/* ── шапка ── */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--shade)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(26,24,20,.92);backdrop-filter:blur(10px);color:var(--stone);border-bottom:1px solid var(--hair-dk)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:26px;height:26px}
+.logo b{font-family:var(--f-disp);font-weight:400;font-size:1.3rem;letter-spacing:.32em}
+nav.main{display:flex;gap:22px;margin-left:auto}
+nav.main a{text-decoration:none;font-size:.86rem;color:rgba(236,231,223,.72);transition:color .2s}
+nav.main a:hover{color:var(--stone)}
+.langs{display:flex;gap:2px;border:1px solid var(--hair-dk);border-radius:99px;padding:2px}
+.langs button{font:500 .7rem/1 var(--f-body);letter-spacing:.12em;color:rgba(236,231,223,.6);background:none;border:0;padding:7px 10px;border-radius:99px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--stone);color:var(--shade)}
+@media (max-width:980px){nav.main{display:none}.langs{margin-left:auto}}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:12px;font:500 .8rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:17px 26px;border-radius:0;border:1px solid var(--brass);background:var(--brass);color:var(--shade);cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:transparent;color:var(--brass-lt)}
+.btn.ghost{background:transparent;color:var(--stone);border-color:var(--hair-dk)}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass-lt)}
+:lang(hy) .btn{letter-spacing:.08em}
+
+/* ── разделы ── */
+section{padding-block:104px}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:end;margin-bottom:56px}
+.sec-head h2{font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08}
+.sec-head p{margin:0;color:var(--dust);max-width:52ch}
+.sec-head .lbl{color:var(--brass);display:block;margin-bottom:18px}
+
+/* процесс */
+.proc{background:var(--shade);color:var(--stone)}
+.proc .sec-head p{color:rgba(236,231,223,.6)}
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid var(--hair-dk)}
+.step{padding:28px 22px 8px 0;display:grid;gap:12px;align-content:start}
+.step + .step{padding-left:22px;border-left:1px solid var(--hair-dk)}
+.step .mono{color:var(--brass-lt)}
+.step h3{font-size:1.35rem}
+.step p{margin:0;color:rgba(236,231,223,.62);font-size:.92rem}
+.render{margin-top:64px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:center}
+.render img{width:100%;display:block;border:1px solid var(--hair-dk)}
+.render p{color:rgba(236,231,223,.68);margin:16px 0 0;max-width:40ch}
+
+/* архитекторам */
+.arch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.arch ul{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--hair)}
+.arch li{padding:18px 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px}
+.arch li .mono{color:var(--brass)}
+.files{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.files span{border:1px solid var(--hair);padding:6px 12px;font-family:var(--f-mono);font-size:.74rem;color:var(--dust)}
+
+/* заявка */
+.req{background:var(--stone-2)}
+.req .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.fld{display:grid;gap:8px}
+.fld.wide{grid-column:1/-1}
+.fld label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--dust)}
+.fld input,.fld select{font:300 1rem var(--f-body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(34,31,26,.35);padding:10px 0;border-radius:0;outline:none}
+.fld input:focus,.fld select:focus{border-bottom-color:var(--brass)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer;letter-spacing:.06em;text-transform:none;font-size:.86rem;font-weight:400;color:var(--ink);border:1px solid var(--hair);padding:9px 14px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips input:checked + span{color:var(--brass)}
+.chips label:has(input:checked){border-color:var(--brass)}
+.chips label:has(input:focus-visible){outline:1.5px solid var(--brass);outline-offset:2px}
+form .btn{justify-self:start;margin-top:8px}
+.done{grid-column:1/-1;color:var(--brass);margin:0}
+.contact{display:grid;gap:22px;align-content:start}
+.contact .row{display:grid;gap:4px}
+.contact .row b{font-family:var(--f-disp);font-weight:400;font-size:1.35rem}
+.contact .row span{color:var(--dust)}
+
+footer{background:var(--shade);color:rgba(236,231,223,.64);padding-block:40px;font-size:.84rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between}
+
+
+/* «День на террасе»: прокрутка ведёт солнце от рассвета до ночи */
+.day-track{position:relative;height:340vh;background:var(--shade)}
+.day-pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);height:calc(100vh - 68px);height:calc(100svh - 68px - env(safe-area-inset-top,0px));overflow:hidden;color:var(--stone)}
+.day3d{position:absolute;inset:0}
+.day3d canvas{display:block}
+.day3d.no3d{background:url(img/villa.jpg) center/cover}
+.day-ui{position:absolute;inset:0;display:flex;align-items:flex-end;pointer-events:none;background:linear-gradient(90deg,rgba(26,24,20,.82) 0%,rgba(26,24,20,.35) 45%,rgba(26,24,20,0) 70%)}
+.day-ui .wrap{width:100%;padding-block:0 48px;display:grid;gap:10px;max-width:1240px}
+.day-ui .lbl{color:var(--brass-lt)}
+.day-time{font-family:var(--f-mono);font-weight:400;font-size:clamp(3.2rem,9vw,7rem);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.day-ui h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.05}
+.day-ui p{margin:0;max-width:38ch;color:rgba(236,231,223,.78);font-weight:400}
+.day-prog{width:min(420px,100%);height:1px;background:var(--hair-dk);margin-top:10px}
+.day-prog i{display:block;height:100%;width:0;background:var(--brass)}
+.day-hint{color:rgba(236,231,223,.64)}
+.day-top{position:absolute;inset:0 0 auto;z-index:1;pointer-events:none;padding-top:clamp(28px,6vh,64px);background:linear-gradient(180deg,rgba(26,24,20,.7),rgba(26,24,20,0));padding-bottom:64px}
+.day-top .lbl{color:var(--brass-lt)}
+.day-top h1{font-size:clamp(2.2rem,4.6vw,4rem);line-height:1.04;margin:14px 0 26px;max-width:18ch;color:var(--stone);overflow-wrap:normal;word-break:normal;hyphens:none}
+:lang(hy) .day-top h1{max-width:none}
+.day-top h1 em{font-style:normal;color:var(--brass-lt)}
+:lang(hy) .day-top h1{font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.12}
+.day-top .btn{pointer-events:auto}
+@media (max-width:900px){.day-top h1{font-size:clamp(1.7rem,7vw,2.4rem)}:lang(hy) .day-top h1{font-size:clamp(1.5rem,6vw,2.1rem)}}
+@media (max-width:900px){.day-ui{background:linear-gradient(0deg,rgba(26,24,20,.88) 0%,rgba(26,24,20,.4) 55%,rgba(26,24,20,0) 80%)}.day-track{height:300vh}}
+
+
+/* ── узкие экраны ── */
+@media (max-width:900px){
+  .sec-head,.render,.arch,.req .wrap{grid-template-columns:minmax(0,1fr)}
+  section{padding-block:72px}
+  .sec-head{gap:16px;margin-bottom:36px}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .step,.step + .step{padding:22px 0;border-left:0;border-bottom:1px solid var(--hair-dk)}
+  form{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="ARÉVE">
+      <svg viewBox="0 0 26 26" fill="none" stroke="#D8BC8E" stroke-width="1.1"><circle cx="13" cy="15" r="5"/><path d="M2 10.5h22M4 7.5h18M7 4.5h12"/></svg>
+      <b>ARÉVE</b>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="collection.html" data-t="navColl"></a><a href="projects.html" data-t="navProj"></a><a href="studio.html" data-t="navStudio"></a><a href="#architects" data-t="navArch"></a><a href="#request" data-t="navContact"></a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="hy" aria-pressed="true">ՀԱՅ</button>
+      <button type="button" data-lang="ru" aria-pressed="false">РУС</button>
+      <button type="button" data-lang="en" aria-pressed="false">ENG</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="day" id="day" style="padding:0" aria-label="A day on the terrace">
+  <div class="day-track" id="dayTrack">
+    <div class="day-pin">
+      <div id="day3d" class="day3d"></div>
+      <div class="day-top" id="dayTop"><div class="wrap"><span class="lbl" data-t="heroKick"></span><h1 data-t="heroH"></h1><a class="btn" href="#request" data-t="cta3d"></a></div></div>
+      <div class="day-ui">
+        <div class="wrap">
+          <span class="lbl" id="dayKick"></span>
+          <b class="day-time" id="dayTime">06:00</b>
+          <h2 id="dayPhase"></h2>
+          <p id="dayText"></p>
+          <div class="day-prog"><i id="dayProg"></i></div>
+          <span class="mono day-hint" id="dayHint"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="proc" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="lbl" style="color:var(--brass-lt)" data-t="prKick"></span><h2 data-t="prH"></h2></div>
+      <p data-t="prP"></p>
+    </div>
+    <div class="steps" id="steps"></div>
+    <div class="render">
+      <img src="img/render3d.jpg" alt="" loading="lazy">
+      <div><span class="lbl" style="color:var(--brass-lt)" data-t="r3Kick"></span><h3 style="font-size:2rem;margin-top:14px" data-t="r3H"></h3><p data-t="r3P"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="architects">
+  <div class="wrap arch">
+    <div>
+      <span class="lbl" style="color:var(--brass);display:block;margin-bottom:18px" data-t="arKick"></span>
+      <h2 style="font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08" data-t="arH"></h2>
+      <p style="color:var(--dust);max-width:44ch;margin-top:22px" data-t="arP"></p>
+      <div class="files"><span>.dwg AutoCAD</span><span>.pln ArchiCAD</span><span>.skp / 3D</span><span>JPG</span></div>
+    </div>
+    <ul id="arList"></ul>
+  </div>
+</section>
+
+<section class="req" id="request">
+  <div class="wrap">
+    <div>
+      <span class="lbl" style="color:var(--brass);display:block;margin-bottom:18px" data-t="rqKick"></span>
+      <h2 style="font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08" data-t="rqH"></h2>
+      <p style="color:var(--dust);max-width:40ch;margin:22px 0 40px" data-t="rqP"></p>
+      <div class="contact">
+        <div class="row"><span class="lbl" data-t="cPhone"></span><b>+374 10 53 03 70</b><b>+374 93 70 03 70</b></div>
+        <div class="row"><span class="lbl" data-t="cMail"></span><b>info@areve.am</b></div>
+        <div class="row"><span class="lbl" data-t="cAddr"></span><span data-t="addr"></span></div>
+      </div>
+    </div>
+    <form id="rq" novalidate>
+      <div class="fld"><label for="f-name" data-t="fName"></label><input id="f-name" autocomplete="name"></div>
+      <div class="fld"><label for="f-phone" data-t="fPhone"></label><input id="f-phone" type="tel" autocomplete="tel" placeholder="+374"></div>
+      <div class="fld wide"><label data-t="fSpace"></label><div class="chips" id="chips"></div></div>
+      <div class="fld"><label for="f-area" data-t="fArea"></label><input id="f-area" inputmode="numeric" placeholder="m²"></div>
+      <div class="fld"><label for="f-when" data-t="fWhen"></label><select id="f-when"></select></div>
+      <button class="btn" type="submit" data-t="fSend"></button>
+      <p class="done" id="err" hidden data-t="fErr" style="color:#9A4A2A"></p>
+      <p class="done" id="done" hidden data-t="fDone"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© ARÉVE LLC · Yerevan</span><span data-t="foot"></span></div></footer>
+
+<script src="vendor/three.min.js"></script>
+<script src="pergola3d.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/motion.js"></script>
+<script src="site.js"></script>
+<script>
+/* ⚠️ Армянский текст написан Claude — вычитать носителю. Факты — с areve.am (модели, 50 км/ч, 410/700 см, процесс, адрес). */
+const T = {
+hy:{navColl:'Տեսականի',navSpaces:'Տարածքներ',navProj:'Աշխատանքներ',navStudio:'3D ստուդիա',navProc:'Ինչպես ենք աշխատում',navArch:'Ճարտարապետներին',navContact:'Կապ',
+ heroKick:'Երևան',heroH:'Ստվերի <em>ճարտարապետություն</em>',
+ heroLead:'Պերգոլաներ, մարկիզաներ և ապակեպատում տեռասների համար՝ 3D նախագծից մինչև մոնտաժ և սպասարկում։',
+ cta3d:'Պատվիրել 3D նախագիծ',ctaColl:'Տեսականի',dialCap:'Երևան, 40°11′ հս․',studioLink:'Բացել 3D ստուդիան →',dragHint:'Քաշեք՝ պտտելու համար',sNow:'Այսօր',sJun:'Հունիս',sSep:'Սեպտեմբեր',sDec:'Դեկտեմբեր',
+ sunL:'Արև',louvL:'Շերտեր',shadeL:'Ստվեր',
+ collKick:'Տեսականի',collH:'Վեց ձև՝ կառավարելու լույսը',collP:'Եվրոպական բաղադրիչներ, ալյումինե շրջանակներ և ակրիլային կտոր։ Ամեն կառույց նախագծվում է կոնկրետ տարածքի համար։',
+ sp1:'Քամու արագություն, որին դիմանում են մարկիզաները',sp2:'Մարկիզայի առավելագույն երկարություն',sp3:'Մեկ մոդուլի լայնություն, ավելին՝ մի քանի մոդուլով',sp4:'Պատկերավորում մինչև մոնտաժը՝ տեսեք արդյունքը նախապես',
+ spKick:'Տարածքներ',spH:'Որտեղ է ապրում ստվերը',spP:'Առանձնատներ, ռեստորաններ, ձմեռային այգիներ և տանիքներ։ Յուրաքանչյուրին՝ իր լուծումը։',
+ sp_villa:'Վիլլաներ և առանձնատներ',sp_villaS:'Պերգոլաներ բացվող ծածկով',sp_rest:'Ռեստորաններ և սրճարաններ',sp_restS:'Ամառային տեռասներ ամբողջ տարի',
+ sp_glass:'Ձմեռային այգիներ',sp_glassS:'Անփեղկ և սահող ապակեպատում',sp_roof:'Տեռասներ և տանիքներ',sp_roofS:'Դեկինգ, անձրևանոցներ, մառախուղ',
+ prKick:'Ինչպես ենք աշխատում',prH:'Հինգ քայլ՝ գաղափարից մինչև ստվեր',prP:'Մոնտաժը կազմում է պատվերի արժեքի 20–30%-ը. ճշգրիտ գինը կասենք նախագծից հետո։',
+ r3Kick:'3D պատկերավորում',r3H:'Տեսեք ձեր տեռասը՝ նախքան այն կառուցելը',r3P:'Երկու տարբերակ՝ 3D մոդել ձեր օբյեկտի լուսանկարի վրա կամ ամբողջական մանրամասն պատկերավորում։',
+ arKick:'Ճարտարապետներին և դիզայներներին',arH:'Համատեղ նախագծում',arP:'Աշխատում ենք ձեր գծագրերով և ձեր օբյեկտի վրա։ Հատուկ պատվերներ՝ արտադրողի ինժեներների հետ միասին։',
+ rqKick:'Հայտ',rqH:'Պատմեք ձեր տարածքի մասին',rqP:'Կզանգենք, կհամաձայնեցնենք չափագրման օրը և կպատրաստենք 3D նախագիծ։',
+ cPhone:'Հեռախոս',cMail:'Էլ. փոստ',cAddr:'Գրասենյակ',addr:'Երևան, Եկմալյան 6, «Բիզնես Պալե», 2-րդ հարկ, սենյակ 21',
+ fName:'Անուն',fPhone:'Հեռախոս',fSpace:'Տարածք',fArea:'Մոտավոր մակերես',fWhen:'Երբ',fSend:'Ուղարկել հայտ',fErr:'Նշեք անունը և հեռախոսը։',fDone:'Բացում ենք WhatsApp-ը․ սեղմեք «Ուղարկել» չաթում, և մենք կզանգենք։',
+ foot:'Արտաքին միջավայրի ստեղծման արվեստ'},
+ru:{navColl:'Коллекция',navSpaces:'Пространства',navProj:'Наши работы',navStudio:'3D-студия',navProc:'Как мы работаем',navArch:'Архитекторам',navContact:'Контакты',
+ heroKick:'Ереван',heroH:'Архитектура <em>тени</em>',
+ heroLead:'Перголы, маркизы и остекление для террас — от 3D-проекта до монтажа и сервиса.',
+ cta3d:'Заказать 3D-проект',ctaColl:'Коллекция',dialCap:'Ереван, 40°11′ с. ш.',studioLink:'Открыть 3D-студию →',dragHint:'Потяните, чтобы повернуть',sNow:'Сегодня',sJun:'Июнь',sSep:'Сентябрь',sDec:'Декабрь',
+ sunL:'Солнце',louvL:'Ламели',shadeL:'Тень',
+ collKick:'Коллекция',collH:'Шесть способов управлять светом',collP:'Европейские комплектующие, алюминиевые каркасы и акриловое полотно. Каждая конструкция проектируется под конкретное место.',
+ sp1:'Скорость ветра, которую выдерживают маркизы',sp2:'Максимальный вылет маркизы',sp3:'Ширина одного модуля; больше — несколькими модулями',sp4:'Визуализация до монтажа: результат видно заранее',
+ spKick:'Пространства',spH:'Где живёт тень',spP:'Виллы, рестораны, зимние сады и крыши. Для каждого — своё решение.',
+ sp_villa:'Виллы и частные дома',sp_villaS:'Перголы с открывающейся крышей',sp_rest:'Рестораны и кафе',sp_restS:'Летняя терраса круглый год',
+ sp_glass:'Зимние сады',sp_glassS:'Безрамное и раздвижное остекление',sp_roof:'Террасы и крыши',sp_roofS:'Декинг, зонты, туманное охлаждение',
+ prKick:'Как мы работаем',prH:'Пять шагов от идеи до тени',prP:'Монтаж — 20–30% стоимости заказа; точную цену называем после проекта.',
+ r3Kick:'3D-визуализация',r3H:'Посмотрите на свою террасу до того, как её построят',r3P:'Два варианта: 3D-модель на фотографии вашего объекта или полная детальная визуализация.',
+ arKick:'Архитекторам и дизайнерам',arH:'Совместное проектирование',arP:'Работаем по вашим чертежам и выезжаем на объект. Нестандартные заказы — вместе с инженерами производителя.',
+ rqKick:'Заявка',rqH:'Расскажите о своём пространстве',rqP:'Перезвоним, согласуем день замера и подготовим 3D-проект.',
+ cPhone:'Телефон',cMail:'Почта',cAddr:'Офис',addr:'Ереван, ул. Екмаляна 6, БЦ «Бизнес Пале», 2 этаж, офис 21',
+ fName:'Имя',fPhone:'Телефон',fSpace:'Пространство',fArea:'Примерная площадь',fWhen:'Когда',fSend:'Отправить заявку',fErr:'Укажите имя и телефон.',fDone:'Открываем WhatsApp — нажмите «Отправить» в чате, и мы перезвоним.',
+ foot:'Искусство создания внешней среды'},
+en:{navColl:'Collection',navSpaces:'Spaces',navProj:'Our work',navStudio:'3D studio',navProc:'How we work',navArch:'Architects',navContact:'Contact',
+ heroKick:'Yerevan',heroH:'The architecture <em>of shade</em>',
+ heroLead:'Pergolas, awnings and terrace glazing — from the 3D design to installation and service.',
+ cta3d:'Request a 3D design',ctaColl:'Collection',dialCap:'Yerevan, 40°11′ N',studioLink:'Open the 3D studio →',dragHint:'Drag to rotate',sNow:'Today',sJun:'June',sSep:'September',sDec:'December',
+ sunL:'Sun',louvL:'Louvres',shadeL:'Shade',
+ collKick:'Collection',collH:'Six ways to control the light',collP:'European components, aluminium frames and acrylic fabric. Every structure is designed for one specific place.',
+ sp1:'Wind speed our awnings withstand',sp2:'Maximum awning projection',sp3:'Width of one module; wider spans join modules',sp4:'Visualisation before installation, so you see the result first',
+ spKick:'Spaces',spH:'Where shade lives',spP:'Villas, restaurants, winter gardens and rooftops, each with its own solution.',
+ sp_villa:'Villas and private homes',sp_villaS:'Pergolas with opening roofs',sp_rest:'Restaurants and cafés',sp_restS:'A summer terrace all year',
+ sp_glass:'Winter gardens',sp_glassS:'Frameless and sliding glazing',sp_roof:'Terraces and rooftops',sp_roofS:'Decking, umbrellas, misting',
+ prKick:'How we work',prH:'Five steps from idea to shade',prP:'Installation is 20–30% of the order; we quote the exact price after the design.',
+ r3Kick:'3D visualisation',r3H:'See your terrace before it is built',r3P:'Two options: a 3D model placed on a photo of your site, or a full detailed visualisation.',
+ arKick:'For architects and designers',arH:'Designed together',arP:'We work from your drawings and visit the site. Custom structures are engineered together with the manufacturer.',
+ rqKick:'Request',rqH:'Tell us about your space',rqP:'We will call you back, agree a measuring visit and prepare a 3D design.',
+ cPhone:'Phone',cMail:'Email',cAddr:'Office',addr:'Yerevan, 6 Yekmalyan St, Business Palais, 2nd floor, office 21',
+ fName:'Name',fPhone:'Phone',fSpace:'Space',fArea:'Approximate area',fWhen:'When',fSend:'Send request',fErr:'Please add your name and phone.',fDone:'Opening WhatsApp — press Send in the chat and we will call you back.',
+ foot:'The art of outdoor space'}
+};
+const STEPS = {
+ hy:[['Հանդիպում','Ծանոթանում ենք տարածքին և ձեր ցանկություններին, ընտրում ենք մոդելը և նախնական գինը։'],['Նախագիծ','Ճարտարապետները նախագծում են համակարգը՝ 2D գծագրեր և 3D պատկերներ։'],['Արտադրություն','Պատվիրում ենք եվրոպական բաղադրիչներ ձեր չափերով։'],['Մոնտաժ','Տեղադրում ենք մեր թիմով, անհրաժեշտության դեպքում՝ արդյունաբերական ալպինիստներով։'],['Սպասարկում','Մարկիզաների և պերգոլաների կարգավորում, սպասարկում և նորոգում։']],
+ ru:[['Встреча','Смотрим место и ваши пожелания, выбираем модель и согласуем предварительную цену.'],['Проект','Архитекторы проектируют систему: 2D-чертежи и 3D-изображения.'],['Производство','Заказываем европейские комплектующие под ваши размеры.'],['Монтаж','Устанавливаем своей бригадой, если нужно — с промышленными альпинистами.'],['Сервис','Настройка, обслуживание и ремонт маркиз и пергол.']],
+ en:[['Meeting','We look at the site and your wishes, choose the model and agree a preliminary price.'],['Design','Our architects design the system: 2D drawings and 3D images.'],['Manufacture','European components are ordered to your dimensions.'],['Installation','Our own crew installs it, with rope-access technicians where needed.'],['Service','Adjustment, maintenance and repair of awnings and pergolas.']]
+};
+const ARCH = {
+ hy:['Պերգոլաների մոդելների լայն ընտրանի','Համագործակցության ձեռնտու պայմաններ','Օգնություն նախագծման մեջ','Ուղևորում դեպի օբյեկտ','Համատեղ նախագծում արտադրողի ինժեներների հետ'],
+ ru:['Широкий выбор моделей пергол','Выгодные условия сотрудничества','Помощь в проектировании','Выезд на объект','Совместное проектирование с инженерами производителя'],
+ en:['A wide range of pergola models','Favourable partnership terms','Help with the design','Site visits','Joint engineering with the manufacturer']
+};
+const SPACES = {hy:['Առանձնատուն','Ռեստորան','Տեռաս','Ձմեռային այգի','Այլ'],ru:['Частный дом','Ресторан','Терраса','Зимний сад','Другое'],en:['Private home','Restaurant','Terrace','Winter garden','Other']};
+const WHEN = {hy:['Այս ամիս','1–3 ամսում','Պլանավորում եմ'],ru:['В этом месяце','Через 1–3 месяца','Пока планирую'],en:['This month','In 1–3 months','Just planning']};
+
+let lang = 'hy';
+try { const s = localStorage.getItem('areve_lang'); if (T[s]) lang = s; } catch (e) {}
+
+function render(){
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.innerHTML = v; });
+  document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  document.getElementById('steps').innerHTML = STEPS[lang].map((s, i) => `<div class="step"><span class="mono">0${i + 1}</span><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+  document.getElementById('arList').innerHTML = ARCH[lang].map((s, i) => `<li><span class="mono">0${i + 1}</span><span>${s}</span></li>`).join('');
+  document.getElementById('chips').innerHTML = SPACES[lang].map((s, i) => `<label><input type="radio" name="space" id="sp-${i}" value="${i}"${i === 0 ? ' checked' : ''}><span>${s}</span></label>`).join('');
+  document.getElementById('f-when').innerHTML = WHEN[lang].map(s => `<option>${s}</option>`).join('');
+}
+document.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => { lang = b.dataset.lang; try { localStorage.setItem('areve_lang', lang); } catch (e) {} render(); }));
+document.getElementById('rq').addEventListener('submit', e => {
+  e.preventDefault();
+  const ok = document.getElementById('f-name').value.trim() && document.getElementById('f-phone').value.trim();
+  document.getElementById('err').hidden = !!ok;
+  document.getElementById('done').hidden = !ok;
+  if (ok) areveFormWA(e.target, T[lang].rqKick);
+});
+
+/* «День на террасе» */
+const DAYT = {
+ hy:{k:'Մեկ օր տեռասի վրա',hint:'Թերթեք ներքև՝ արևը շարժվում է',ph:[['Լուսաբաց','Առաջին ճառագայթները. շերտերը կանգնում են արևին ընդառաջ։'],['Առավոտ','Արևը բարձրանում է, շերտերը թեքվում են՝ պահելով ստվերը սեղանի վրա։'],['Կեսօր','Արևը գրեթե գլխավերևում է։ Ծածկը փակվում է, ներքևում զով ստվեր է։'],['Երեկո','Ցածր արև արևմուտքից. շերտերը կանգնում են գրեթե ուղղահայաց։'],['Գիշեր','Արևը մայր է մտել։ Շերտերը բաց են՝ սեղանի վերևում երկինքն է։']]},
+ ru:{k:'Один день на террасе',hint:'Листайте вниз — солнце движется',ph:[['Рассвет','Первые лучи: ламели встают навстречу солнцу.'],['Утро','Солнце поднимается, ламели наклоняются и держат тень над столом.'],['Полдень','Солнце почти над головой. Крыша закрывается, внизу прохладная тень.'],['Вечер','Низкое солнце с запада: ламели встают почти вертикально.'],['Ночь','Солнце село. Ламели открыты — над столом небо.']]},
+ en:{k:'A day on the terrace',hint:'Scroll down to move the sun',ph:[['Dawn','First light: the louvres turn to face the sun.'],['Morning','As the sun climbs, the louvres tilt to keep the table in shade.'],['Noon','The sun is nearly overhead. The roof closes; cool shade below.'],['Evening','Low sun from the west: the louvres stand almost upright.'],['Night','The sun has set. The louvres open to the sky above the table.']]}
+};
+const D3 = window.ArevePergola ? ArevePergola(document.getElementById('day3d'), {hour:6, day:172, w:5.2, d:4.2, controls:false, camX:10, camY:4.6, camZ:9}) : null;
+const track = document.getElementById('dayTrack'), dayTop = document.getElementById('dayTop');
+let dayLast = -1;
+function dayScroll(){
+  const r = track.getBoundingClientRect(), span = track.offsetHeight - innerHeight;
+  const p = Math.max(0, Math.min(1, -r.top / (span || 1)));
+  if (Math.abs(p - dayLast) < .0005) return; dayLast = p;
+  const h = 5.4 + p * 16.1, d = DAYT[lang];
+  if (D3) { D3.set({hour:h, day:172}); D3.view(.75 - p * 1.1, 13.4); }
+  const ph = h < 7 ? 0 : h < 11 ? 1 : h < 15.5 ? 2 : h < 20 ? 3 : 4;
+  document.getElementById('dayTime').textContent = String(Math.floor(h)).padStart(2, '0') + ':' + String(Math.floor((h % 1) * 60)).padStart(2, '0');
+  document.getElementById('dayPhase').textContent = d.ph[ph][0];
+  document.getElementById('dayText').textContent = d.ph[ph][1];
+  document.getElementById('dayProg').style.width = (p * 100) + '%';
+  dayTop.style.opacity = String(Math.max(0, 1 - p * 7));
+  dayTop.style.visibility = p > .15 ? 'hidden' : '';
+}
+function dayLang(){ const d = DAYT[lang]; document.getElementById('dayKick').textContent = d.k; document.getElementById('dayHint').textContent = d.hint; dayLast = -1; dayScroll(); }
+addEventListener('scroll', dayScroll, { passive: true });
+new MutationObserver(dayLang).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+render();
+dayLang();
+areveEnhance();
+</script>
+
+</html>
