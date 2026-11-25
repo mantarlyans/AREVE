@@ -193,4 +193,12 @@
       rail.scrollBy({ left: w * Number(b.dataset.dir), behavior: 'smooth' });
     });
   });
+  /* нижняя панель: показывать только когда кнопки первого экрана ушли с экрана — без дублей */
+  var cta = document.querySelector('.hero .cta'), dock = document.querySelector('.dock');
+  if (cta && dock && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('dock-auto');
+    new IntersectionObserver(function (en) {
+      dock.classList.toggle('show', !en[0].isIntersecting && en[0].boundingClientRect.top < 0);
+    }).observe(cta);
+  }
 })();

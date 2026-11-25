@@ -400,3 +400,35 @@ footer .wrap{border-top:.5px solid var(--sep)}
 body{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 @media (min-width:1000px){body{padding-bottom:0}}
 @media (min-width:1000px){.dock{left:auto;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}}
+
+/* ════ UX-чистка: меньше цветов, без дублей (владелец, 25.11.2026) ════
+   Палитра на экране: текст #262626, белый, серый #f5f5f5, линии #c8c8c8 и ОДИН акцент — градиент логотипа
+   (только главная кнопка и блок заявки). Заголовки — сплошной тёмный, без градиента. */
+.hero h1,h2,.bigtel{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink)}
+#request h2{color:#fff}
+.eyebrow,.kicker,.cgrid .k{color:var(--muted)}
+.eyebrow::before{background:var(--line);height:1px}
+.steps li::before{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--gray);font-weight:600}
+footer [data-t=slogan]{background:none;color:var(--muted);-webkit-background-clip:border-box;background-clip:border-box}
+body::after{opacity:.55}
+/* вторичные кнопки нейтральные */
+.btn-alt,.btn-line{color:var(--ink)}
+.btn-alt svg{color:#25a35a}
+.card .ph::after{color:var(--ink)}
+.card .ph.none{background:repeating-linear-gradient(-8deg,var(--soft) 0 22px,#ebebeb 22px 25px);color:var(--muted)}
+.card .ph.none::after{color:var(--ink)}
+.hero .phones a{border-bottom-color:var(--line)}
+.radios label:has(input:checked){color:var(--ink)}
+a{color:var(--ink)}
+.cgrid a:not(.v),#request .checklist a{text-decoration-color:var(--line)}
+.menu a[aria-current]{color:var(--ink)!important;font-weight:600}
+.langs button[aria-pressed=true]{color:var(--ink)}
+/* первый экран: две кнопки поровну на телефоне */
+.hero .cta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hero .cta .btn{padding:0 12px}
+@media (min-width:900px){.hero .cta{display:flex}.hero .cta .btn{padding:0 24px}}
+/* нижняя панель появляется только после первого экрана */
+.dock-auto .dock{transform:translateY(calc(100% + 24px));opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.7,.1,1),opacity .3s}
+.dock-auto .dock.show{transform:none;opacity:1;pointer-events:auto}
+.dock .btn-alt{color:var(--ink)}
+@media (min-width:1000px){.dock .btn-alt{color:#fff}}
