@@ -239,3 +239,111 @@ footer .wrap{padding-block:20px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
   *,*::before,*::after{animation:none!important;transition:none!important}
   .slats{display:none}
 }
+
+/* ════════════════════════════════════════════════════════════════
+   LIQUID GLASS + градиент старого areve.am (логотип: #ea7723 → #cb372b, бордовый #a21f3a)
+   Стекло: полупрозрачная заливка, сильное размытие, блик сверху, тонкая светлая кромка.
+   ════════════════════════════════════════════════════════════════ */
+:root{
+  --sun:#ea7723;      /* оранжевый из логотипа */
+  --sun-tx:#de5c26;   /* оранжевый логотипа для текста (контраст ≥3:1 на крупном) */
+  --red2:#cb372b;     /* красный из логотипа */
+  --grad:linear-gradient(120deg,var(--sun) 0%,var(--red2) 48%,var(--brand) 100%);
+  --grad-tx:linear-gradient(100deg,var(--sun-tx) 0%,var(--red2) 45%,var(--brand) 90%);
+  --glass:linear-gradient(140deg,rgba(255,255,255,.72),rgba(255,255,255,.38));
+  --glass-edge:rgba(255,255,255,.75);
+  --glass-sh:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -1px 1px rgba(255,255,255,.3),0 12px 34px -14px rgba(140,40,30,.38);
+  --blur:blur(22px) saturate(185%);
+  --r:22px;
+}
+/* тёплое «солнце» за стеклом — как настроение старого сайта */
+body{background:#fff}
+body::after{content:"";position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(38vmax 38vmax at 12% 8%,rgba(234,119,35,.20),transparent 70%),
+    radial-gradient(34vmax 34vmax at 92% 30%,rgba(198,0,2,.12),transparent 70%),
+    radial-gradient(40vmax 40vmax at 30% 85%,rgba(162,31,58,.12),transparent 70%)}
+main,footer{position:relative;z-index:0}
+
+/* общий рецепт стекла */
+.top,.langs,.badge,.lab,.dock,.marquee,.steps li,form,.arrow,.btn-alt,.slide figcaption,.cgrid,.radios label,input,select,textarea{
+  background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-edge);box-shadow:var(--glass-sh)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .top,.langs,.badge,.lab,.dock,.marquee,.steps li,form,.arrow,.btn-alt,.slide figcaption,.cgrid{background:rgba(255,255,255,.94)}
+}
+
+/* шапка — плавающая стеклянная капсула */
+.top{top:calc(8px + env(safe-area-inset-top,0px));margin:8px 10px 0;border-radius:999px}
+body::before{background:transparent}
+.top .wrap{min-height:60px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+.langs{border-radius:999px}
+.langs button[aria-pressed=true]{background:#fff;color:var(--brand);box-shadow:0 2px 8px rgba(140,40,30,.18)}
+.burger{background:var(--grad);box-shadow:inset 0 1px 1px rgba(255,255,255,.5),0 6px 16px -6px rgba(162,31,58,.6)}
+.menu{background:var(--grad)}
+@media (min-width:1080px){.top{margin:12px auto 0;max-width:calc(var(--wrap) - 24px)}.menu{background:none}.menu a:hover{background:rgba(255,255,255,.7)}}
+
+/* кнопки: главная — градиент логотипа с бликом, вторая — стекло */
+.btn-main{background:var(--grad);color:#fff;position:relative;box-shadow:inset 0 1px 1px rgba(255,255,255,.55),inset 0 -2px 6px rgba(120,10,30,.25),0 10px 24px -10px rgba(198,0,2,.55)}
+.btn-main:hover{background:var(--grad);filter:brightness(1.06)}
+.btn-alt{color:var(--brand)}
+.btn-alt:hover{background:#fff;color:var(--brand)}
+.btn-line{background:var(--glass);border:1px solid var(--glass-edge);box-shadow:var(--glass-sh);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+
+/* заголовки — градиентный текст как в логотипе */
+.hero h1,.bigtel,h2{background:var(--grad-tx);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1::first-line{color:inherit}
+#request h2{background:none;color:#fff}
+.eyebrow{color:var(--brand)}
+.eyebrow .dot{background:var(--grad);box-shadow:0 0 0 6px rgba(234,119,35,.18)}
+.kicker{color:var(--red2)}
+
+/* фото + ламели в цветах градиента */
+.shade{background:var(--grad);box-shadow:0 30px 60px -30px rgba(140,40,30,.5)}
+.slats i{background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 40%),var(--grad);background-size:100% 100%,100% 1400%}
+.slats i:nth-child(n){background-position:0 0,0 calc(var(--n,0) * 7.7%)}
+.slats i:nth-child(2){--n:1}.slats i:nth-child(3){--n:2}.slats i:nth-child(4){--n:3}.slats i:nth-child(5){--n:4}.slats i:nth-child(6){--n:5}.slats i:nth-child(7){--n:6}.slats i:nth-child(8){--n:7}.slats i:nth-child(9){--n:8}.slats i:nth-child(10){--n:9}.slats i:nth-child(11){--n:10}.slats i:nth-child(12){--n:11}.slats i:nth-child(13){--n:12}.slats i:nth-child(14){--n:13}
+.badge{color:var(--ink)}
+
+/* бегущая строка — стеклянная полоса */
+.marquee{margin:48px 10px 0;border-radius:999px;padding-block:14px}
+.set span:nth-of-type(odd){background:var(--grad-tx);-webkit-background-clip:text;background-clip:text;color:transparent}
+.set span:nth-of-type(even){-webkit-text-stroke-color:var(--red2)}
+.set i{color:var(--sun)}
+
+/* плитки */
+.tile{border-radius:var(--r);box-shadow:0 20px 40px -24px rgba(140,40,30,.45)}
+.tile .stripes{background:repeating-linear-gradient(-6deg,rgba(255,255,255,.0) 0 26px,rgba(255,255,255,.55) 26px 30px),var(--grad);opacity:1}
+.lab{border-radius:16px}
+.lab .no{color:var(--red2)}
+
+/* шаги — стеклянные карточки */
+.soft{background:transparent}
+.steps{gap:12px}
+.steps li,.steps li:last-child{border:1px solid var(--glass-edge);border-radius:var(--r);padding:22px}
+.steps .big{-webkit-text-stroke:0;background:var(--grad-tx);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.9}
+@media (min-width:900px){.steps li{padding:30px}}
+
+/* работы */
+.slide img{border-radius:var(--r)}
+.slide figcaption{margin:-46px 10px 0;position:relative;border-radius:16px;padding:12px 14px}
+.arrow{color:var(--brand)}
+
+/* заявка — градиент логотипа, форма из «жидкого стекла» */
+#request{background:var(--grad);margin-inline:10px;border-radius:calc(var(--r) + 8px)}
+#request::before{background:radial-gradient(60% 80% at 85% 10%,rgba(255,255,255,.22),transparent 60%),repeating-linear-gradient(-6deg,transparent 0 46px,rgba(255,255,255,.06) 46px 50px)}
+form{background:linear-gradient(140deg,rgba(255,255,255,.88),rgba(255,255,255,.7));border-radius:calc(var(--r) + 4px)}
+input,select,textarea{border-radius:14px;box-shadow:inset 0 1px 2px rgba(140,40,30,.08)}
+.radios label:has(input:checked){background:#fff;border-color:var(--red2)}
+#request .checklist li::before{border-color:rgba(255,255,255,.85)}
+
+/* контакты */
+.cgrid{border-radius:var(--r);padding:24px;border-top:1px solid var(--glass-edge)}
+.cgrid .k{color:var(--red2)}
+.word{-webkit-text-stroke:1.5px rgba(203,55,43,.28)}
+
+/* нижняя панель — плавающий таб-бар iOS */
+.dock{border-radius:999px}
+.dock .wa{background:rgba(255,255,255,.6)}
+@media (min-width:1080px){.dock{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}.dock .wa{background:var(--grad);color:#fff;border:0}}
+.hero{padding-bottom:0}.marquee{margin-top:28px}
