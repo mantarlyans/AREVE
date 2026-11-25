@@ -199,3 +199,4 @@ input:focus, select:focus, textarea:focus { border-color: var(--brand); outline:
 .work img{border-radius:12px}
 .work figcaption{position:static;padding:10px 2px 0;color:var(--ink);background:none}
 .work figcaption span{color:var(--muted)}
+.work{background:none}
