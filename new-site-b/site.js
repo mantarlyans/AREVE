@@ -42,7 +42,7 @@
       c_h: 'Կապ', c_addr: 'Հասցե', c_tel: 'Հեռախոս', map: 'Բացել քարտեզում',
       addr: '0002, ք. Երևան, Եկմալյան 6, Բիզնես կենտրոն «Բիզնես Պալե», 2-րդ հարկ, 21 սենյակ',
       slogan: 'Արևն ու անձրևը մեր տարերքն են',
-      a_pergola: 'Պերգոլա ռեստորանի տեռասի վրա', a_awning: 'Մարկիզաներ ռեստորանի ճակատին', a_glazing: 'Ապակեպատ տեռաս', a_deck: 'Տեռաս այգով և հատակով', a_umbrella: 'Անձրևանոցներ փողոցային տեռասում'
+      a_hero: 'Պերգոլա ռեստորանի տեռասի վրա, Երևան', a_pergola: 'Պերգոլա ռեստորանի տեռասի վրա', a_awning: 'Մարկիզաներ ռեստորանի ճակատին', a_glazing: 'Ապակեպատ տեռաս', a_deck: 'Տեռաս այգով և հատակով', a_umbrella: 'Անձրևանոցներ փողոցային տեռասում'
     },
     ru: {
       title: 'ARÉVE — Ереван', skip: 'Перейти к содержанию', menu: 'Меню', city: 'Ереван',
@@ -80,7 +80,7 @@
       c_h: 'Контакты', c_addr: 'Адрес', c_tel: 'Телефон', map: 'Открыть на карте',
       addr: '0002, Ереван, ул. Екмаляна 6, бизнес-центр «Бизнес Пале», 2 этаж, комната 21',
       slogan: 'Солнце и дождь — наша стихия',
-      a_pergola: 'Пергола над террасой ресторана', a_awning: 'Маркизы на фасаде ресторана', a_glazing: 'Остеклённая терраса', a_deck: 'Терраса с садом и настилом', a_umbrella: 'Зонты на уличной террасе'
+      a_hero: 'Пергола над террасой ресторана, Ереван', a_pergola: 'Пергола над террасой ресторана', a_awning: 'Маркизы на фасаде ресторана', a_glazing: 'Остеклённая терраса', a_deck: 'Терраса с садом и настилом', a_umbrella: 'Зонты на уличной террасе'
     },
     en: {
       title: 'ARÉVE — Yerevan', skip: 'Skip to content', menu: 'Menu', city: 'Yerevan',
@@ -118,7 +118,7 @@
       c_h: 'Contact', c_addr: 'Address', c_tel: 'Phone', map: 'Open in maps',
       addr: 'Business Palais business centre, 6 Yekmalyan St, 2nd floor, room 21, Yerevan 0002',
       slogan: 'Sun and rain are our element',
-      a_pergola: 'Pergola over a restaurant terrace', a_awning: 'Awnings on a restaurant façade', a_glazing: 'Glazed terrace', a_deck: 'Garden terrace with decking', a_umbrella: 'Umbrellas on a street terrace'
+      a_hero: 'Pergola over a restaurant terrace, Yerevan', a_pergola: 'Pergola over a restaurant terrace', a_awning: 'Awnings on a restaurant façade', a_glazing: 'Glazed terrace', a_deck: 'Garden terrace with decking', a_umbrella: 'Umbrellas on a street terrace'
     }
   };
 
