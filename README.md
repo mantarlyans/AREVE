@@ -8,6 +8,7 @@
 - Прошлая luxury-версия работает: https://smartapp.support/areve/ (исходник `site/`).
 - Заявки — в WhatsApp +374 93 70 03 70.
 - `new-site/`: главная готова (черновик, ждёт «да» владельца). Языки: ru полностью; hy — только тексты старого areve.am; en — пусто. Строки на перевод — `new-site/TRANSLATE.md`.
+- `new-site-b/`: второй вариант главной (параллельная сессия, тот же бриф): hy/ru/en полностью (армянский написан Claude — вычитать носителю), заявка в WhatsApp с запасной кнопкой. Владельцу выбрать вариант A (`new-site/`) или B (`new-site-b/`), второй удалить.
 
 ## Где что
 | Путь | Что |
@@ -16,6 +17,7 @@
 | `PROMPT.md` | роль и факты бренда с источниками |
 | `NEW-SITE-BRIEF.md` | задание на новый сайт |
 | `new-site/` | новый сайт: пока главная (`index.html`, `css/`, `js/i18n.js` — все тексты, `TRANSLATE.md` — на перевод) |
+| `new-site-b/` | вариант B главной: `index.html`, `site.css`, `site.js` (все тексты hy/ru/en), `img/`; `.artifact.html` — копия для артефакта |
 | `site/` | прошлая версия сайта, фото работ, картинки моделей (ИИ) |
 | `assets/areve-am/` | тексты и картинки со старого areve.am |
 | `concept.html`, `flow-prompts.md`, `HISTORY.md` | концепция, промпты картинок, история проекта |
@@ -23,6 +25,7 @@
 ## Опубликованные страницы
 - Концепция: https://claude.ai/artifact/FcQtwWmHasCzwHjrJd8FGC
 - Новый сайт, главная (черновик, 25.11.2026): https://claude.ai/artifact/7Y4GAfL857ttHN7ZEfmYkV
+- Новый сайт, главная, вариант B (`new-site-b/`, 25.11.2026): https://claude.ai/artifact/UmYPMEQELrYimnkL1XrMgU
 
 ## Ждём от владельца
 1. Логотип SVG.
