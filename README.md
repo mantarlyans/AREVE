@@ -9,6 +9,7 @@
 - Заявки — в WhatsApp +374 93 70 03 70.
 - `new-site/`: главная готова (черновик, ждёт «да» владельца). Языки: ru полностью; hy — только тексты старого areve.am; en — пусто. Строки на перевод — `new-site/TRANSLATE.md`.
 - `new-site-b/`: второй вариант главной (параллельная сессия, тот же бриф): hy/ru/en полностью (армянский написан Claude — вычитать носителю), заявка в WhatsApp с запасной кнопкой. Владельцу выбрать вариант A (`new-site/`) или B (`new-site-b/`), второй удалить.
+- 25.11.2026: оба варианта светлые; на главной есть «О нас», «Партнёрам», «Вопросы» (общий `extra.js`), все ссылки рабочие, языки hy/ru/en полные в обоих.
 
 ## Где что
 | Путь | Что |
@@ -23,7 +24,7 @@
 | `concept.html`, `flow-prompts.md`, `HISTORY.md` | концепция, промпты картинок, история проекта |
 
 ## Опубликованные страницы
-- Веб-превью (Vercel, проект `areve-preview`, команда Mantarlyan Projects, автодеплой из `main`): вариант A https://areve-preview.vercel.app/new-site/ · вариант B https://areve-preview.vercel.app/new-site-b/
+- Веб-превью (Vercel, проект `areve-preview`, команда Mantarlyan Projects; автодеплоя нет — после пуша в `main` пересобрать деплой из Git): вариант A https://areve-preview.vercel.app/new-site/ · вариант B https://areve-preview.vercel.app/new-site-b/
 - Концепция: https://claude.ai/artifact/FcQtwWmHasCzwHjrJd8FGC
 - Новый сайт, главная (черновик, 25.11.2026): https://claude.ai/artifact/7Y4GAfL857ttHN7ZEfmYkV
 - Новый сайт, главная, вариант B (`new-site-b/`, 25.11.2026): https://claude.ai/artifact/UmYPMEQELrYimnkL1XrMgU
