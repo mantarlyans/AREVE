@@ -432,3 +432,31 @@ a{color:var(--ink)}
 .dock-auto .dock.show{transform:none;opacity:1;pointer-events:auto}
 .dock .btn-alt{color:var(--ink)}
 @media (min-width:1000px){.dock .btn-alt{color:#fff}}
+
+/* ════ СВЕТЛАЯ ВЕРСИЯ без цветовой нагрузки (владелец, 25.11.2026) ════
+   Белый и светло-серый, текст #262626. Бордовый #a21f3a — только главная кнопка. Без градиентов и цветных блоков. */
+body::after{display:none}
+.btn-main,.btn-main:hover,form .btn-main{background:var(--brand);color:#fff;filter:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 8px 20px -12px rgba(162,31,58,.6)}
+.btn-main:hover{background:var(--brand-dk)}
+#request{background:var(--soft);color:var(--ink);margin-inline:0;border-radius:0}
+#request::before{display:none}
+#request h2{color:var(--ink)}
+#request .head p,#request .checklist{color:var(--muted)}
+#request .checklist a{color:var(--ink)}
+#request .checklist li::before{border-color:var(--ink)}
+form{background:#fff;color:var(--ink);border:1px solid #e6e6e6;box-shadow:0 20px 40px -28px rgba(38,38,38,.25)}
+form .fld label,form .fld legend{color:var(--ink)}
+form .fld .opt,form .opt,form .note{color:var(--muted)}
+form input,form select,form textarea{background:var(--soft);color:var(--ink);border:1px solid transparent;box-shadow:none}
+form input::placeholder,form textarea::placeholder{color:var(--gray)}
+form input:focus,form select:focus,form textarea:focus{background:#fff;border-color:var(--ink);box-shadow:none}
+form .radios label{background:var(--soft);color:var(--ink);border:1px solid transparent}
+form .radios label:has(input:checked){background:#fff;color:var(--ink);border-color:var(--ink)}
+form .btn-line{color:var(--ink);border-color:var(--line);background:#fff}
+form .err{color:var(--accent)}
+.card .ph.none{background:repeating-linear-gradient(-8deg,var(--soft) 0 22px,#ececec 22px 25px)}
+.x-sec h2{font-size:clamp(28px,4.2vw,40px);line-height:1.1;font-weight:700;letter-spacing:-.025em;color:var(--ink)}
+.x-sec{padding-block:48px}
+@media (min-width:900px){.x-sec{padding-block:80px}}
+.x-alt{background:var(--soft)}
+@media (min-width:1000px){.dock .btn-alt{background:var(--brand);color:#fff}}

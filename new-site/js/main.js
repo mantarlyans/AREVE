@@ -17,7 +17,7 @@
         <div class="card-b">
           <h3>${esc(t(p.id))}</h3>
           <p>${esc(t(p.id + '_d'))}</p>
-          <a href="#" data-soon class="more">${esc(t('more'))}</a>
+          <a href="#contacts" data-product="${p.id}" class="more">${esc(t('more'))}</a>
         </div>
       </article>`).join('');
     const sel = $('#productSelect'), cur = sel.value;
@@ -74,6 +74,12 @@
     clearTimeout(tm); tm = setTimeout(() => box.classList.remove('on'), 2200);
   });
 
+  /* «Подробнее» на карточке → заявка с выбранным продуктом */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-product]');
+    if (a) { const s = $('#productSelect'); if (s) s.value = a.dataset.product; }
+  });
+
   /* заявка → WhatsApp */
   $('#leadForm').addEventListener('submit', e => {
     e.preventDefault();
@@ -96,6 +102,13 @@
     a.href = url; a.target = '_blank'; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
   });
+
+  /* нижняя панель на телефоне — только после кнопок первого экрана, без дублей */
+  const acts = document.querySelector('.hero .actions'), bar = $('.mbar');
+  if (acts && bar && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('mbar-auto');
+    new IntersectionObserver(en => bar.classList.toggle('show', !en[0].isIntersecting && en[0].boundingClientRect.top < 0)).observe(acts);
+  }
 
   render();
 }

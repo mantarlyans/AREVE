@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="extra.css">
 <link rel="preload" as="image" href="img/hero.jpg">
 </head>
 <body>
@@ -19,16 +20,16 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="index.html"><img src="img/logo.png" width="150" height="91" alt="ARÉVE"></a>
+    <a class="logo" href="#main"><img src="img/logo.png" width="150" height="91" alt="ARÉVE"></a>
     <nav class="menu" id="menu" aria-label="Menu">
       <ul>
-        <li><a href="index.html" aria-current="page" data-t="n_home">Գլխավոր</a></li>
-        <li><a href="about.html" data-t="n_about">Մեր մասին</a></li>
+        <li><a href="#main" aria-current="page" data-t="n_home">Գլխավոր</a></li>
+        <li><a href="#about" data-t="n_about">Մեր մասին</a></li>
         <li><a href="#products" data-t="n_products">Տեսականի</a></li>
         <li><a href="#process" data-t="n_service">Ծառայություն</a></li>
-        <li><a href="partners.html" data-t="n_partners">Գործընկեր</a></li>
+        <li><a href="#partners" data-t="n_partners">Գործընկեր</a></li>
         <li><a href="#work" data-t="n_work">Նմուշ</a></li>
-        <li><a href="faq.html" data-t="n_faq">Հարցեր</a></li>
+        <li><a href="#faq" data-t="n_faq">Հարցեր</a></li>
         <li><a href="#contact" data-t="n_contact">Կապ</a></li>
       </ul>
     </nav>
@@ -58,16 +59,18 @@
     </div>
   </section>
 
+  <section id="about" class="x-sec"><div class="x-in" id="x-about"></div></section>
+
   <section id="products" aria-labelledby="h-products">
     <div class="wrap">
       <div class="head"><span class="bar"></span><h2 id="h-products" data-t="p_h">Տեսականի</h2><p data-t="p_sub">Ընտրեք, թե ինչ է պետք․ կօգնենք ընտրել մոդելը և չափը։</p></div>
       <div class="grid">
-        <a class="card" href="pergola.html"><div class="ph"><img src="img/w143.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_pergola"></div><div class="tx"><h3 data-t="pergola">Պերգոլա</h3><p data-t="pergola_d">Ծածկ տեռասի վրա՝ ստվեր և պաշտպանություն անձրևից։ Տների և ռեստորանների համար։</p></div></a>
-        <a class="card" href="markiza.html"><div class="ph"><img src="img/w088.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_awning"></div><div class="tx"><h3 data-t="awning">Մարկիզա</h3><p data-t="awning_d">Բացվող ծածկ պատուհանների, պատշգամբի կամ տեռասի վրա։</p></div></a>
-        <a class="card" href="glazing.html"><div class="ph"><img src="img/w090.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_glazing"></div><div class="tx"><h3 data-t="glazing">Ապակեպատում</h3><p data-t="glazing_d">Տեռասների և վերանդաների ապակեպատում՝ հարմար նաև ցուրտ եղանակին։</p></div></a>
-        <a class="card" href="deck.html"><div class="ph"><img src="img/w147.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_deck"></div><div class="tx"><h3 data-t="deck">Տեռասային հատակ</h3><p data-t="deck_d">Հատակ տեռասի, լողավազանի և այգու համար։</p></div></a>
-        <a class="card" href="umbrella.html"><div class="ph"><img src="img/w054.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_umbrella"></div><div class="tx"><h3 data-t="umbrella">Անձրևանոց</h3><p data-t="umbrella_d">Մեծ անձրևանոցներ սրճարանների և ամառային հարթակների համար։</p></div></a>
-        <a class="card" href="carpet.html"><div class="ph none" data-t="nophoto">Լուսանկարը՝ շուտով</div><div class="tx"><h3 data-t="carpet">Կարպետ</h3><p data-t="carpet_d">Տարբերակների մասին կպատմենք հեռախոսով կամ WhatsApp-ով։</p></div></a>
+        <a class="card" href="#request" data-product="pergola"><div class="ph"><img src="img/w143.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_pergola"></div><div class="tx"><h3 data-t="pergola">Պերգոլա</h3><p data-t="pergola_d">Ծածկ տեռասի վրա՝ ստվեր և պաշտպանություն անձրևից։ Տների և ռեստորանների համար։</p></div></a>
+        <a class="card" href="#request" data-product="awning"><div class="ph"><img src="img/w088.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_awning"></div><div class="tx"><h3 data-t="awning">Մարկիզա</h3><p data-t="awning_d">Բացվող ծածկ պատուհանների, պատշգամբի կամ տեռասի վրա։</p></div></a>
+        <a class="card" href="#request" data-product="glazing"><div class="ph"><img src="img/w090.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_glazing"></div><div class="tx"><h3 data-t="glazing">Ապակեպատում</h3><p data-t="glazing_d">Տեռասների և վերանդաների ապակեպատում՝ հարմար նաև ցուրտ եղանակին։</p></div></a>
+        <a class="card" href="#request" data-product="deck"><div class="ph"><img src="img/w147.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_deck"></div><div class="tx"><h3 data-t="deck">Տեռասային հատակ</h3><p data-t="deck_d">Հատակ տեռասի, լողավազանի և այգու համար։</p></div></a>
+        <a class="card" href="#request" data-product="umbrella"><div class="ph"><img src="img/w054.jpg" width="720" height="540" loading="lazy" alt="" data-alt="a_umbrella"></div><div class="tx"><h3 data-t="umbrella">Անձրևանոց</h3><p data-t="umbrella_d">Մեծ անձրևանոցներ սրճարանների և ամառային հարթակների համար։</p></div></a>
+        <a class="card" href="#request" data-product="carpet"><div class="ph none" data-t="nophoto">Լուսանկարը՝ շուտով</div><div class="tx"><h3 data-t="carpet">Կարպետ</h3><p data-t="carpet_d">Տարբերակների մասին կպատմենք հեռախոսով կամ WhatsApp-ով։</p></div></a>
       </div>
     </div>
   </section>
@@ -84,6 +87,8 @@
     </div>
   </section>
 
+  <section id="partners" class="x-sec x-alt"><div class="x-in" id="x-partners"></div></section>
+
   <section id="work" aria-labelledby="h-work">
     <div class="wrap">
       <div class="head"><span class="bar"></span><h2 id="h-work" data-t="w_h">Մեր աշխատանքները</h2><p data-t="w_sub">ԱՐԵՎԵ-ի իրական օբյեկտներ Երևանում։</p></div>
@@ -95,9 +100,10 @@
         <figure><img src="img/w034.jpg" width="720" height="540" loading="lazy" alt="" data-alt="w5"><figcaption><b data-t="w5">Պերգոլա տանիքին</b><span data-t="w5_s">Պերգոլա</span></figcaption></figure>
         <figure><img src="img/w062.jpg" width="720" height="540" loading="lazy" alt="" data-alt="w6"><figcaption><b data-t="w6">Սրահ ալիքների տակ</b><span data-t="w6_s">Ալիքաձև կտորե առաստաղ</span></figcaption></figure>
       </div>
-      <p class="more"><a class="btn btn-line" href="work.html" data-t="w_all">Բոլոր աշխատանքները</a></p>
     </div>
   </section>
+
+  <section id="faq" class="x-sec x-alt"><div class="x-in" id="x-faq"></div></section>
 
   <section id="request" class="soft" aria-labelledby="h-req">
     <div class="wrap form-wrap">
@@ -165,5 +171,6 @@
 </div>
 
 <script src="site.js"></script>
+<script src="extra.js"></script>
 </body>
 </html>

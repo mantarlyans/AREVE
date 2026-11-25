@@ -1,0 +1,28 @@
+/* ARÉVE — разделы «О нас», «Партнёрам», «Вопросы» (общий для A и B). Светлые, без цветовой нагрузки. */
+.x-sec{padding-block:56px;scroll-margin-top:80px}
+.x-sec>.x-in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.x-head{display:grid;gap:8px;margin-bottom:24px;max-width:44em}
+.x-head h2{margin:0}
+.x-head p{color:#5c5c5c;margin:0}
+.x-cols{display:grid;gap:16px}
+@media (min-width:860px){.x-cols{grid-template-columns:1fr 1fr;gap:24px;align-items:start}}
+.x-text{display:grid;gap:14px;color:#262626;max-width:38em}
+.x-text p{margin:0}
+.x-card{background:#fff;border:1px solid #e6e6e6;border-radius:22px;padding:22px}
+.x-card h3{margin:0 0 12px;font-size:17px;font-weight:600}
+.x-list{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.x-list li{padding:11px 0;border-top:1px solid #eeeeee;color:#262626}
+.x-list li:first-child{border-top:0;padding-top:0}
+.x-cta{margin:20px 0 0}
+.x-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:999px;border:1px solid #c8c8c8;background:#fff;color:#262626;text-decoration:none;font-weight:600}
+.x-btn:hover{border-color:#a21f3a;color:#a21f3a}
+.x-faq{display:grid;gap:8px;max-width:860px}
+.x-faq details{background:#fff;border:1px solid #e6e6e6;border-radius:18px}
+.x-faq summary{list-style:none;cursor:pointer;padding:16px 52px 16px 20px;font-weight:600;position:relative;min-height:44px}
+.x-faq summary::-webkit-details-marker{display:none}
+.x-faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:22px;font-weight:400;color:#888888;transition:transform .2s}
+.x-faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.x-faq details p{margin:0;padding:0 20px 18px;color:#5c5c5c}
+.x-faq summary:focus-visible{outline:2px solid #a21f3a;outline-offset:2px;border-radius:18px}
+.x-alt{background:#f5f5f5}
+@media (min-width:900px){.x-sec{padding-block:80px}}

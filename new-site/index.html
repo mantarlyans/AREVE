@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">К содержанию</a>
@@ -19,12 +20,12 @@
     <a class="logo" href="#top" aria-label="ARÉVE"><img src="img/logo.png" alt="ARÉVE" width="75" height="46"></a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu"><span></span><span class="sr" data-t="menu">Меню</span></button>
     <nav id="menu" class="menu" aria-label="Main">
-      <a href="#" data-soon data-t="nav_about">О нас</a>
+      <a href="#about" data-t="nav_about">О нас</a>
       <a href="#products" data-t="nav_products">Ассортимент</a>
       <a href="#process" data-t="nav_service">Сервис</a>
-      <a href="#" data-soon data-t="nav_partners">Партнёрам</a>
+      <a href="#partners" data-t="nav_partners">Партнёрам</a>
       <a href="#works" data-t="nav_works">Наши работы</a>
-      <a href="#" data-soon data-t="nav_faq">Вопросы</a>
+      <a href="#faq" data-t="nav_faq">Вопросы</a>
       <a href="#contacts" data-t="nav_contacts">Контакты</a>
     </nav>
     <div class="langs" role="group" aria-label="Language">
@@ -49,6 +50,8 @@
     </div>
   </section>
 
+  <section class="x-sec" id="about"><div class="x-in" id="x-about"></div></section>
+
   <section class="band" id="products">
     <div class="wrap">
       <h2 data-t="products_title">Ассортимент</h2>
@@ -63,15 +66,18 @@
     </div>
   </section>
 
+  <section class="x-sec x-alt" id="partners"><div class="x-in" id="x-partners"></div></section>
+
   <section class="band" id="works">
     <div class="wrap">
       <div class="head-row">
         <h2 data-t="works_title">Наши работы</h2>
-        <a class="more" href="#" data-soon data-t="works_all">Все работы</a>
       </div>
       <div class="grid3 works" id="workGrid"></div>
     </div>
   </section>
+
+  <section class="x-sec x-alt" id="faq"><div class="x-in" id="x-faq"></div></section>
 
   <section class="band soft" id="contacts">
     <div class="wrap two">
@@ -103,7 +109,7 @@
         <p><a href="https://www.google.com/maps/search/?api=1&query=Yerevan%2C%20Yekmalyan%206" target="_blank" rel="noopener" data-t="map">Открыть на карте</a></p>
         <p class="big"><a href="tel:+37493700370">+374 93 70 03 70</a><br><a href="tel:+37410530370">+374 10 53 03 70</a></p>
         <p><a href="mailto:info@areve.am">info@areve.am</a></p>
-        <p class="slogan">ԱՐԵՎՆ ՈՒ ԱՆՁՐԵՎԸ ՄԵՐ ՏԱՐԵՐՔՆ ԵՆ</p>
+        <p class="slogan" data-t="slogan">ԱՐԵՎՆ ՈՒ ԱՆՁՐԵՎԸ ՄԵՐ ՏԱՐԵՐՔՆ ԵՆ</p>
       </div>
     </div>
   </section>
@@ -127,5 +133,6 @@
 
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
+<script src="js/extra.js"></script>
 </body>
 </html>

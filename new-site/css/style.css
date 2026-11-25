@@ -167,3 +167,35 @@ input:focus, select:focus, textarea:focus { border-color: var(--brand); outline:
   .work img, .toast, .btn { transition: none }
   .work:hover img { transform: none }
 }
+
+/* ════ СВЕТЛАЯ ВЕРСИЯ без цветовой нагрузки (владелец, 25.11.2026) ════
+   Всегда светлая тема (без тёмной), белый/светло-серый, текст #262626, бордовый — только главная кнопка. */
+:root{color-scheme:light}
+:root{--bg:#ffffff;--bg-soft:#f5f5f5;--ink:#262626;--muted:#5c5c5c;--line:#c8c8c8;--card:#ffffff;--link:#a21f3a}
+/* первый экран: светлый — фото сверху, текст на белом */
+.hero{min-height:0;display:block;color:var(--ink);background:var(--bg)}
+.hero::after{display:none}
+.hero-img{position:relative;inset:auto;height:auto;aspect-ratio:16/9;max-height:62vh;border-radius:0}
+.hero-in{padding-top:28px}
+.hero h1{color:var(--ink)}
+.hero p,.hero .sub{color:var(--muted)}
+.hero a:not(.btn){color:var(--ink)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:#fff}
+.btn-ghost:hover{background:var(--bg-soft);border-color:var(--ink)}
+/* WhatsApp — нейтрально, без зелёной заливки */
+.btn-wa{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-wa:hover{background:var(--bg-soft);border-color:var(--ink)}
+.wa-float{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:0 8px 24px -10px rgba(38,38,38,.35)}
+/* карточка без фото и шаги — серые */
+.card .ph{background:var(--bg-soft);color:var(--line)}
+.steps li{border-top-color:var(--line)}
+.steps li::before{background:var(--bg-soft);color:var(--ink)}
+.mbar a.wa{background:#fff;color:var(--ink);border-top:1px solid var(--line)}
+.mbar{transition:transform .4s cubic-bezier(.2,.7,.1,1)}
+.mbar-auto .mbar{transform:translateY(110%)}
+.mbar-auto .mbar.show{transform:none}
+/* работы: подпись под фото, без тёмной плашки */
+.work{background:var(--bg-soft);overflow:visible;border-radius:0}
+.work img{border-radius:12px}
+.work figcaption{position:static;padding:10px 2px 0;color:var(--ink);background:none}
+.work figcaption span{color:var(--muted)}

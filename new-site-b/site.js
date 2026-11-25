@@ -201,4 +201,8 @@
       dock.classList.toggle('show', !en[0].isIntersecting && en[0].boundingClientRect.top < 0);
     }).observe(cta);
   }
+  /* карточка продукта → заявка с выбранным продуктом */
+  document.querySelectorAll('[data-product]').forEach(function (c) {
+    c.addEventListener('click', function () { var s = document.getElementById('f-prod'); if (s) s.value = c.dataset.product; });
+  });
 })();
