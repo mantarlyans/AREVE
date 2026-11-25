@@ -3,7 +3,7 @@
   --brand:#a21f3a;      /* бордовый: кнопки, ссылки */
   --brand-dk:#861830;
   --accent:#c60002;     /* красный: редкие акценты */
-  --ink:#262626;        /* текст, тёмные блоки */
+  --ink:#262626;        /* только текст; тёмных блоков нет — владелец 25.11.2026 */
   --gray:#888888;       /* только крупный текст на белом */
   --muted:#5c5c5c;      /* мелкий вторичный текст (AA на белом и #f5f5f5) */
   --line:#c8c8c8;
@@ -26,7 +26,7 @@ h3{font-size:1.125rem;font-weight:600}
 p{margin:0}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:2px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:8px 12px;z-index:99}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:#fff;padding:8px 12px;z-index:99}
 .skip:focus{left:8px;top:8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
@@ -37,7 +37,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .logo img{width:82px;height:auto}
 .langs{display:flex;margin-left:auto;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .langs button{font:600 .8125rem/1 var(--f);padding:10px 9px;min-width:44px;min-height:40px;border:0;background:var(--bg);color:var(--ink);cursor:pointer}
-.langs button[aria-pressed=true]{background:var(--ink);color:#fff}
+.langs button[aria-pressed=true]{background:var(--brand);color:#fff}
 .burger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);cursor:pointer}
 .burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:var(--ink);position:relative;content:""}
 .burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
@@ -65,8 +65,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn-line{border-color:currentColor;color:inherit;background:transparent}
 
 /* первый экран */
-.hero{position:relative;color:#fff;background:var(--ink)}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero{position:relative;color:#fff;background:var(--brand);overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(162,31,58,.94) 0%,rgba(162,31,58,.82) 45%,rgba(162,31,58,.35) 100%)}
+.hero .wrap{z-index:1}
+.hero .btn-main{background:#fff;color:var(--brand)}
+.hero .btn-main:hover{background:var(--bg-soft)}
 .hero .wrap{position:relative;padding-block:56px 48px;display:grid;gap:18px}
 .eyebrow{font-size:.8125rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;opacity:.9}
 .hero h1{font-size:clamp(2rem,7vw,3.5rem);font-weight:700;max-width:16ch}
@@ -130,14 +134,15 @@ fieldset{border:0;padding:0;margin:0;min-width:0}
 .checklist li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:8px;border-left:3px solid var(--brand);border-bottom:3px solid var(--brand);transform:rotate(-45deg)}
 
 /* контакты */
-.contacts{background:var(--ink);color:#fff}
-.contacts .head p{color:#d6d6d6}
+.contacts{background:var(--brand);color:#fff}
+.contacts .bar{background:#fff}
+.contacts .head p{color:#fff}
 .contacts a{color:#fff}
 .cgrid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
 .cgrid div{display:grid;gap:4px;align-content:start}
-.cgrid .k{font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;color:#bdbdbd}
+.cgrid .k{font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;opacity:.85}
 .cgrid .v{font-size:1.0625rem}
-footer{background:#1b1b1b;color:#bdbdbd;font-size:.875rem}
+footer{background:var(--bg-soft);color:var(--muted);font-size:.875rem;border-top:1px solid var(--line)}
 footer .wrap{padding-block:20px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 
 /* нижняя панель на телефоне / плавающая WA */
