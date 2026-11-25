@@ -1,0 +1,169 @@
+/* ARÉVE — новый сайт
+   VOICE: спокойно и понятно, как у мастера, который показывает свои объекты.
+   IDEA: витрина реальных работ — каждое обещание подкреплено фото с объекта.
+   PICTURE: большое фото террасы с перголой вечером на весь первый экран.
+   COLOUR and TYPE: белый, бордовый #a21f3a с areve.am, графит #262626, светло-серый; Noto Sans + Noto Sans Armenian.
+   LAYOUT: телефон первым; полосы на всю ширину, контент до 1200px, нижняя панель «Позвонить / WhatsApp» на телефоне. */
+
+:root {
+  color-scheme: light dark;
+  --brand: #a21f3a;
+  --brand-d: #861830;
+  --accent: #c60002;
+  --wa: #1a8f4c;
+  --bg: light-dark(#ffffff, #161314);
+  --bg-soft: light-dark(#f5f5f5, #211c1e);
+  --ink: light-dark(#262626, #f1eeee);
+  --muted: light-dark(#5c5c5c, #b9b2b4);
+  --line: light-dark(#c8c8c8, #3a3335);
+  --card: light-dark(#ffffff, #1d1819);
+  --link: light-dark(#a21f3a, #ff8ea3);
+}
+:root[data-theme=light] { color-scheme: light }
+:root[data-theme=dark] { color-scheme: dark }
+* { box-sizing: border-box; min-width: 0 }
+html { scroll-behavior: smooth; scroll-padding-top: 80px }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 "Noto Sans", "Noto Sans Armenian", system-ui, sans-serif; overflow-x: clip }
+html:lang(hy) body { font-family: "Noto Sans Armenian", "Noto Sans", system-ui, sans-serif }
+img { display: block; max-width: 100%; height: auto }
+a { color: var(--link) }
+h1, h2, h3 { line-height: 1.12; text-wrap: balance; margin: 0 0 .5em }
+h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700 }
+h3 { font-size: 20px; font-weight: 700 }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0) }
+.skip { position: absolute; left: 8px; top: -60px; background: var(--brand); color: #fff; padding: 10px 14px; z-index: 100; border-radius: 6px }
+.skip:focus { top: 8px }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 max(5vw, 16px) }
+.band { padding: clamp(48px, 7vw, 96px) 0 }
+.soft { background: var(--bg-soft) }
+
+/* кнопки */
+.btn { white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 24px; border-radius: 8px; background: var(--brand); color: #fff; font-weight: 600; text-decoration: none; border: 2px solid var(--brand); cursor: pointer; font: inherit; font-weight: 600; transition: background .2s }
+.btn:hover { background: var(--brand-d); border-color: var(--brand-d) }
+.btn-wa { background: var(--wa); border-color: var(--wa) }
+.btn-wa:hover { background: #157a40; border-color: #157a40 }
+.btn-ghost { background: transparent; border-color: #fff; color: #fff }
+.btn-ghost:hover { background: rgba(255,255,255,.14); border-color: #fff }
+.btn-sm { min-height: 44px; padding: 0 16px; font-size: 16px }
+.wide { width: 100% }
+
+/* шапка */
+.top { position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--line) }
+.top-in { display: flex; align-items: center; gap: 20px; min-height: 72px }
+.logo img { width: 75px; height: auto }
+.menu { display: flex; gap: 16px; margin-left: auto; white-space: nowrap }
+.menu a { color: var(--ink); text-decoration: none; font-size: 16px; padding: 10px 0; border-bottom: 2px solid transparent }
+.menu a:hover { border-color: var(--brand); color: var(--brand) }
+.langs { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden }
+.langs button { min-height: 40px; min-width: 48px; border: 0; background: none; color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer }
+.langs button[aria-pressed=true] { background: var(--brand); color: #fff }
+.burger { display: none; width: 44px; height: 44px; margin-left: auto; border: 1px solid var(--line); border-radius: 8px; background: none; cursor: pointer; position: relative }
+.burger > span:first-child, .burger > span:first-child::before, .burger > span:first-child::after { position: absolute; left: 11px; width: 20px; height: 2px; background: var(--ink); content: "" }
+.burger > span:first-child { top: 21px }
+.burger > span:first-child::before { top: -6px; left: 0 }
+.burger > span:first-child::after { top: 6px; left: 0 }
+
+/* первый экран */
+.hero { position: relative; min-height: min(86vh, 760px); display: flex; align-items: flex-end; color: #fff; background: #1b1617 }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,14,15,.15) 0%, rgba(20,14,15,.35) 45%, rgba(20,14,15,.86) 100%) }
+.hero-in { position: relative; z-index: 1; width: 100%; padding-top: 120px; padding-bottom: clamp(40px, 7vw, 80px) }
+.hero h1 { font-size: clamp(36px, 6vw, 64px); max-width: 14ch; margin-bottom: .35em }
+.lead { font-size: clamp(18px, 2vw, 21px); max-width: 38ch; margin: 0 0 28px; color: #f3eeee }
+.actions { display: flex; flex-wrap: wrap; gap: 12px }
+.phones { margin: 18px 0 0; font-size: 16px; color: #e4dcdd; white-space: nowrap }
+
+/* карточки продуктов */
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 28px }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column }
+.card img, .card .ph { width: 100%; aspect-ratio: 4 / 3; object-fit: cover }
+.card .ph { display: grid; place-items: center; background: var(--brand); color: #f7b26b }
+.card .ph svg { width: 34% }
+.card-b { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 }
+.card-b p { margin: 0 0 14px; color: var(--muted) }
+.more { margin-top: auto; font-weight: 600; text-decoration: none }
+.more::after { content: " →" }
+
+/* шаги */
+.steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: s }
+.steps li { border-top: 3px solid var(--brand); padding-top: 18px; counter-increment: s }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; margin-bottom: 14px }
+.steps p { margin: 0; color: var(--muted) }
+
+/* работы */
+.head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap }
+.work { margin: 0; position: relative; border-radius: 12px; overflow: hidden; background: #222 }
+.work img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .5s }
+.work:hover img { transform: scale(1.04) }
+.work figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.78)); display: flex; justify-content: space-between; align-items: baseline; gap: 10px }
+.work figcaption span { font-size: 14px; letter-spacing: .04em; opacity: .9 }
+
+/* заявка и контакты */
+.two { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start }
+.form { background: var(--card); border-radius: 14px; padding: clamp(22px, 4vw, 40px); border: 1px solid var(--line) }
+.form > p { color: var(--muted); margin-top: 0 }
+.fld { display: block; margin: 0 0 16px; border: 0; padding: 0 }
+.fld > span, .fld legend { display: block; font-weight: 600; font-size: 16px; margin-bottom: 6px; padding: 0 }
+input, select, textarea { width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 17px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px }
+input:focus, select:focus, textarea:focus { border-color: var(--brand); outline: 2px solid var(--brand); outline-offset: 0 }
+.chips { display: flex; flex-wrap: wrap; gap: 8px }
+.chips label { position: relative }
+.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; min-height: 0 }
+.chips span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--line); border-radius: 22px; cursor: pointer }
+.chips input:checked + span { background: var(--brand); border-color: var(--brand); color: #fff }
+.chips input:focus-visible + span { outline: 3px solid var(--brand); outline-offset: 2px }
+.err { color: var(--accent); font-weight: 600; margin: 0 0 12px }
+.note { font-size: 14px; color: var(--muted); margin: 10px 0 0 }
+.contacts p { margin: 0 0 14px }
+.org { font-weight: 700; font-size: 19px }
+.big { font-size: 22px; font-weight: 700; line-height: 1.5 }
+.big a { color: var(--ink); text-decoration: none; white-space: nowrap }
+.slogan { margin-top: 28px !important; color: var(--brand); font-weight: 700; font-size: 15px; font-family: "Noto Sans Armenian", sans-serif }
+
+/* подвал */
+.foot { background: #262626; color: #d8d8d8; font-size: 15px }
+.foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 24px; padding-bottom: 24px }
+
+/* WhatsApp и нижняя панель */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: var(--wa); color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.25) }
+.mbar { display: none }
+.toast { position: fixed; left: 50%; bottom: 90px; transform: translate(-50%, 20px); background: #262626; color: #fff; padding: 12px 18px; border-radius: 8px; opacity: 0; pointer-events: none; transition: .25s; z-index: 70; font-size: 15px }
+.toast.on { opacity: 1; transform: translate(-50%, 0) }
+
+@media (max-width: 1280px) {
+  .top-call { display: none }
+  .burger { display: block }
+  .menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; padding: 8px max(5vw, 16px) 16px; margin: 0 }
+  .menu.open { display: flex }
+  .menu a { padding: 12px 0; font-size: 18px; border-bottom: 1px solid var(--line) }
+  .langs { order: 3; margin-left: auto }
+  .burger { order: 4; margin-left: 0 }
+}
+@media (max-width: 1080px) {
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 860px) {
+  .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .two { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 600px) {
+  .top-in { gap: 10px; min-height: 64px }
+  .logo img { width: 62px }
+  .langs button { min-width: 42px; font-size: 13px }
+  .grid3, .steps { grid-template-columns: minmax(0, 1fr) }
+  .hero { min-height: 82vh }
+  .actions .btn { flex: 1 1 100% }
+  .phones { white-space: normal }
+  .wa-float { display: none }
+  .mbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; box-shadow: 0 -4px 16px rgba(0,0,0,.15) }
+  .mbar a { display: grid; place-items: center; min-height: 56px; background: var(--brand); color: #fff; font-weight: 700; text-decoration: none }
+  .mbar a.wa { background: var(--wa) }
+  body { padding-bottom: 56px }
+  .toast { bottom: 76px }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  .work img, .toast, .btn { transition: none }
+  .work:hover img { transform: none }
+}
